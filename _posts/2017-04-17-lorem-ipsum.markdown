@@ -12,7 +12,7 @@ layout: post
 * 注册Github账号，创建新的仓库
 * 本地创建本地库的文件夹
 * 安装git并克隆库（git clone 地址）
-* 安装Jekyll
+* 安装Jekyll（sudo gpt-get install git）
 * 前往Jekyll主题官网下载网站主题并解压（jekyllthemes.org）
 * 把主题拷贝到本地库文件夹并推送
 
