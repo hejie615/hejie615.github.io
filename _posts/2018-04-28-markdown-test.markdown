@@ -1,11 +1,12 @@
 ---
 layout: post
-title: Markdown Test
-date: "2018-04-28 13:30:00 -0700"
+title: 日报
+date: "2019-08-15 13:30:00 -0700"
 tags: [test, markdown, docs]
 ---
 
-You can write regular [markdown](https://markdowntutorial.com/) here and Jekyll will automatically convert it to a nice webpage.  I strongly encourage you to [take 5 minutes to learn how to write in markdown](https://markdowntutorial.com/) - it'll teach you how to transform regular text into bold/italics/headings/tables/etc.
+第一天日报：Linux系统的安装
+第二天日报：初步Github+Jekyll搭建个人博客
 
 <!--more-->
 
