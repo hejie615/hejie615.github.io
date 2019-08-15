@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+
+<head>
+  <title>
+    归档 &middot; wu-kan
+  </title>
+  
+  <meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1"  />
+  
+  <meta http-equiv="X-UA-Compatible"  content="IE=edge"  />
+  
+  <meta http-equiv="content-type"  content="text/html; charset=utf-8"  />
+  
+  <meta name="google-site-verification"  content="YIKi1rBnyUaS-DMYiluseI5kZzTwjCkTFmKkSkMZDJk"  />
+  
+  <meta name="baidu-site-verification"  content="bEFDJ1LvXb"  />
+  
+  <meta name="yandex-verification"  content="52253e02830b443c"  />
+  
+  <link rel="profile"  href="//gmpg.org/xfn/11"  />
+  
+  <link rel="alternate"  href="/atom.xml"  title="RSS"  type="application/rss+xml"  />
+  
+  <link rel="apple-touch-icon-precomposed"  href="//www.gravatar.com/avatar/a12c5fff23dde00df79af9aca4e7b6e4?d=wavatar&s=144"  />
+  
+  <link rel="shortcut icon"  href="//www.gravatar.com/avatar/a12c5fff23dde00df79af9aca4e7b6e4?d=wavatar&s=32"  />
+  
+  <link rel="stylesheet"  href="//cdn.jsdelivr.net/gh/wu-kan/wu-kan.github.io/public/css/poole.css"  />
+  
+  <link rel="stylesheet"  href="//cdn.jsdelivr.net/gh/poole/lanyon/public/css/syntax.css"  />
+  
+  <link rel="stylesheet"  href="//cdn.jsdelivr.net/gh/wu-kan/wu-kan.github.io/public/css/lanyon.css"  />
+  
+  <link rel="stylesheet"  href="/public/css/wu-kan.css"  />
+  
+  <link rel="stylesheet"  href="//cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"  />
+  
+</head>
+
+<body
+  class="theme-base-0d layout-reverse sidebar-overlay">
+  <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+  <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+  <!-- Toggleable sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-item">
+      
+      <div class="ih-item circle effect right_to_left">
+        <a class="blog-button" title="WuK">
+          <div class="img">
+            <img src="//www.gravatar.com/avatar/a12c5fff23dde00df79af9aca4e7b6e4?d=wavatar&s=600" alt="img">
+          </div>
+          <div class="info info-back">
+            <p><br>SYSU17级在读<br>计科超算方向<br>ACMer<br>田宫例四驱车<br>永远喜欢水野爱</p>
+          </div>
+        </a>
+      </div>
+      
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=52 src="//music.163.com/outchain/player?type=0&id=155059595&auto=0&height=32"></iframe>
+      <div class="social">
+        
+        <a href="/atom.xml" class="fa fa-rss fa-fw" title="rss"></a>
+        
+        <a href="" class="fa fa-qq fa-fw" title="942759535"></a>
+        
+        <a href="" class="fa fa-weixin fa-fw" title="Wu-_-Kan"></a>
+        
+        <a href="mailto:wu.kan@foxmail.com" class="fa fa-envelope fa-fw" title="wu.kan@foxmail.com"></a>
+        
+        <a href="//github.com/wu-kan" class="fa fa-github fa-fw" title="github"></a>
+        
+        <a href="//codeforces.com/profile/WuK" class="fa fa-bar-chart fa-fw" title="WuK"></a>
+        
+        <a href="//vjudge.net/user/WuK" class="fa fa-smile-o fa-fw" title="WuK"></a>
+        
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      
+      <a class="sidebar-nav-item" href="/">
+        <span class="fa fa-home fa-fw"></span>&nbsp;首页
+      </a>
+      
+      <a class="sidebar-nav-item" href="/about">
+        <span class="fa fa-info-circle fa-fw"></span>&nbsp;关于
+      </a>
+      
+      <a class="sidebar-nav-item" href="/comments">
+        <span class="fa fa-comments-o fa-fw"></span>&nbsp;友链和留言
+      </a>
+      
+      <a class="sidebar-nav-item" href="/tags">
+        <span class="fa fa-tags fa-fw"></span>&nbsp;标签
+      </a>
+      
+      <a class="sidebar-nav-item active" href="/archive">
+        <span class="fa fa-archive fa-fw"></span>&nbsp;归档
+      </a>
+      
+    </nav>
+    <div class="sidebar-item">
+      
+      <div id="search-container">
+        <input type="text" id="search-input" placeholder="搜索博文">
+        <div id="results-container"></div>
+      </div>
+      <script src="//cdn.jsdelivr.net/npm/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script>
+      <script>
+        SimpleJekyllSearch({
+          placeholder: '搜索博文',
+          noResultsText: '没有搜索到文章',
+          limit: 10,
+          fuzzy: false,
+          json: '/public/simple-jekyll-search/search.json',
+          searchInput: document.getElementById('search-input'),
+          resultsContainer: document.getElementById('results-container'),
+          searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>'
+          })
+      </script>
+      
+      
+      <div id="toc"></div>
+      
+      
+      <script async src="//cdn.jsdelivr.net/npm/busuanzi/bsz.pure.mini.js"></script>
+      <span id="busuanzi_container_page_pv">
+        被阅读<span id="busuanzi_value_page_pv"></span>次
+      </span>
+      <br>
+      <span id="busuanzi_container_site_pv">
+        被访问<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <br>
+      <span id="busuanzi_container_site_uv">
+        第<span id="busuanzi_value_site_uv"></span>位访客
+      </span>
+      
+      
+      <div id="run_time"></div>
+      <script>
+        function show_date_time() {
+          window.setTimeout("show_date_time()", 1000);
+          BirthDay = new Date("10/04/2017 11:03:56");
+          today = new Date();
+          timeold = (today.getTime() - BirthDay.getTime());
+          sectimeold = timeold / 1000
+          secondsold = Math.floor(sectimeold);
+          msPerDay = 24 * 60 * 60 * 1000
+          e_daysold = timeold / msPerDay
+          daysold = Math.floor(e_daysold);
+          e_hrsold = (e_daysold - daysold) * 24;
+          hrsold = setzero(Math.floor(e_hrsold));
+          e_minsold = (e_hrsold - hrsold) * 60;
+          minsold = setzero(Math.floor((e_hrsold - hrsold) * 60));
+          seconds = setzero(Math.floor((e_minsold - minsold) * 60));
+          document.getElementById('run_time').innerHTML = "努力运行" + daysold + "天" + hrsold + "时" + minsold + "分" + seconds + "秒";
+        }
+        function setzero(i) {
+          if (i < 10) { i = "0" + i };
+          return i;
+        }
+        show_date_time();
+      </script>
+      
+      
+      <div class="copyright">
+        <span class="fa fa-copyright"></span>&nbsp;2019
+        WuK&nbsp;已开源于<a href="//github.com/wu-kan/wu-kan.github.io">GitHub</a><br>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+  <div class="wrap">
+    <h1 class="masthead masthead-title">
+      <div class="container">
+        归档
+        <a href="/">
+          <small>wu-kan</small>
+        </a>
+      </div>
+    </h1>
+    <div class="container content">
+      
+<ul>
+  <li>
+    <p><em>12 Aug 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/300iq-Contest-1">300iq Contest 1</a></p>
+  </li>
+  <li>
+    <p><em>11 Aug 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2019-Multi-University-Training-Contest-3">2019 Multi-University Training Contest 3</a></p>
+  </li>
+  <li>
+    <p><em>10 Aug 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2019-Multi-University-Training-Contest-2">2019 Multi-University Training Contest 2</a></p>
+  </li>
+  <li>
+    <p><em>31 Jul 2019</em>, <a href="/posts/acm/HDU-5306">Gorgeous Sequence</a></p>
+  </li>
+  <li>
+    <p><em>31 Jul 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Codeforces-Round-576-(Div.-2)">Codeforces Round #576 (Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>23 Jul 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2019-Multi-University-Training-Contest-1">2019 Multi-University Training Contest 1</a></p>
+  </li>
+  <li>
+    <p><em>22 Jul 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2013-2014-ACM-ICPC-Southwestern-Europe-Regional-Contest-(SWERC-13)">2013-2014 ACM-ICPC Southwestern Europe Regional Contest (SWERC 13)</a></p>
+  </li>
+  <li>
+    <p><em>20 Jul 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/ArabellaCPC-2019">ArabellaCPC 2019</a></p>
+  </li>
+  <li>
+    <p><em>19 Jul 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/The-13th-Chinese-Northeast-Collegiate-Programming-Contest">The 13th Chinese Northeast Collegiate Programming Contest</a></p>
+  </li>
+  <li>
+    <p><em>18 Jul 2019</em>, <a href="/posts/%E8%BF%99%E4%B8%80%E5%B9%B4%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3">这一年的一点感想</a></p>
+  </li>
+  <li>
+    <p><em>14 Jul 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Codeforces-Round-572-(Div.-2)">Codeforces Round #572 (Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>13 Jul 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Educational-Codeforces-Round-67-(Rated-for-Div.-2)">Educational Codeforces Round 67(Rated for Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>08 Jul 2019</em>, <a href="/posts/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0">【并行与分布式计算】复习笔记</a></p>
+  </li>
+  <li>
+    <p><em>03 Jul 2019</em>, <a href="/posts/mizuno-ai/ED+OP+PV">【水野爱】ED+OP+MV</a></p>
+  </li>
+  <li>
+    <p><em>02 Jul 2019</em>, <a href="/posts/mizuno-ai/EP12">【水野爱】EP12</a></p>
+  </li>
+  <li>
+    <p><em>01 Jul 2019</em>, <a href="/posts/mizuno-ai/EP11">【水野爱】EP11</a></p>
+  </li>
+  <li>
+    <p><em>30 Jun 2019</em>, <a href="/posts/mizuno-ai/EP10">【水野爱】EP10</a></p>
+  </li>
+  <li>
+    <p><em>29 Jun 2019</em>, <a href="/posts/mizuno-ai/EP09">【水野爱】EP09</a></p>
+  </li>
+  <li>
+    <p><em>28 Jun 2019</em>, <a href="/posts/mizuno-ai/EP08">【水野爱】EP08</a></p>
+  </li>
+  <li>
+    <p><em>27 Jun 2019</em>, <a href="/posts/mizuno-ai/EP07">【水野爱】EP07</a></p>
+  </li>
+  <li>
+    <p><em>26 Jun 2019</em>, <a href="/posts/mizuno-ai/EP06">【水野爱】EP06</a></p>
+  </li>
+  <li>
+    <p><em>25 Jun 2019</em>, <a href="/posts/mizuno-ai/EP05">【水野爱】EP05</a></p>
+  </li>
+  <li>
+    <p><em>24 Jun 2019</em>, <a href="/posts/mizuno-ai/EP04">【水野爱】EP04</a></p>
+  </li>
+  <li>
+    <p><em>23 Jun 2019</em>, <a href="/posts/mizuno-ai/EP03">【水野爱】EP03</a></p>
+  </li>
+  <li>
+    <p><em>22 Jun 2019</em>, <a href="/posts/mizuno-ai/EP02">【水野爱】EP02</a></p>
+  </li>
+  <li>
+    <p><em>21 Jun 2019</em>, <a href="/posts/mizuno-ai/EP01">【水野爱】EP01</a></p>
+  </li>
+  <li>
+    <p><em>20 Jun 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Codeforces-Round-568-(Div.-2)">Codeforces Round #568 (Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>19 Jun 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BB%BC%E5%90%88%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C">综合组网实验</a></p>
+  </li>
+  <li>
+    <p><em>18 Jun 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Chord%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6">Chord算法研究</a></p>
+  </li>
+  <li>
+    <p><em>17 Jun 2019</em>, <a href="/posts/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97-7">并行与分布式计算（7）</a></p>
+  </li>
+  <li>
+    <p><em>16 Jun 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Codeforces-Round-567-(Div.-2)">Codeforces Round #566 (Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>14 Jun 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/OSPF%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C">OSPF配置实验</a></p>
+  </li>
+  <li>
+    <p><em>11 Jun 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Codeforces-Round-566-(Div.-2)">Codeforces Round #566 (Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>06 Jun 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Educational-Codeforces-Round-66-(Rated-for-Div.-2)">Educational Codeforces Round 66 (Rated for Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>05 Jun 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E5%85%AD%E7%AB%A0-%E8%BF%90%E8%BE%93%E5%B1%82">计算机网络 第六章 运输层</a></p>
+  </li>
+  <li>
+    <p><em>04 Jun 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Codeforces-Round-563-(Div.-2)">Codeforces Round #563 (Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>03 Jun 2019</em>, <a href="/posts/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E6%93%8D%E4%BD%9C/Homework-7-%E5%85%B3%E4%BA%8ECanny%E7%9A%84SIMD%E4%BC%98%E5%8C%96%E7%BB%83%E4%B9%A0">Homework 7 关于Canny的SIMD优化练习</a></p>
+  </li>
+  <li>
+    <p><em>02 Jun 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Codeforces-Global-Round-3">Codeforces Global Round 3</a></p>
+  </li>
+  <li>
+    <p><em>28 May 2019</em>, <a href="/posts/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97-6">并行与分布式计算（6）</a></p>
+  </li>
+  <li>
+    <p><em>27 May 2019</em>, <a href="/posts/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97-5">并行与分布式计算（5）</a></p>
+  </li>
+  <li>
+    <p><em>26 May 2019</em>, <a href="/posts/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/MPI%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%AE%AD">Mpi编程实训</a></p>
+  </li>
+  <li>
+    <p><em>25 May 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%AE%9E%E9%AA%8C">文件传输实验</a></p>
+  </li>
+  <li>
+    <p><em>24 May 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/RIP%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C">Rip配置实验</a></p>
+  </li>
+  <li>
+    <p><em>23 May 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/VLAN%E9%97%B4%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C">Vlan间路由实验</a></p>
+  </li>
+  <li>
+    <p><em>22 May 2019</em>, <a href="/posts/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E6%93%8D%E4%BD%9C/Homework6-%E5%90%91%E9%87%8F%E4%B9%98%E6%B3%95">Homework6 向量乘法</a></p>
+  </li>
+  <li>
+    <p><em>16 May 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Educational-Codeforces-Round-65-(Rated-for-Div.-2)">Educational Codeforces Round 65 (Rated for Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>06 May 2019</em>, <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E9%AA%8C/%E4%BA%8C%E7%8A%B6%E6%80%81%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B">二状态进程模型</a></p>
+  </li>
+  <li>
+    <p><em>05 May 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C">静态路由实验</a></p>
+  </li>
+  <li>
+    <p><em>04 May 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/VLAN%E5%AE%9E%E9%AA%8C">Vlan实验</a></p>
+  </li>
+  <li>
+    <p><em>02 May 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Educational-Codeforces-Round-64-(Rated-for-Div.-2)">Educational Codeforces Round 64 (Rated for Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>30 Apr 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Codeforces-Round-556-(Div.-2)">Codeforces Round #556 (Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>29 Apr 2019</em>, <a href="/posts/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97-4">并行与分布式计算（4）</a></p>
+  </li>
+  <li>
+    <p><em>27 Apr 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/The-16th-Zhejiang-Provincial-Collegiate-Programming-Contest-Sponsored-by-TuSimple">The 16th Zhejiang Provincial Collegiate Programming Contest Sponsored by TuSimple</a></p>
+  </li>
+  <li>
+    <p><em>25 Apr 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Codeforces-Round-554-(Div.-2)">Codeforces Round #554 (Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>23 Apr 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Educational-Codeforces-Round-63-(Rated-for-Div.-2)">Educational Codeforces Round 63 (Rated for Div. 2)</a></p>
+  </li>
+  <li>
+    <p><em>22 Apr 2019</em>, <a href="/posts/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E6%93%8D%E4%BD%9C/Homework-5-2-%E4%BF%AE%E6%94%B9%E7%A8%8B%E5%BA%8F%E4%B8%BA%E4%B8%8D%E4%BD%BF%E7%94%A8reduction">Homework 5-2 修改程序为不使用reduction</a></p>
+  </li>
+  <li>
+    <p><em>22 Apr 2019</em>, <a href="/posts/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E6%93%8D%E4%BD%9C/Homework-5-1-%E5%AF%BB%E6%89%BE%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC%E5%8F%8A%E5%85%B6%E5%9D%90%E6%A0%87">Homework 5-1 寻找矩阵中的最大值和最小值及其坐标</a></p>
+  </li>
+  <li>
+    <p><em>20 Apr 2019</em>, <a href="/posts/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/STL%E6%95%B4%E7%90%86">Stl整理</a></p>
+  </li>
+  <li>
+    <p><em>19 Apr 2019</em>, <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E9%AA%8C/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8">系统调用</a></p>
+  </li>
+  <li>
+    <p><em>19 Apr 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%BA%8C%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%AE%9E%E9%AA%8C">二层交换机实验</a></p>
+  </li>
+  <li>
+    <p><em>15 Apr 2019</em>, <a href="/posts/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AE%E7%9A%84%E9%98%9F%E5%88%97">实现一个多线程并发访问的队列</a></p>
+  </li>
+  <li>
+    <p><em>10 Apr 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%BA%94%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%B1%82">计算机网络 第五章 网络层</a></p>
+  </li>
+  <li>
+    <p><em>10 Apr 2019</em>, <a href="/posts/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E6%93%8D%E4%BD%9C/Homework-4-%E8%AE%A1%E7%AE%97%E6%95%B0%E7%BB%84%E6%9C%80%E5%B0%8F%E5%80%BC+%E6%9C%80%E5%A4%A7%E5%80%BC+%E5%B9%B3%E5%9D%87%E5%80%BC%E7%9A%84%E5%92%8C">Homework 4 计算数组最小值+最大值+平均值的和</a></p>
+  </li>
+  <li>
+    <p><em>08 Apr 2019</em>, <a href="/posts/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E6%93%8D%E4%BD%9C/MPI%E5%B9%B6%E8%A1%8C%E5%A5%87%E5%81%B6%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F">Mpi并行奇偶交换排序</a></p>
+  </li>
+  <li>
+    <p><em>01 Apr 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%BA%94%E7%94%A8%E5%B1%82%E5%AE%9E%E9%AA%8C">应用层实验</a></p>
+  </li>
+  <li>
+    <p><em>31 Mar 2019</em>, <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E9%AA%8C/%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6">中断控制</a></p>
+  </li>
+  <li>
+    <p><em>31 Mar 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Northwestern-Europe-Regional-Contest-(NWERC)-2018">Northwestern Europe Regional Contest (NWERC) 2018</a></p>
+  </li>
+  <li>
+    <p><em>29 Mar 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E4%BB%8B%E8%B4%A8%E6%8E%A7%E5%88%B6%E5%AD%90%E5%B1%82">计算机网络 第四章 介质控制子层</a></p>
+  </li>
+  <li>
+    <p><em>28 Mar 2019</em>, <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%94%A8%E6%B1%87%E7%BC%96%E4%B8%8EC%E8%AF%AD%E8%A8%80%E5%BC%80%E5%8F%91%E7%8B%AC%E7%AB%8B%E5%86%85%E6%A0%B8">用汇编与c语言开发独立内核</a></p>
+  </li>
+  <li>
+    <p><em>25 Mar 2019</em>, <a href="/posts/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97-2">并行与分布式计算（2）</a></p>
+  </li>
+  <li>
+    <p><em>25 Mar 2019</em>, <a href="/posts/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E6%93%8D%E4%BD%9C/Homework-2-MPI%E7%BC%96%E7%A8%8B%E7%9B%B4%E6%96%B9%E5%9B%BE">Homework 2 MPI编程直方图</a></p>
+  </li>
+  <li>
+    <p><em>23 Mar 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/ACM-ICPC-World-Finals-2018">ACM-ICPC World Finals 2018</a></p>
+  </li>
+  <li>
+    <p><em>20 Mar 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-2019-ACM-ICPC-Southeastern-European-Regional-Programming-Contest-(SEERC-2018)">2018-2019 ACM-ICPC Southeastern European Regional Programming Contest (SEERC 2018)</a></p>
+  </li>
+  <li>
+    <p><em>19 Mar 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Chat%E5%AE%9E%E9%AA%8C">Chat实验</a></p>
+  </li>
+  <li>
+    <p><em>18 Mar 2019</em>, <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%8A%A0%E8%BD%BD%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%9B%91%E6%8E%A7%E7%A8%8B%E5%BA%8F">加载用户程序的监控程序</a></p>
+  </li>
+  <li>
+    <p><em>13 Mar 2019</em>, <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%A3%B8%E6%9C%BA%E6%8E%A7%E5%88%B6%E6%9D%83%E4%B8%8E%E5%BC%95%E5%AF%BC%E7%A8%8B%E5%BA%8F">裸机控制权与引导程序</a></p>
+  </li>
+  <li>
+    <p><em>11 Mar 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Echo%E5%AE%9E%E9%AA%8C">Echo实验</a></p>
+  </li>
+  <li>
+    <p><em>10 Mar 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2015-2016-Petrozavodsk-Winter-Training-Camp,-SPb-SU-+-SPb-AU-Contest">2015-2016 Petrozavodsk Winter Training Camp, SPb SU + SPb AU Contest</a></p>
+  </li>
+  <li>
+    <p><em>09 Mar 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E4%BB%8B%E8%B4%A8%E6%8E%A7%E5%88%B6%E5%AD%90%E5%B1%82">介质控制子层</a></p>
+  </li>
+  <li>
+    <p><em>08 Mar 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82">数据链路层</a></p>
+  </li>
+  <li>
+    <p><em>06 Mar 2019</em>, <a href="/posts/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E6%93%8D%E4%BD%9C/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E6%93%8D%E4%BD%9C-1">超级计算机原理与操作（1）</a></p>
+  </li>
+  <li>
+    <p><em>06 Mar 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E7%89%A9%E7%90%86%E5%B1%82">物理层</a></p>
+  </li>
+  <li>
+    <p><em>05 Mar 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0">计算机网络概述</a></p>
+  </li>
+  <li>
+    <p><em>04 Mar 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2015-2016-Petrozavodsk-Winter-Training-Camp,-Nizhny-Novgorod-SU-Contest">2015-2016 Petrozavodsk Winter Training Camp, Nizhny Novgorod SU Contest</a></p>
+  </li>
+  <li>
+    <p><em>04 Mar 2019</em>, <a href="/posts/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97-1">并行与分布式计算（1）</a></p>
+  </li>
+  <li>
+    <p><em>01 Mar 2019</em>, <a href="/posts/acm/HYSBZ-3110">K大数查询</a></p>
+  </li>
+  <li>
+    <p><em>01 Mar 2019</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%AE%9E%E9%AA%8C">数据表示实验</a></p>
+  </li>
+  <li>
+    <p><em>28 Feb 2019</em>, <a href="/posts/acm/UVALive-3510">Pixel Shuffle</a></p>
+  </li>
+  <li>
+    <p><em>26 Feb 2019</em>, <a href="/posts/acm/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6-%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E4%BA%A4-%E7%9F%A9%E5%BD%A2%E5%91%A8%E9%95%BF%E5%B9%B6-%E7%BA%BF%E6%AE%B5%E6%A0%91-%E6%89%AB%E6%8F%8F%E7%BA%BF%E6%80%BB%E7%BB%93">矩形面积并、矩形面积交、矩形周长并（线段树、扫描线总结）</a></p>
+  </li>
+  <li>
+    <p><em>24 Feb 2019</em>, <a href="/posts/acm/CodeForces-641E">Little Artem and Time Machine</a></p>
+  </li>
+  <li>
+    <p><em>23 Feb 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Hello-2019">Hello 2019</a></p>
+  </li>
+  <li>
+    <p><em>21 Feb 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Divide-by-Zero-2018">Divide by Zero 2018</a></p>
+  </li>
+  <li>
+    <p><em>20 Feb 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Manthan,-Codefest-18">Manthan, Codefest 18</a></p>
+  </li>
+  <li>
+    <p><em>19 Feb 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Mail.Ru-Cup-2018-Round-1">Mail.Ru Cup 2018 Round 1</a></p>
+  </li>
+  <li>
+    <p><em>18 Feb 2019</em>, <a href="/posts/acm/HDU-4992">Primitive Roots</a></p>
+  </li>
+  <li>
+    <p><em>18 Feb 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Mail.Ru-Cup-2018-Round-3">Mail.Ru Cup 2018 Round 3</a></p>
+  </li>
+  <li>
+    <p><em>17 Feb 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Bubble-Cup-11-Finals">Bubble Cup 11 - Finals</a></p>
+  </li>
+  <li>
+    <p><em>15 Feb 2019</em>, <a href="/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">前馈神经网络</a></p>
+  </li>
+  <li>
+    <p><em>09 Feb 2019</em>, <a href="/posts/acm/HDU-6278">Just $h$-index</a></p>
+  </li>
+  <li>
+    <p><em>09 Feb 2019</em>, <a href="/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%E5%81%9A%E5%9B%BE%E7%89%87%E5%88%86%E7%B1%BB">卷积网络做图片分类</a></p>
+  </li>
+  <li>
+    <p><em>09 Feb 2019</em>, <a href="/posts/acm/HDU-4348">To the moon</a></p>
+  </li>
+  <li>
+    <p><em>07 Feb 2019</em>, <a href="/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EMINST%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C">一个基于MINST数据集的神经网络实验</a></p>
+  </li>
+  <li>
+    <p><em>07 Feb 2019</em>, <a href="/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E9%85%8D%E7%BD%AETensorFlow">配置TensorFlow</a></p>
+  </li>
+  <li>
+    <p><em>03 Feb 2019</em>, <a href="/posts/acm/template/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></p>
+  </li>
+  <li>
+    <p><em>02 Feb 2019</em>, <a href="/posts/acm/template/%E5%9B%BE%E8%AE%BA">图论</a></p>
+  </li>
+  <li>
+    <p><em>01 Feb 2019</em>, <a href="/posts/acm/template/%E6%95%B0%E8%AE%BA">数论</a></p>
+  </li>
+  <li>
+    <p><em>31 Jan 2019</em>, <a href="/posts/acm/template/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6">组合数学</a></p>
+  </li>
+  <li>
+    <p><em>30 Jan 2019</em>, <a href="/posts/acm/template/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0">线性代数</a></p>
+  </li>
+  <li>
+    <p><em>29 Jan 2019</em>, <a href="/posts/acm/template/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6">离散数学</a></p>
+  </li>
+  <li>
+    <p><em>28 Jan 2019</em>, <a href="/posts/acm/template/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90">数学分析</a></p>
+  </li>
+  <li>
+    <p><em>27 Jan 2019</em>, <a href="/posts/acm/template/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95">计算几何</a></p>
+  </li>
+  <li>
+    <p><em>26 Jan 2019</em>, <a href="/posts/acm/template/%E9%AB%98%E7%B2%BE%E5%BA%A6">高精度</a></p>
+  </li>
+  <li>
+    <p><em>25 Jan 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-ICPC-Asia-Jakarta-Regional-Contest">2018 ICPC Asia Jakarta Regional Contest</a></p>
+  </li>
+  <li>
+    <p><em>25 Jan 2019</em>, <a href="/posts/acm/template/C++%E8%AF%AD%E8%A8%80%E7%9B%B8%E5%85%B3">C++语言相关</a></p>
+  </li>
+  <li>
+    <p><em>24 Jan 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2017-ACM-ICPC-Asia-Tehran-Regional-Contest">2017 ACM-ICPC Asia Tehran Regional Contest</a></p>
+  </li>
+  <li>
+    <p><em>23 Jan 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-2019-Russia-Open-High-School-Programming-Contest">2018-2019 Russia Open High School Programming Contest</a></p>
+  </li>
+  <li>
+    <p><em>22 Jan 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-2019-ICPC,-NEERC,-Northern-Eurasia-Finals">2018-2019 ICPC, NEERC, Northern Eurasia Finals</a></p>
+  </li>
+  <li>
+    <p><em>21 Jan 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-2019-ICPC,-NEERC,-Southern-Subregional-Contest">2018-2019 ICPC, NEERC, Southern Subregional Contest</a></p>
+  </li>
+  <li>
+    <p><em>20 Jan 2019</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/ZOJ-Monthly,-January-2019">ZOJ Monthly, January 2019</a></p>
+  </li>
+  <li>
+    <p><em>18 Jan 2019</em>, <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/%E5%9F%BA%E4%BA%8EJekyll%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2">基于Jekyll搭建个人博客</a></p>
+  </li>
+  <li>
+    <p><em>23 Dec 2018</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E5%A4%9A%E5%91%A8%E6%9C%9FCPU%E8%AE%BE%E8%AE%A1">多周期cpu设计</a></p>
+  </li>
+  <li>
+    <p><em>14 Dec 2018</em>, <a href="/posts/linux/Windows-Subsystem-for-Linux">Windows Subsystem for Linux入门：安装+配置图形界面+中文环境+vscode</a></p>
+  </li>
+  <li>
+    <p><em>13 Dec 2018</em>, <a href="/posts/acm/CodeForces-1051F">The Shortest Statement</a></p>
+  </li>
+  <li>
+    <p><em>11 Dec 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E5%B8%A6%E5%8F%98%E9%87%8F%E7%9A%84%E5%B8%83%E5%B0%94%E8%A1%A8%E8%BE%BE%E5%BC%8F">函数程序设计实验十二：带变量的布尔表达式</a></p>
+  </li>
+  <li>
+    <p><em>04 Dec 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E8%AF%8D%E9%A2%91%E7%BB%9F%E8%AE%A1">函数程序设计实验十一：词频统计</a></p>
+  </li>
+  <li>
+    <p><em>03 Dec 2018</em>, <a href="/posts/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1">概率论与数理统计</a></p>
+  </li>
+  <li>
+    <p><em>03 Dec 2018</em>, <a href="/posts/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80">线性代数</a></p>
+  </li>
+  <li>
+    <p><em>30 Nov 2018</em>, <a href="/posts/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9B%9E%E9%A1%BE">第三章：线性代数回顾(Linear Algebra Review)</a></p>
+  </li>
+  <li>
+    <p><em>30 Nov 2018</em>, <a href="/posts/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90">数学分析</a></p>
+  </li>
+  <li>
+    <p><em>30 Nov 2018</em>, <a href="/posts/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92">第二章：单变量线性回归(Linear Regression with One Variable)</a></p>
+  </li>
+  <li>
+    <p><em>30 Nov 2018</em>, <a href="/posts/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%BC%95%E8%A8%80">第一章：引言(Introduction)</a></p>
+  </li>
+  <li>
+    <p><em>26 Nov 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E8%BD%A6%E7%89%8C%E7%AB%9E%E4%BB%B7%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86">函数程序设计实验十：车牌竞价信息处理</a></p>
+  </li>
+  <li>
+    <p><em>26 Nov 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E6%A3%80%E6%9F%A5%E4%BF%A1%E7%94%A8%E5%8D%A1%E5%8F%B7%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95">函数程序设计实验九：检查信用卡号是否合法</a></p>
+  </li>
+  <li>
+    <p><em>23 Nov 2018</em>, <a href="/posts/%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%BE%E8%AE%A1">单周期cpu设计</a></p>
+  </li>
+  <li>
+    <p><em>18 Nov 2018</em>, <a href="/posts/acm/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E8%AE%AD%E7%BB%83%E6%8C%87%E5%8D%97/%E7%AC%AC3%E7%AB%A0%20%E5%AE%9E%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8C%BA%E9%97%B4%E4%BF%A1%E6%81%AF%E7%BB%B4%E6%8A%A4/UVA-11992">Fast Matrix Operations</a></p>
+  </li>
+  <li>
+    <p><em>14 Nov 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C%E5%85%AB-%E6%A8%A1%E6%8B%9F%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6">函数程序设计实验八：模拟随机事件</a></p>
+  </li>
+  <li>
+    <p><em>14 Nov 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C%E4%B8%83-%E7%9F%B3%E5%A4%B4-%E5%89%AA%E5%88%80%E5%92%8C%E5%B8%83">函数程序设计实验七：石头、剪刀和布</a></p>
+  </li>
+  <li>
+    <p><em>08 Nov 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E5%AD%97%E7%AC%A6%E6%94%BE%E5%A4%A7">函数程序设计实验六：字符放大</a></p>
+  </li>
+  <li>
+    <p><em>08 Nov 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E6%89%93%E5%8D%B0%E8%B4%AD%E7%89%A9%E5%B0%8F%E7%A5%A8">函数程序设计实验五：打印购物小票</a></p>
+  </li>
+  <li>
+    <p><em>08 Nov 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E5%88%97%E8%A1%A8%E7%BB%83%E4%B9%A0-2">函数程序设计实验四：列表练习（2）</a></p>
+  </li>
+  <li>
+    <p><em>30 Oct 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2015-2016-Petrozavodsk-Winter-Training-Camp,-Saratov-SU-Contest">2015-2016 Petrozavodsk Winter Training Camp, Saratov SU Contest</a></p>
+  </li>
+  <li>
+    <p><em>28 Oct 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2011-ACM-ICPC-Asia-Dhaka-Regional-Contest">2011 ACM-ICPC Asia Dhaka Regional Contest</a></p>
+  </li>
+  <li>
+    <p><em>25 Oct 2018</em>, <a href="/posts/acm/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E8%AE%AD%E7%BB%83%E6%8C%87%E5%8D%97/%E7%AC%AC2%E7%AB%A0%20%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/%E6%95%B0%E8%AE%BA/UVA-11426">GCD - Extreme (II)</a></p>
+  </li>
+  <li>
+    <p><em>23 Oct 2018</em>, <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/MIPS%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1">MIPS汇编语言程序设计</a></p>
+  </li>
+  <li>
+    <p><em>23 Oct 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C%E4%B8%89-%E4%BD%BF%E7%94%A8Newton-Raphson%E6%96%B9%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%B9%B3%E6%96%B9%E6%A0%B9">函数程序设计实验三：使用Newton-Raphson方式计算平方根</a></p>
+  </li>
+  <li>
+    <p><em>22 Oct 2018</em>, <a href="/posts/acm/HYSBZ-4592">脑洞治疗仪</a></p>
+  </li>
+  <li>
+    <p><em>22 Oct 2018</em>, <a href="/posts/acm/CodeForces-896C">Willem, Chtholly and Seniorious</a></p>
+  </li>
+  <li>
+    <p><em>22 Oct 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2017-2018-ACM-ICPC-Southeastern-European-Regional-Programming-Contest-(SEERC-2017)">2017-2018 ACM-ICPC Southeastern European Regional Programming Contest(SEERC 2017)</a></p>
+  </li>
+  <li>
+    <p><em>21 Oct 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Ural-Championship-2010">Ural Championship 2010</a></p>
+  </li>
+  <li>
+    <p><em>18 Oct 2018</em>, <a href="/posts/acm/HYSBZ-1251">序列终结者</a></p>
+  </li>
+  <li>
+    <p><em>18 Oct 2018</em>, <a href="/posts/acm/HYSBZ-3224">Tyvj 1728 普通平衡树</a></p>
+  </li>
+  <li>
+    <p><em>18 Oct 2018</em>, <a href="/posts/acm/OpenJ_Bailian-4090">SuperMemo</a></p>
+  </li>
+  <li>
+    <p><em>18 Oct 2018</em>, <a href="/posts/acm/HYSBZ-3223">Tyvj 1729 文艺平衡树</a></p>
+  </li>
+  <li>
+    <p><em>16 Oct 2018</em>, <a href="/posts/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E5%9C%A3%E6%9D%AF%E6%88%98%E4%BA%89">程设项目二：圣杯战争</a></p>
+  </li>
+  <li>
+    <p><em>16 Oct 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0">函数程序设计实验二：递归练习</a></p>
+  </li>
+  <li>
+    <p><em>16 Oct 2018</em>, <a href="/posts/%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/%E5%88%86%E5%BC%8F">函数程序设计实验一：分式</a></p>
+  </li>
+  <li>
+    <p><em>16 Oct 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2012-2013-ACM-ICPC,-Central-Europe-Regional-Contest-(CERC-12)">2012-2013 ACM-ICPC, Central Europe Regional Contest (CERC 12)</a></p>
+  </li>
+  <li>
+    <p><em>16 Oct 2018</em>, <a href="/posts/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E6%9F%90%E7%A7%91%E5%AD%A6%E7%9A%84%E8%B6%85%E4%BC%9A%E8%AE%AE%E8%AE%AE%E7%A8%8B%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Scientific-Meeting-Management-System">某科学的超会议议程管理系统（Scientific Meeting Management System）</a></p>
+  </li>
+  <li>
+    <p><em>07 Oct 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2009-2010-ACM-ICPC-Northeastern-European-Regional-Contest-(NEERC-09)">2009-2010 ACM-ICPC Northeastern European Regional Contest (NEERC 09)</a></p>
+  </li>
+  <li>
+    <p><em>06 Oct 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Ural-Championship-2012">Ural Championship 2012</a></p>
+  </li>
+  <li>
+    <p><em>05 Oct 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Ural-Championship-2011">Ural Championship 2011</a></p>
+  </li>
+  <li>
+    <p><em>02 Oct 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/Ural-Regional-School-Programming-Contest-2011">Ural Regional School Programming Contest 2011</a></p>
+  </li>
+  <li>
+    <p><em>23 Sep 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/ACM-ICPC-2018-%E5%8C%97%E4%BA%AC%E8%B5%9B%E5%8C%BA%E7%BD%91%E7%BB%9C%E9%A2%84%E8%B5%9B">ACM-ICPC 2018 北京赛区网络预赛</a></p>
+  </li>
+  <li>
+    <p><em>19 Sep 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/ACM-ICPC-2018-%E7%84%A6%E4%BD%9C%E8%B5%9B%E5%8C%BA%E7%BD%91%E7%BB%9C%E9%A2%84%E8%B5%9B">ACM-ICPC 2018 焦作赛区网络预赛</a></p>
+  </li>
+  <li>
+    <p><em>19 Sep 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/The-2018-ACM-ICPC-Asia-Qingdao-Regional-Contest,-Online">The 2018 ACM-ICPC Asia Qingdao Regional Contest, Online</a></p>
+  </li>
+  <li>
+    <p><em>10 Sep 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/ACM-ICPC-2018-%E5%BE%90%E5%B7%9E%E8%B5%9B%E5%8C%BA%E7%BD%91%E7%BB%9C%E9%A2%84%E8%B5%9B">ACM-ICPC 2018 徐州赛区网络预赛</a></p>
+  </li>
+  <li>
+    <p><em>09 Sep 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/ACM-ICPC-2018-%E6%B2%88%E9%98%B3%E8%B5%9B%E5%8C%BA%E7%BD%91%E7%BB%9C%E9%A2%84%E8%B5%9B">ACM-ICPC 2018 沈阳赛区网络预赛</a></p>
+  </li>
+  <li>
+    <p><em>04 Sep 2018</em>, <a href="/posts/acm/POJ-3250">Bad Hair Day</a></p>
+  </li>
+  <li>
+    <p><em>04 Sep 2018</em>, <a href="/posts/acm/POJ-2823">Sliding Window</a></p>
+  </li>
+  <li>
+    <p><em>03 Sep 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/ACM-ICPC-2018-%E5%8D%97%E4%BA%AC%E8%B5%9B%E5%8C%BA%E7%BD%91%E7%BB%9C%E9%A2%84%E8%B5%9B">ACM-ICPC 2018 南京赛区网络预赛</a></p>
+  </li>
+  <li>
+    <p><em>03 Sep 2018</em>, <a href="/posts/acm/HYSBZ-4295">Hysbz 4295</a></p>
+  </li>
+  <li>
+    <p><em>01 Sep 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2015-ACM-ICPC-Asia-Dhaka-Regional-Contest">2015 ACM-ICPC Asia Dhaka Regional Contest</a></p>
+  </li>
+  <li>
+    <p><em>29 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/ACM-ICPC-2013-2014,-Northeastern-European-Regional-Contest">ACM ICPC 2013–2014, Northeastern European Regional Contest</a></p>
+  </li>
+  <li>
+    <p><em>27 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2014-ACM-ICPC-Asia-Dhaka-Regional-Contest">2014 ACM-ICPC Asia Dhaka Regional Contest</a></p>
+  </li>
+  <li>
+    <p><em>27 Aug 2018</em>, <a href="/posts/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/%E5%88%A9%E7%94%A8MSI%E8%AE%BE%E8%AE%A1%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF">数电实验六：利用MSI设计组合逻辑电路</a></p>
+  </li>
+  <li>
+    <p><em>27 Aug 2018</em>, <a href="/posts/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1">实验三：组合逻辑电路分析与设计</a></p>
+  </li>
+  <li>
+    <p><em>27 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2012-ACM-ICPC-Asia-Dhaka-Regional-Contest">2012 ACM-ICPC Asia Dhaka Regional Contest</a></p>
+  </li>
+  <li>
+    <p><em>26 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B-%E7%BD%91%E7%BB%9C%E9%80%89%E6%8B%94%E8%B5%9B">2018中国大学生程序设计竞赛 - 网络选拔赛</a></p>
+  </li>
+  <li>
+    <p><em>25 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-10">2018 Multi-University Training Contest 10</a></p>
+  </li>
+  <li>
+    <p><em>24 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-9">2018 Multi-University Training Contest 9</a></p>
+  </li>
+  <li>
+    <p><em>23 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-8">2018 Multi-University Training Contest 8</a></p>
+  </li>
+  <li>
+    <p><em>22 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-7">2018 Multi-University Training Contest 7</a></p>
+  </li>
+  <li>
+    <p><em>22 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-6">2018 Multi-University Training Contest 6</a></p>
+  </li>
+  <li>
+    <p><em>21 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-5">2018 Multi-University Training Contest 5</a></p>
+  </li>
+  <li>
+    <p><em>20 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-4">2018 Multi-University Training Contest 4</a></p>
+  </li>
+  <li>
+    <p><em>19 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-3">2018 Multi-University Training Contest 3</a></p>
+  </li>
+  <li>
+    <p><em>17 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-2">2018 Multi-University Training Contest 2</a></p>
+  </li>
+  <li>
+    <p><em>14 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-Multi-University-Training-Contest-1">2018 Multi-University Training Contest 1</a></p>
+  </li>
+  <li>
+    <p><em>08 Aug 2018</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2018-%E7%99%BE%E5%BA%A6%E4%B9%8B%E6%98%9F-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%A7%E8%B5%9B-%E8%B5%84%E6%A0%BC%E8%B5%9B">2018”百度之星”程序设计大赛 - 资格赛</a></p>
+  </li>
+  <li>
+    <p><em>04 Jul 2018</em>, <a href="/posts/%E5%B0%8F%E5%B7%A5%E5%85%B7/%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%B8%89%E4%BD%8DJK%E5%8D%A1%E8%AF%BA%E5%9B%BE">自动生成三位JK卡诺图</a></p>
+  </li>
+  <li>
+    <p><em>04 Jul 2018</em>, <a href="/posts/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/%E5%A4%A7%E4%BD%9C%E4%B8%9A">大作业：计时器设计</a></p>
+  </li>
+  <li>
+    <p><em>04 Jul 2018</em>, <a href="/posts/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/%E8%AE%A1%E6%95%B0-%E8%AF%91%E7%A0%81-%E6%98%BE%E7%A4%BA%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C">数电实验十：计数、译码、显示综合实验</a></p>
+  </li>
+  <li>
+    <p><em>04 Jul 2018</em>, <a href="/posts/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/%E8%AE%A1%E6%95%B0%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1">数电实验九：计数器的设计</a></p>
+  </li>
+  <li>
+    <p><em>04 Jul 2018</em>, <a href="/posts/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/%E8%AF%91%E7%A0%81%E6%98%BE%E7%A4%BA%E7%94%B5%E8%B7%AF">实验七：译码显示电路</a></p>
+  </li>
+  <li>
+    <p><em>30 Mar 2018</em>, <a href="/posts/acm/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E8%AE%AD%E7%BB%83%E6%8C%87%E5%8D%97/%E7%AC%AC5%E7%AB%A0%20%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%95%E4%B8%8E%E6%A8%A1%E5%9E%8B/%E7%BD%91%E7%BB%9C%E6%B5%81/UVA-11248">Frequency Hopping</a></p>
+  </li>
+  <li>
+    <p><em>28 Dec 2017</em>, <a href="/posts/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E8%A1%A5-%E8%AF%BE%E7%AC%AC111%E5%9C%BA">补♂课第111场</a></p>
+  </li>
+  <li>
+    <p><em>24 Dec 2017</em>, <a href="/posts/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E8%A1%A5-%E8%AF%BE%E7%AC%AC110%E5%9C%BA">追分大作战Final·补♂课第110场</a></p>
+  </li>
+  <li>
+    <p><em>21 Dec 2017</em>, <a href="/posts/acm/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E8%AE%AD%E7%BB%83%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%87%A0%E4%BD%95%E9%97%AE%E9%A2%98/%E4%B8%89%E7%BB%B4%E5%87%A0%E4%BD%95/UVALive-4589">Asteroids</a></p>
+  </li>
+  <li>
+    <p><em>21 Dec 2017</em>, <a href="/posts/acm/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E8%AE%AD%E7%BB%83%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%87%A0%E4%BD%95%E9%97%AE%E9%A2%98/%E8%93%9D%E4%B9%A6%E4%B9%A0%E9%A2%98-%E7%AC%AC4%E7%AB%A0-%E5%87%A0%E4%BD%95%E9%97%AE%E9%A2%98">第4章·几何问题</a></p>
+  </li>
+  <li>
+    <p><em>21 Dec 2017</em>, <a href="/posts/acm/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E8%AE%AD%E7%BB%83%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%87%A0%E4%BD%95%E9%97%AE%E9%A2%98/%E4%B8%89%E7%BB%B4%E5%87%A0%E4%BD%95/UVALive-4973">Ardenia</a></p>
+  </li>
+  <li>
+    <p><em>21 Dec 2017</em>, <a href="/posts/acm/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E8%AE%AD%E7%BB%83%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%87%A0%E4%BD%95%E9%97%AE%E9%A2%98/%E4%B8%89%E7%BB%B4%E5%87%A0%E4%BD%95/UVA-11275">3D Triangles</a></p>
+  </li>
+  <li>
+    <p><em>13 Dec 2017</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/NVCPC-preview-contest-from-Tailmon">NVCPC preview contest from Tailmon</a></p>
+  </li>
+  <li>
+    <p><em>29 Nov 2017</em>, <a href="/posts/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E8%A1%A5-%E8%AF%BE%E7%AC%AC11%E5%9C%BA">补♂课第11场</a></p>
+  </li>
+  <li>
+    <p><em>28 Nov 2017</em>, <a href="/posts/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E8%A1%A5-%E8%AF%BE%E7%AC%AC10%E5%9C%BA">补♂课第10场</a></p>
+  </li>
+  <li>
+    <p><em>24 Nov 2017</em>, <a href="/posts/acm/%E9%A2%98%E8%A7%A3/2017-2018-ACM-ICPC,-NEERC,-Northern-Subregional-Contest">2017-2018 ACM-ICPC, NEERC, Northern Subregional Contest</a></p>
+  </li>
+  <li>
+    <p><em>04 Oct 2017</em>, <a href="/posts/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/C++51%E8%A1%8C%E8%B4%AA%E5%90%83%E8%9B%87">C++51行贪吃蛇</a></p>
+  </li>
+</ul>
+
+
+    </div>
+  </div>
+  <label for="sidebar-checkbox" class="sidebar-toggle fa fa-bars fa-fw"></label>
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/ribbon.js/dist/ribbon.min.js"></script>
+  
+  <script src="//cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+  
+  <script src="/public/js/prism.js"></script>
+  
+  <script src="/public/js/mermaid.js"></script>
+  
+  <script src="/public/js/katex.js"></script>
+  
+  
+  <script>
+    // https://github.com/ghiculescu/jekyll-table-of-contents
+    (function ($) {
+      $.fn.toc = function (options) {
+        var defaults = {
+          noBackToTopLinks: false,
+          title: '目录',
+          minimumHeaders: 3,
+          headers: 'h1, h2, h3, h4, h5, h6',
+          listType: 'ol', // values: [ol|ul]
+          showEffect: 'show', // values: [show|slideDown|fadeIn|none]
+          showSpeed: 0, // set to 0 to deactivate effect
+          classes: {
+            list: '',
+            item: ''
+          }
+        },
+          settings = $.extend(defaults, options);
+
+        function fixedEncodeURIComponent(str) {
+          return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+            return '%' + c.charCodeAt(0).toString(16);
+          });
+        }
+
+        function createLink(header) {
+          var innerText = (header.textContent === undefined) ? header.innerText : header.textContent;
+          return "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + innerText + "</a>";
+        }
+
+        var headers = $(settings.headers).filter(function () {
+          // get all headers with an ID
+          var previousSiblingName = $(this).prev().attr("name");
+          if (!this.id && previousSiblingName) {
+            this.id = $(this).attr("id", previousSiblingName.replace(/\./g, "-"));
+          }
+          return this.id;
+        }), output = $(this);
+        if (!headers.length || headers.length < settings.minimumHeaders || !output.length) {
+          $(this).hide();
+          return;
+        }
+
+        if (0 === settings.showSpeed) {
+          settings.showEffect = 'none';
+        }
+
+        var render = {
+          show: function () { output.hide().html(html).show(settings.showSpeed); },
+          slideDown: function () { output.hide().html(html).slideDown(settings.showSpeed); },
+          fadeIn: function () { output.hide().html(html).fadeIn(settings.showSpeed); },
+          none: function () { output.html(html); }
+        };
+
+        var get_level = function (ele) { return parseInt(ele.nodeName.replace("H", ""), 10); };
+        var highest_level = headers.map(function (_, ele) { return get_level(ele); }).get().sort()[0];
+        var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>';
+
+        var level = get_level(headers[0]),
+          this_level,
+          html = settings.title + " <" + settings.listType + " class=\"" + settings.classes.list + "\">";
+        headers.on('click', function () {
+          if (!settings.noBackToTopLinks) {
+            window.location.hash = this.id;
+          }
+        })
+          .addClass('clickable-header')
+          .each(function (_, header) {
+            this_level = get_level(header);
+            if (!settings.noBackToTopLinks && this_level === highest_level) {
+              $(header).addClass('top-level-header').after(return_to_top);
+            }
+            if (this_level === level) // same level as before; same indenting
+              html += "<li class=\"" + settings.classes.item + "\">" + createLink(header);
+            else if (this_level <= level) { // higher level than before; end parent ol
+              for (var i = this_level; i < level; i++) {
+                html += "</li></" + settings.listType + ">"
+              }
+              html += "<li class=\"" + settings.classes.item + "\">" + createLink(header);
+            }
+            else if (this_level > level) { // lower level than before; expand the previous to contain a ol
+              for (i = this_level; i > level; i--) {
+                html += "<" + settings.listType + " class=\"" + settings.classes.list + "\">" +
+                  "<li class=\"" + settings.classes.item + "\">"
+              }
+              html += createLink(header);
+            }
+            level = this_level; // update for the next one
+          });
+        html += "</" + settings.listType + ">";
+        if (!settings.noBackToTopLinks) {
+          $(document).on('click', '.back-to-top', function () {
+            $(window).scrollTop(0);
+            window.location.hash = '';
+          });
+        }
+        render[settings.showEffect]();
+      };
+    })(jQuery);
+    $(document).ready(function () {
+      $('#toc').toc();
+    });
+  </script>
+  
+  
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+  
+</body>
+
+</html>

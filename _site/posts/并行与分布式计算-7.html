@@ -1,0 +1,188 @@
+<p>﻿—
+title: OpenMP实现并行快速傅里叶变换
+categories: 并行与分布式计算
+—</p>
+<h2 id="题目">题目</h2>
+
+<p>Final Project, Selected topics (not limited to):</p>
+
+<ol>
+  <li>Parallel Monte Carlo algorithm;</li>
+  <li>Parallellinearsolver;</li>
+  <li>Parallel QR factorization or linear least squares;</li>
+  <li>Parallelbenchmarks;</li>
+  <li>Dynamicloadbalancing;</li>
+  <li>Parallel sorting or selection;</li>
+  <li>Parallelgraphpartitioning;</li>
+</ol>
+
+<p>Implement with MPI or MapReduce or OpenMP or CUDA …</p>
+
+<h2 id="说明">说明</h2>
+
+<p>使用OpenMP实现了并行版本的快速傅里叶变换，并与串行版本的傅里叶变换结果作比较，验证其正确性并对比运行时间。</p>
+
+<h3 id="分析">分析</h3>
+
+<p>傅里叶变换常用于加速多项式乘法，而常规的快速傅里叶变换（原理略）通常是使用递归实现的，使用并行优化的难度比较高。因此，我在这里实现了非迭代的快速傅里叶版本：先预处理每个位置上元素变换后的位置（每个位置分治后的最终位置为其二进制翻转后得到的位置），然后先将所有元素移到变换后的位置之后直接循环合并。</p>
+
+<blockquote>
+  <p>找变换位置这里其实有一个经典算法叫雷德算法，又被称作蝴蝶变换；不过我没有使用这一算法，因为蝴蝶变换有一定的循环依赖性，很难并行优化。</p>
+</blockquote>
+
+<p>随后，调整完循环顺序之后，第一层循环变量i表示每一层变换的跨度，第二层循环变量j表示每一层变换的第一个起点，第三层循环遍历k则表示实际变换的位置$k$和$k+i$。在这里，从第二层开始是没有循环依赖的，即对于不同的j，算法不会对同一块地址进行访问（因为访问的下标$k\equiv j\pmod{i}$且$k+i\equiv j\pmod{i}$）。</p>
+
+<p>作为公平起见，用于对比的串行版本快速傅里叶变换是直接在并行版本上删去编译推导<code class="highlighter-rouge">#pragma omp for</code>得到的。这是因为递归版本的快速傅里叶变换通常有较大的函数递归开销。</p>
+
+<h3 id="编译">编译</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ ParallelFastFourierTransform.cpp <span class="nt">-oParallelFastFourierTransform</span> <span class="nt">-fopenmp</span>
+</code></pre></div></div>
+
+<h3 id="运行">运行</h3>
+
+<p>接受两个运行参数，第一个参数是并行部分使用的线程数量，第二个参数是傅里叶变换的长度的指数（例如，当设为10的时候，傅里叶变换的长度就是$2^{10}=1024$；这样做是因为算法本身就要求长度为二的幂次）。</p>
+
+<p>考虑到变换的长度可能很长，我这里直接使用程序自己生成的序列进行变换了（这个程序仅用于验证算法的正确性）。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./ParallelFastFourierTransform &lt;num-of-threads&gt; &lt;power-of-transform-length&gt;
+</code></pre></div></div>
+
+<h3 id="结果">结果</h3>
+
+<p>我的软硬件配置是：</p>
+
+<ul>
+  <li>VAIO Z Flip 2016</li>
+  <li>Intel(R) Core(TM) i7-6567U CPU @3.30GHZ 3.31GHz</li>
+  <li>8.00GB RAM</li>
+  <li>Windows 10.0.18362.175, 64-bit</li>
+  <li>Windows Subsystem for Linux [Ubuntu 18.04.2 LTS]：WSL是以软件的形式运行在Windows下的Linux子系统，是近些年微软推出来的新工具，可以在Windows系统上原生运行Linux。</li>
+  <li>gcc version 7.3.0 (Ubuntu 7.3.0-27ubuntu1~18.04)：C语言程序编译器，Ubuntu自带。</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./ParallelFastFourierTransform 1 22
+Serial Time: 4.29194s
+Parallel Time: 4.32889s
+<span class="nv">$ </span>./ParallelFastFourierTransform 2 22
+Serial Time: 4.30011s
+Parallel Time: 2.9339s
+<span class="nv">$ </span>./ParallelFastFourierTransform 4 22
+Serial Time: 4.26301s
+Parallel Time: 1.87973s
+<span class="nv">$ </span>./ParallelFastFourierTransform 8 22
+Serial Time: 4.27979s
+Parallel Time: 1.89624s
+</code></pre></div></div>
+
+<p>可以看到，由于我的机器是双核心四线程，在四线程并行加速时得到了最优的加速比。四线程并行优化的傅里叶变换比串行版本快了约56%.</p>
+
+<h3 id="源代码">源代码</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;bits/stdc++.h&gt;
+#include &lt;omp.h&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">double</span> <span class="n">lf</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">Rader</span> <span class="o">:</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>
+<span class="p">{</span>
+	<span class="n">Rader</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="o">:</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="kt">int</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">log2</span><span class="p">(</span><span class="n">n</span><span class="p">))))</span>
+	<span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">at</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+				<span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+=</span> <span class="n">size</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="n">FFT</span> <span class="o">:</span> <span class="n">Rader</span>
+<span class="p">{</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">w</span><span class="p">;</span>
+	<span class="n">FFT</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="o">:</span> <span class="n">Rader</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">w</span><span class="p">(</span><span class="n">size</span><span class="p">(),</span> <span class="n">polar</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">/</span> <span class="n">size</span><span class="p">()))</span>
+	<span class="p">{</span>
+		<span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">fft</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">(</span><span class="n">size</span><span class="p">());</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">x</span><span class="p">[</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="n">i</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+				<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="n">k</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">size</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
+					<span class="n">x</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">t</span><span class="p">;</span>
+				<span class="p">}</span>
+		<span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">ask</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">xa</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">()),</span> <span class="n">xb</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">b</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+		<span class="n">xa</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">xa</span><span class="p">),</span> <span class="n">xb</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">xb</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">xa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">xb</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">(</span><span class="n">size</span><span class="p">());</span>
+		<span class="n">xa</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">xa</span><span class="p">),</span> <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xa</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">real</span><span class="p">()</span> <span class="o">/</span> <span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">xa</span><span class="p">[</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="n">i</span><span class="p">].</span><span class="n">real</span><span class="p">()</span> <span class="o">/</span> <span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">;</span>
+		<span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="n">ParallelFFT</span> <span class="o">:</span> <span class="n">Rader</span>
+<span class="p">{</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">w</span><span class="p">;</span>
+	<span class="n">ParallelFFT</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="o">:</span> <span class="n">Rader</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">w</span><span class="p">(</span><span class="n">size</span><span class="p">(),</span> <span class="n">polar</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">/</span> <span class="n">size</span><span class="p">()))</span>
+	<span class="p">{</span>
+		<span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">fft</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">(</span><span class="n">size</span><span class="p">());</span>
+<span class="cp">#pragma omp parallel for
+</span>		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">x</span><span class="p">[</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="n">i</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="cp">#pragma omp parallel for
+</span>			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+				<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="n">k</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">size</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
+					<span class="n">x</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">t</span><span class="p">;</span>
+				<span class="p">}</span>
+		<span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">ask</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">xa</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">()),</span> <span class="n">xb</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">b</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+		<span class="n">xa</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">xa</span><span class="p">),</span> <span class="n">xb</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">xb</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">xa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">xb</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">(</span><span class="n">size</span><span class="p">());</span>
+		<span class="n">xa</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">xa</span><span class="p">),</span> <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xa</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">real</span><span class="p">()</span> <span class="o">/</span> <span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">xa</span><span class="p">[</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="n">i</span><span class="p">].</span><span class="n">real</span><span class="p">()</span> <span class="o">/</span> <span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">;</span>
+		<span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Error: No Enough parameters ("</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" &lt;num-of-threads&gt; &lt;power-of-transform-length&gt;).</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="n">omp_set_num_threads</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+	<span class="n">FFT</span> <span class="n">fft</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
+	<span class="n">ParallelFFT</span> <span class="n">pfft</span><span class="p">(</span><span class="n">fft</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">(</span><span class="n">fft</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">fft</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+	<span class="kt">double</span> <span class="n">t0</span> <span class="o">=</span> <span class="n">omp_get_wtime</span><span class="p">();</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+	<span class="kt">double</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">omp_get_wtime</span><span class="p">();</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Serial Time: "</span> <span class="o">&lt;&lt;</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span> <span class="o">&lt;&lt;</span> <span class="s">"s</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="n">lf</span><span class="o">&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">pfft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+	<span class="kt">double</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">omp_get_wtime</span><span class="p">();</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Parallel Time: "</span> <span class="o">&lt;&lt;</span> <span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span> <span class="o">&lt;&lt;</span> <span class="s">"s</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="n">c</span><span class="p">)</span>
+		<span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Error: Parallel result are not equivalent to Serial result.</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>

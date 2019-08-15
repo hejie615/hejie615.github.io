@@ -1,0 +1,25 @@
+<div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">{-
+称一个三元组(x,y,z)是毕达哥拉斯三元组，如果x*x + y*y == z*z。例如，(3,4,5), (4,3,5), (6,8,10)等。
+请定义一个函数
+triads :: Int -&gt; [(Int, Int, Int)] 
+使得triads n 给出[1 .. n]中的毕达哥拉斯三元组，如
+ &gt; triads 5
+ [(3,4,5),(4,3,5)]
+ &gt; triads 13
+ [(3,4,5),(4,3,5),(5,12,13),(6,8,10),(8,6,10),(12,5,13)]
+-}</span>
+<span class="n">triads</span> <span class="o">::</span> <span class="kt">Int</span> <span class="o">-&gt;</span> <span class="p">[(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)]</span>
+<span class="n">triads</span> <span class="n">n</span><span class="o">=</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">|</span><span class="n">x</span><span class="o">&lt;-</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="n">n</span><span class="p">],</span><span class="n">y</span><span class="o">&lt;-</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="n">n</span><span class="p">],</span><span class="n">z</span><span class="o">&lt;-</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="n">n</span><span class="p">],</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="o">==</span><span class="n">z</span><span class="o">*</span><span class="n">z</span><span class="p">]</span>
+
+<span class="cm">{-
+以上结果中(3,4,5)和(4,3,5)实际上没有区别。请改进该函数，使得结果中不出现这种重复意义的三元组，实现函数
+ triads2 :: Int -&gt; [(Int, Int, Int)]
+使得
+ &gt; triads2 5
+ [(3,4,5)]
+  &gt; triads2 13
+ [(3,4,5),(5,12,13),(6,8,10)]
+-}</span>
+<span class="n">triads2</span> <span class="o">::</span> <span class="kt">Int</span> <span class="o">-&gt;</span> <span class="p">[(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)]</span>
+<span class="n">triads2</span> <span class="n">n</span><span class="o">=</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">|</span><span class="n">x</span><span class="o">&lt;-</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="n">n</span><span class="p">],</span><span class="n">y</span><span class="o">&lt;-</span><span class="p">[</span><span class="n">x</span><span class="o">..</span><span class="n">n</span><span class="p">],</span><span class="n">z</span><span class="o">&lt;-</span><span class="p">[</span><span class="n">y</span><span class="o">..</span><span class="n">n</span><span class="p">],</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="o">==</span><span class="n">z</span><span class="o">*</span><span class="n">z</span><span class="p">]</span>
+</code></pre></div></div>

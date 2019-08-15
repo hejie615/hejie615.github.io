@@ -1,0 +1,271 @@
+<p><a href="https://vjudge.net/contest/277038">Overview</a>
+小标题上的链接给出了可供参考的外部地址。
+这套题的前身是<a href="https://vjudge.net/contest/205536#overview">补♂课第110场</a>
+冰淇淋强迫症标程，所有代码的main函数都只由for语句构成，其余部分也尽可能地用for语句缩短代码。实际写代码的时候不要模仿。</p>
+<h1 id="算术运算"><a href="https://vjudge.net/problem/OpenJ_Bailian-2926">算术运算</a></h1>
+<p>出这道题的目的是让不会读文件末的同学学习一下应对多组数据的处理方法。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%lld %c %lld"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">c</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">;</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%lld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">c</span><span class="o">==</span><span class="sc">'+'</span><span class="o">?</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">:</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="扩展1scanf函数返回值"><a href="https://zh.cppreference.com/w/c/io/fscanf">扩展1：scanf函数返回值</a></h2>
+<p>成功赋值的接收参数的数量（可以为零，在首个接收用参数赋值前匹配失败的情况下），或者若输入在首个接收用参数赋值前发生失败，则为<code class="highlighter-rouge">EOF</code>。</p>
+<h2 id="扩展2eof"><a href="https://zh.cppreference.com/w/c/io">扩展2：EOF</a></h2>
+<p><code class="highlighter-rouge">int</code>类型的负值整数常量表达式，通常为<code class="highlighter-rouge">-1</code>。因此喜欢压代码量的竞赛选手有时候会喜欢直接使用位取反运算符<code class="highlighter-rouge">~</code>，即像下面这样写：<code class="highlighter-rouge">while(~scanf(\*...*\)) {}</code></p>
+<h2 id="扩展3c与s">扩展3：%c与%s</h2>
+<p><code class="highlighter-rouge">%c</code>是非格式化读入，会把空格、换行等空白符也读进来。因此，假如不知道读进来的时候有多少个空格作为间隔符，<code class="highlighter-rouge">scanf("%lld %c %lld",&amp;a,&amp;c,&amp;b)</code>通常用<code class="highlighter-rouge">scanf("%lld%s%lld",&amp;a,s,&amp;b)</code>代替，此时会跳过空白符，<code class="highlighter-rouge">s[0]</code>就是所要的可显字符，使得程序更具<strong>鲁棒性</strong>。</p>
+<h1 id="判断数字个数"><a href="https://vjudge.net/problem/OpenJ_Bailian-2927">判断数字个数</a></h1>
+<p>输入有空格，要用gets整行读入。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="n">cnt</span><span class="p">[</span><span class="mi">255</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">1023</span><span class="p">];</span> <span class="n">gets</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">!=</span><span class="nb">NULL</span><span class="p">;)</span>
+	<span class="p">{</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="o">++</span><span class="n">cnt</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="n">i</span><span class="o">=</span><span class="sc">'0'</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="sc">'9'</span><span class="p">;</span> <span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+				<span class="n">printf</span><span class="p">(</span><span class="s">"%c:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="扩展gets函数"><a href="https://zh.cppreference.com/w/c/io/gets">扩展：gets函数</a></h2>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="o">*</span><span class="n">gets</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">);</span><span class="c1">//(C11 中移除) 
+</span><span class="kt">char</span> <span class="o">*</span><span class="n">gets_s</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span><span class="n">rsize_t</span> <span class="n">n</span><span class="p">);</span><span class="c1">//(C11 起)(可选)
+</span></code></pre></div></div>
+<p>成功时为<code class="highlighter-rouge">str</code>，失败时为<code class="highlighter-rouge">NULL</code>。（由于返回的是指针类型因此不返回<code class="highlighter-rouge">EOF</code>）
+<code class="highlighter-rouge">gets()</code>函数不进行边界检查，从而此函数对缓冲区溢出攻击极度脆弱。无法安全使用它（除非程序运行的环境限定能出现在<code class="highlighter-rouge">stdin</code>上的内容）。因此，此函数在<code class="highlighter-rouge">C99</code>的第三次勘误中被弃用，而在<code class="highlighter-rouge">C11</code>标准发布时被移除。推荐的替代品是<a href="https://zh.cppreference.com/w/c/io/fgets"><code class="highlighter-rouge">fgets()</code></a>和<code class="highlighter-rouge">gets_s()</code>，详见参考链接。</p>
+<h2 id="另外一种字符处理类型的题目的思路">另外一种字符处理类型的题目的思路</h2>
+<p>把单个字符逐个<code class="highlighter-rouge">getchar</code>进来，遇到间隔符<code class="highlighter-rouge">'\n'</code>的时候开始实际处理。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="n">cnt</span><span class="p">[</span><span class="mi">255</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">ch</span><span class="p">;</span> <span class="p">(</span><span class="n">ch</span><span class="o">=</span><span class="n">getchar</span><span class="p">())</span><span class="o">!=</span><span class="n">EOF</span><span class="p">;</span> <span class="o">++</span><span class="n">cnt</span><span class="p">[</span><span class="n">ch</span><span class="p">])</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">ch</span><span class="o">==</span><span class="sc">'\n'</span><span class="p">)</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="n">i</span><span class="o">=</span><span class="sc">'0'</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="sc">'9'</span><span class="p">;</span> <span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+					<span class="n">printf</span><span class="p">(</span><span class="s">"%c:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="扩展getchar"><a href="https://zh.cppreference.com/w/c/io/getchar">扩展：getchar</a></h3>
+<p>定义于头文件<code class="highlighter-rouge">&lt;stdio.h&gt;</code>，成功时为获得的字符，失败时为<code class="highlighter-rouge">EOF</code>。等价于<code class="highlighter-rouge">getc(stdin)</code>。
+返回值类型是<code class="highlighter-rouge">int</code>，因为要区分读入的<code class="highlighter-rouge">char</code>值和<code class="highlighter-rouge">int</code>类型的<code class="highlighter-rouge">EOF</code>。</p>
+<h1 id="素数回文数的个数"><a href="https://vjudge.net/problem/OpenJ_Bailian-2928">素数回文数的个数</a></h1>
+<p>判断素数和回文数的常见套路。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="nf">isPrime</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+			<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">isPalindromic</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">;</span> <span class="n">t</span><span class="p">;</span> <span class="n">t</span><span class="o">/=</span><span class="mi">10</span><span class="p">)</span>
+		<span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">t</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
+	<span class="k">return</span> <span class="n">m</span><span class="o">==</span><span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">ans</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">;</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">ans</span><span class="p">))</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">11</span><span class="o">+</span><span class="p">(</span><span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">isPrime</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="n">isPalindromic</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+				<span class="o">++</span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="另一种较优的解法">另一种较优的解法</h2>
+<p>手动构造回文数，判断是否为素数。考虑有多次询问，可以先生成一张回文素数表，对于每次询问直接查表。此外，下述代码中表恰好是从小到大存储的，因此可以直接二分查找第一个比n小的数的下标作为答案，在程序的执行效率上会有更优的表现，请自己实现。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="mi">127</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="kt">int</span> <span class="nf">isPrime</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+			<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">11</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">99</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">11</span><span class="p">)</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">isPrime</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+			<span class="n">a</span><span class="p">[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">9</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="mi">90</span><span class="p">;</span> <span class="n">j</span><span class="o">+=</span><span class="mi">10</span><span class="p">)</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">isPrime</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">101</span><span class="o">+</span><span class="n">j</span><span class="p">))</span>
+				<span class="n">a</span><span class="p">[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="mi">101</span><span class="o">+</span><span class="n">j</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">ans</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">;</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">ans</span><span class="p">))</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">!=</span><span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+				<span class="o">++</span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h1 id="扩号匹配"><a href="https://vjudge.net/problem/OpenJ_Bailian-2929">扩号匹配</a></h1>
+<p>很推荐一做的题目，多个括号之间如何确定配对关系？
+从待匹配的地址出发，遇到右括号就将计数器加一，遇到左括号把计数器减一，当计数器的值为0的时候就是成功匹配了。很有益的思想。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">1023</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">pipei</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">cnt</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">cnt</span><span class="p">;)</span>
+	<span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="o">--</span><span class="n">p</span><span class="p">]</span><span class="o">==</span><span class="sc">'2'</span><span class="p">)</span><span class="o">++</span><span class="n">cnt</span><span class="p">;</span>
+		<span class="k">else</span> <span class="o">--</span><span class="n">cnt</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d%s"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">;</span> <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">))</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">!=</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="sc">'2'</span><span class="p">)</span>
+				<span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span><span class="n">pipei</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h1 id="加减乘除"><a href="https://vjudge.net/problem/OpenJ_Bailian-2930">加减乘除</a></h1>
+<p>由于有多组数据，因此不可以直接读三个数据进来。先读进来前两个元素，然后再判断需不需要读第三个。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d %c"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">c</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">;)</span>
+	<span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="sc">'!'</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">a</span><span class="p">;</span> <span class="n">b</span><span class="o">*=</span><span class="n">i</span><span class="o">++</span><span class="p">);</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+			<span class="k">continue</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="sc">'/'</span><span class="o">||</span><span class="n">c</span><span class="o">==</span><span class="sc">'%'</span><span class="p">))</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">else</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+				   <span class="n">c</span><span class="o">==</span><span class="sc">'+'</span><span class="o">?</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">:</span>
+				   <span class="n">c</span><span class="o">==</span><span class="sc">'-'</span><span class="o">?</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">:</span>
+				   <span class="n">c</span><span class="o">==</span><span class="sc">'*'</span><span class="o">?</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">:</span>
+				   <span class="n">c</span><span class="o">==</span><span class="sc">'/'</span><span class="o">?</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="o">:</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h1 id="期末考试第二题比较数字个数"><a href="https://vjudge.net/problem/OpenJ_Bailian-2931">期末考试第二题——比较数字个数</a></h1>
+<p>由于<code class="highlighter-rouge">NULL</code>的值通常是0，因此像下面这样直接省略也可以。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="n">flag</span><span class="p">,</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">128</span><span class="p">],</span><span class="n">cnt</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span> <span class="n">gets</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">gets</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="o">!</span><span class="n">flag</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">flag</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">!=</span><span class="mi">256</span><span class="p">;</span> <span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">];</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="o">++</span><span class="n">cnt</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]];</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">];</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="k">if</span><span class="p">(</span><span class="sc">'a'</span><span class="o">&lt;=</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="sc">'z'</span><span class="p">)</span>
+				<span class="k">if</span><span class="p">(</span><span class="o">--</span><span class="n">cnt</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span>
+					<span class="n">flag</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h1 id="期末考试第三题最大最小数之差"><a href="https://vjudge.net/problem/OpenJ_Bailian-2932">期末考试第三题——最大最小数之差</a></h1>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">len</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="mi">31</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">31</span><span class="p">];</span> <span class="n">gets</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%lld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">q</span><span class="o">-</span><span class="n">p</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">p</span><span class="o">=</span><span class="n">q</span><span class="o">=</span><span class="n">len</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="sc">'0'</span><span class="o">&lt;=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="sc">'9'</span><span class="p">)</span>
+				<span class="n">a</span><span class="p">[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">(</span><span class="sc">'a'</span><span class="o">&lt;=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="sc">'f'</span><span class="p">)</span>
+				<span class="n">a</span><span class="p">[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'a'</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">(</span><span class="sc">'A'</span><span class="o">&lt;=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="sc">'F'</span><span class="p">)</span>
+				<span class="n">a</span><span class="p">[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'A'</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">t</span><span class="p">;</span> <span class="n">j</span><span class="o">!=</span><span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="c1">//使插入元素有序
+</span>				<span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+				<span class="p">{</span>
+					<span class="n">t</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+					<span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+					<span class="n">a</span><span class="p">[</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">t</span><span class="p">;</span>
+				<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">!=</span><span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="o">*</span><span class="mi">16</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">!=-</span><span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="o">*</span><span class="mi">16</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="扩展不定长的数据">扩展：不定长的数据</h2>
+<p>虽然C语言有<code class="highlighter-rouge">malloc</code>和<code class="highlighter-rouge">free</code>机制，但是在在线测试中不够实用。
+在实战中，用一个大小足够大的数组和一个siz标记来代替是更实用的选择。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define N 100009
+</span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="n">siz</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">a</span><span class="p">[</span><span class="n">siz</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//向a尾部加一个1
+</span><span class="o">--</span><span class="n">siz</span><span class="p">;</span><span class="c1">//去掉a尾部的元素
+</span><span class="n">a</span><span class="p">[</span><span class="o">--</span><span class="n">siz</span><span class="p">];</span>
+</code></pre></div></div>
+<h1 id="停车场收费"><a href="https://vjudge.net/problem/OpenJ_Bailian-2933">停车场收费</a></h1>
+<p>灵活使用条件表达式。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">t</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%lf"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">;</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%.2lf</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">t</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">?</span><span class="mi">5</span><span class="o">:</span><span class="n">t</span><span class="o">&gt;</span><span class="mi">20</span><span class="p">.</span><span class="mi">5</span><span class="o">?</span><span class="mi">40</span><span class="o">:</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h1 id="inserting-something-in-strings"><a href="https://vjudge.net/problem/OpenJ_Bailian-2934">Inserting Something in Strings</a></h1>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="n">pos</span><span class="p">,</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">15</span><span class="p">];</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%s%s"</span><span class="p">,</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">!=</span><span class="n">EOF</span><span class="p">;</span> <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">pos</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">];</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">pos</span><span class="p">]</span><span class="o">&lt;</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+				<span class="n">pos</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">];</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"%c%s"</span><span class="p">,</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">i</span><span class="o">==</span><span class="n">pos</span><span class="o">?</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span><span class="s">""</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h1 id="有未知数的表达式"><a href="https://vjudge.net/problem/OpenJ_Bailian-2935">有未知数的表达式</a></h1>
+<p>递归求表达式的应用，熟悉栈结构也可以用之代替。 <br />
+理解运算符的结合顺序，递归展开时从低到高展开。
+思考题：如果表达式中有括号怎么处理？（可参考“括号匹配”这一题）</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;math.h&gt;
+</span><span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">31</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">work</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">r</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="n">l</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="sc">'+'</span><span class="p">)</span>
+			<span class="k">return</span> <span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="sc">'-'</span><span class="p">)</span>
+			<span class="k">return</span> <span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">work</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">l</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">r</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="sc">'0'</span><span class="o">&gt;</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">||</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="sc">'9'</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="n">l</span><span class="p">)</span><span class="k">break</span><span class="p">;</span>
+			<span class="k">return</span> <span class="n">b</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="n">r</span><span class="p">)</span><span class="k">return</span> <span class="n">b</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">r</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="n">l</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="sc">'^'</span><span class="p">)</span>
+			<span class="k">return</span> <span class="n">pow</span><span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">work</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">));</span>
+	<span class="k">return</span> <span class="n">l</span><span class="o">&gt;</span><span class="n">r</span><span class="o">?</span><span class="mi">0</span><span class="o">:</span><span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span><span class="n">s</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">;</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">work</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)));</span>
+<span class="p">}</span>
+</code></pre></div></div>

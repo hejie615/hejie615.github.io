@@ -1,0 +1,127 @@
+<div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">{-
+给定一个文本文件，构建文件中所有单词及其出现次数的词频表，并将词频表按照格式要求写到一个文件中。
+词频表按照单词出现次数从高到低次序排列，出现次数相同的按照字典序排列。第十四周上课提交。
+输入文件样例（见text0.txt ）：
+Mind-controlled Mouse
+The three study participants are part of a clinical trial to test a brain-computer interface (BCI) called BrainGate. BrainGate translates participant’s brain activity into commands that a computer can understand. In the new study, researchers first implanted microelectrode arrays into the area of the brain that governs hand movement. The participants trained the system by thinking about moving their hands, something the BCI learned to translate into actions on the screen.
+输出文件样例（见text0Fre.txt ）：
+the:8
+a:3
+into:3
+bci:2
+brain:2
+braingate:2
+of:2
+participants:2
+study:2
+that:2
+to:2
+about:1
+actions:1
+activity:1
+are:1
+area:1
+arrays:1
+brain-computer:1
+by:1
+called:1
+can:1
+clinical:1
+commands:1
+computer:1
+first:1
+governs:1
+hand:1
+hands:1
+implanted:1
+in:1
+interface:1
+learned:1
+microelectrode:1
+mind-controlled:1
+mouse:1
+movement:1
+moving:1
+new:1
+on:1
+part:1
+participant:1
+researchers:1
+screen:1
+something:1
+system:1
+test:1
+their:1
+thinking:1
+three:1
+trained:1
+translate:1
+translates:1
+trial:1
+understand:1
+建议：
+main ::IO 
+main = do
+   ls &lt;- readFile inputfile
+   let result = string2listofpairs ls
+   let formatedResult = formatting result
+   writeFile formatedResult
+其中
+string2listofpairs :: String -&gt;[(String, Int)]  -- 计算输入串中所有单词及其频率，并排序
+formatting :: [(String, Int)] -&gt;String  -- 按照要求将词频列表转换为输出格式串
+几点注意事项：
+1. 大小写不敏感，所有结果用小写字母；
+2. It's 视为单词 it；
+3. brain-computer 视为一个单词。
+-}</span>
+<span class="kr">import</span> <span class="nn">System.IO</span>
+<span class="kr">import</span> <span class="nn">Text.Printf</span>
+<span class="kr">import</span> <span class="nn">Data.Char</span>
+
+<span class="n">inputfile</span><span class="o">=</span><span class="s">"text0.txt"</span>
+<span class="n">outputfile</span><span class="o">=</span><span class="s">"text0Fre.txt"</span>
+
+<span class="n">main</span><span class="o">::</span><span class="kt">IO</span><span class="nb">()</span>
+<span class="n">main</span><span class="o">=</span><span class="kr">do</span>
+   <span class="n">ls</span><span class="o">&lt;-</span><span class="n">readFile</span> <span class="n">inputfile</span>
+   <span class="kr">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">string2listofpairs</span> <span class="n">ls</span>
+   <span class="kr">let</span> <span class="n">formatedResult</span><span class="o">=</span><span class="n">formatting</span> <span class="n">result</span>
+   <span class="n">writeFile</span> <span class="n">outputfile</span> <span class="n">formatedResult</span>
+
+
+<span class="n">string2listofpairs</span><span class="o">::</span><span class="kt">String</span><span class="o">-&gt;</span><span class="p">[(</span><span class="kt">String</span><span class="p">,</span><span class="kt">Int</span><span class="p">)]</span>
+<span class="n">string2listofpairs</span> <span class="n">s</span><span class="o">=</span><span class="n">sortG</span><span class="p">(</span><span class="n">cal</span><span class="p">(</span><span class="n">group</span><span class="p">(</span><span class="n">sortS</span><span class="p">(</span><span class="n">words</span><span class="p">(</span><span class="n">tolow</span> <span class="n">s</span><span class="p">)))))</span>
+
+<span class="n">sortS</span><span class="o">::</span><span class="p">[</span><span class="kt">String</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">[</span><span class="kt">String</span><span class="p">]</span>
+<span class="n">sortS</span> <span class="kt">[]</span><span class="o">=</span><span class="kt">[]</span>
+<span class="n">sortS</span> <span class="p">(</span><span class="n">x</span><span class="o">:</span><span class="n">xs</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="n">sortS</span><span class="p">[</span><span class="n">y</span><span class="o">|</span><span class="n">y</span><span class="o">&lt;-</span><span class="n">xs</span><span class="p">,</span><span class="n">y</span><span class="o">&lt;</span><span class="n">x</span><span class="p">])</span><span class="o">++</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">++</span><span class="p">(</span><span class="n">sortS</span><span class="p">[</span><span class="n">y</span><span class="o">|</span><span class="n">y</span><span class="o">&lt;-</span><span class="n">xs</span><span class="p">,</span><span class="n">x</span><span class="o">&lt;=</span><span class="n">y</span><span class="p">])</span>
+
+<span class="n">cmp</span><span class="o">::</span><span class="p">(</span><span class="kt">String</span><span class="p">,</span><span class="kt">Int</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">(</span><span class="kt">String</span><span class="p">,</span><span class="kt">Int</span><span class="p">)</span><span class="o">-&gt;</span><span class="kt">Bool</span>
+<span class="n">cmp</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span><span class="o">=</span>
+    <span class="kr">if</span> <span class="n">b</span><span class="o">/=</span><span class="n">d</span>
+        <span class="kr">then</span> <span class="n">b</span><span class="o">&gt;</span><span class="n">d</span>
+        <span class="kr">else</span> <span class="n">a</span><span class="o">&lt;</span><span class="n">c</span>
+
+<span class="n">sortG</span><span class="o">::</span><span class="p">[(</span><span class="kt">String</span><span class="p">,</span><span class="kt">Int</span><span class="p">)]</span><span class="o">-&gt;</span><span class="p">[(</span><span class="kt">String</span><span class="p">,</span><span class="kt">Int</span><span class="p">)]</span>
+<span class="n">sortG</span> <span class="kt">[]</span><span class="o">=</span><span class="kt">[]</span>
+<span class="n">sortG</span> <span class="p">(</span><span class="n">x</span><span class="o">:</span><span class="n">xs</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="n">sortG</span><span class="p">[</span><span class="n">y</span><span class="o">|</span><span class="n">y</span><span class="o">&lt;-</span><span class="n">xs</span><span class="p">,</span><span class="n">cmp</span> <span class="n">y</span> <span class="n">x</span><span class="p">])</span><span class="o">++</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">++</span><span class="p">(</span><span class="n">sortG</span><span class="p">[</span><span class="n">y</span><span class="o">|</span><span class="n">y</span><span class="o">&lt;-</span><span class="n">xs</span><span class="p">,</span><span class="n">cmp</span> <span class="n">y</span> <span class="n">x</span><span class="o">==</span><span class="kt">False</span><span class="p">])</span>
+
+<span class="n">group</span><span class="o">::</span><span class="p">[</span><span class="kt">String</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">[[</span><span class="kt">String</span><span class="p">]]</span>
+<span class="n">group</span> <span class="kt">[]</span><span class="o">=</span><span class="kt">[]</span>
+<span class="n">group</span> <span class="p">(</span><span class="n">x</span><span class="o">:</span><span class="n">xs</span><span class="p">)</span><span class="o">=</span><span class="p">[[</span><span class="n">x</span><span class="p">]</span><span class="o">++</span><span class="p">[</span><span class="n">y</span><span class="o">|</span><span class="n">y</span><span class="o">&lt;-</span><span class="n">xs</span><span class="p">,</span><span class="n">y</span><span class="o">==</span><span class="n">x</span><span class="p">]]</span><span class="o">++</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="n">y</span><span class="o">|</span><span class="n">y</span><span class="o">&lt;-</span><span class="n">xs</span><span class="p">,</span><span class="n">y</span><span class="o">/=</span><span class="n">x</span><span class="p">])</span>
+
+<span class="n">tolow</span><span class="o">::</span><span class="kt">String</span><span class="o">-&gt;</span><span class="kt">String</span>
+<span class="n">tolow</span> <span class="kt">[]</span><span class="o">=</span><span class="kt">[]</span>
+<span class="n">tolow</span> <span class="p">(</span><span class="n">x</span><span class="o">:</span><span class="n">xs</span><span class="p">)</span><span class="o">=</span>
+    <span class="kr">if</span> <span class="p">(</span><span class="n">isSpace</span> <span class="n">x</span><span class="p">)</span><span class="o">||</span><span class="p">(</span><span class="n">isAlphaNum</span> <span class="n">x</span><span class="p">)</span><span class="o">||</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="sc">'-'</span><span class="p">)</span>
+        <span class="kr">then</span> <span class="p">((</span><span class="n">toLower</span> <span class="n">x</span><span class="p">)</span><span class="o">:</span><span class="p">(</span><span class="n">tolow</span> <span class="n">xs</span><span class="p">))</span>
+        <span class="kr">else</span> <span class="n">tolow</span> <span class="n">xs</span>
+
+<span class="n">cal</span><span class="o">::</span><span class="p">[[</span><span class="kt">String</span><span class="p">]]</span><span class="o">-&gt;</span><span class="p">[(</span><span class="kt">String</span><span class="p">,</span><span class="kt">Int</span><span class="p">)]</span>
+<span class="n">cal</span> <span class="kt">[]</span><span class="o">=</span><span class="kt">[]</span>
+<span class="n">cal</span> <span class="p">(</span><span class="n">x</span><span class="o">:</span><span class="n">xs</span><span class="p">)</span><span class="o">=</span><span class="p">((</span><span class="n">x</span><span class="o">!!</span><span class="mi">0</span><span class="p">,</span><span class="n">length</span> <span class="n">x</span><span class="p">)</span><span class="o">:</span><span class="p">(</span><span class="n">cal</span> <span class="n">xs</span><span class="p">))</span>
+
+<span class="n">formatting</span> <span class="o">::</span> <span class="p">[(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)]</span> <span class="o">-&gt;</span><span class="kt">String</span>  <span class="c1">-- 按照要求将词频列表转换为输出格式串</span>
+<span class="n">formatting</span> <span class="kt">[]</span><span class="o">=</span><span class="kt">[]</span>
+<span class="n">formatting</span> <span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">:</span><span class="n">xs</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="n">printf</span> <span class="s">"%s:%d</span><span class="se">\n</span><span class="s">"</span> <span class="n">a</span> <span class="n">b</span><span class="p">)</span><span class="o">++</span><span class="p">(</span><span class="n">formatting</span> <span class="n">xs</span><span class="p">)</span>
+</code></pre></div></div>
