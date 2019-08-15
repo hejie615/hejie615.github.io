@@ -1,5 +1,6 @@
 ---
 title: 基础技术文档
+date: "2019-08-15 13:30:00 -0700"
 layout: post
 ---
 ### Ubuntu 18.04 安装
@@ -16,12 +17,4 @@ layout: post
 * 前往Jekyll主题官网下载网站主题并解压（jekyllthemes.org）
 * 把主题拷贝到本地库文件夹并推送
 
-#### Eam ad illud constituto
 
-Eam ad illud constituto, ne urbanitas reprimique qui. Ad duo quas quando vivendo, insolens accusamus ne vim. Ne vel lorem legimus commune, eam autem laudem ne, oratio cetero voluptatibus in cum. Ea tamquam assueverit philosophia vix, erroribus eloquentiam consectetuer est ea. Enim feugait concludaturque ad ius, ne vel stet placerat.
-
-##### Te mea everti platonem sententiae
-
-Te mea everti platonem sententiae, ius te cibo partem suavitate, at qui quidam urbanitas. Qui inimicus repudiandae ne, nobis vivendo te sea, his alia vivendum in. Vitae imperdiet vis at, eu impetus volutpat expetendis duo. Vel sonet commune ne, aliquid adipisci te vis. Pri in simul rationibus signiferumque, aperiri constituto ei vel.
-
-Et modo dolorem referrentur usu. Exerci lobortis id mei, mel putant everti te. Qui error detraxit te, in vis ignota eripuit scripserit. Ut labore patrioque dissentiet has, feugiat propriae invidunt est ei, mei nostrud volutpat rationibus ei. Mea at graeci tritani, sint mediocrem vituperata no nec. Eu pri mazim vitae ocurreret, iudico graeco consectetuer mel cu, quo dico maiorum ei.
