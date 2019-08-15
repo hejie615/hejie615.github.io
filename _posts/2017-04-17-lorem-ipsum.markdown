@@ -1,10 +1,10 @@
 ---
-title: Lorem Ipsum
+title: 基础技术文档
 layout: post
 ---
-## Lorem ipsum dolor sit amet
+## Ubuntu 18.04 安装
 
-Lorem ipsum dolor sit amet ut paulo aperiam signiferumque quo. Quaeque pertinacia mnesarchum te vel. Ei tollit habemus delectus mel, pro zril cetero adipiscing an. Eius aliquip legimus ad mea, vix te quod eripuit, munere doctus oporteat qui te. Dolore fierent nam ea. Eos ex tale commune moderatius, ei mel malorum suscipit neglegentur. Has quod falli alienum ne.
+*下载Ubuntu 18.04的镜像文件
 
 ### Wisi impedit albucius cum no
 
