@@ -5,8 +5,8 @@ date: "2019-08-15 13:30:00 -0700"
 tags: [test, markdown, docs]
 ---
 
-第一天日报：Linux系统的安装
-第二天日报：初步Github+Jekyll搭建个人博客
+第一天日报：Linux系统的安装  
+第二天日报：初步Github+Jekyll搭建个人博客  
 
 <!--more-->
 
