@@ -1,119 +1,57 @@
-# Tale
+# Soot Spirits Jekyll Theme
 
-[![Gem Version](https://badge.fury.io/rb/tale.svg)](https://badge.fury.io/rb/tale)
+Soot Spirits is a responsive mobile ready lightweight two column Jekyll theme made with Bulma CSS. It is a great template for simple personal blogs with focus on typography.
 
-Tale is a minimal Jekyll theme curated for storytellers. Checkout the demo [here](https://chesterhow.github.io/tale/).
+![mobile](tmp/mobile.png)
 
-![Tale screenshot](http://i.imgur.com/pXZrtmo.png)
+The text is made beautiful with combination of [League Gothic](https://www.fontsquirrel.com/fonts/league-gothic), [Roboto](https://fonts.google.com/specimen/Roboto) and [Open Sans](https://fonts.google.com/specimen/Open+Sans). Now who doesn't love them.
 
-## Features
-- Easy installation
-- Compatible with GitHub Pages
-- Responsive design (looks just as good on mobile)
-- Syntax highlighting, with the help of Pygments
-- Markdown and HTML text formatting
-- Pagination of posts
+![text](tmp/langslide.gif)
 
-## Installation
-There are 3 ways to install this theme
+### Demo
+[sootspirits.github.io](https://sootspirits.github.io)
 
-1. Install it as a Ruby Gem (for self-hosted sites)
-2. Install it with the `jekyll-remote-theme` plugin (for GitHub Pages hosted sites)
-3. Fork the project directly
+### Some Good Features
 
-### Ruby Gem method
-1. Add this line to your `Gemfile`:
+- Fully mobile ready
+- Beautiful typography
+- Two column layout suitable for a wide range of blogging habits
+- Fully customisable theme including the 'hello' text, quotes, nav items and sidebar widgets
 
-```ruby
-gem "tale"
-```
+### Screenshots
+##### Deskop browser (full width)
+![fullwidth](tmp/fullwidth.png)
 
-2. Install the theme's gems and dependencies:
+##### Tablet browser (iPad)
+![tab](tmp/ipad.png)
 
-```bash
-$ bundle
-```
+##### Mobile browser (320px and greater)
+![mobile](tmp/mobile.png)
 
-3. In `_config.yml` add these lines:
+##### Hamburger menu toggle
+![hamburger](tmp/hamburger.gif)
 
-```yaml
-theme:      tale
+##### Basic navigation and footer
+![navi](tmp/navi.gif)
 
-permalink:  /:year-:month-:day/:title
-paginate:   5
-```
+### Theme Usage
 
-Remove any other `theme:` lines.
+- [Get started](https://jekyllrb.com/docs/installation/) with having the necessary tools set up
+- Download the zip of this project or simple clone it
+- Delete the ```tmp/``` directory and any sample ```_posts```
+- Customize the variables in ```_config.yml``` file such that it reflects your information. Similarly, change the disqus username (or remove it altogether).
+- Replace footer links in the ```_layouts/default.html``` file with yours.
+- Replace the ```site:example.com``` in ```assets/js/custom.js``` with your site's address.
 
-4. Rename `index.md` to `index.html`. Without this, the `jekyll-paginate` gem will not work.
+### Credits
+- [Codepen hi-im-si](http://codepen.io/hi-im-si/pen/DHoup) for the header 'hello' typewriter text
+- [Bulma CSS](bulma.io/)
+- [Jekyll](https://jekyllrb.com)
+- [Github](https://github.com)
 
-5. In `about.md`, change the `layout:` field to `post`:
+### Licence
+MIT
 
-```Markdown
-layout: post
-```
 
-### GitHub Pages method
-1. Add these 2 lines in to your `Gemfile`:
-
-```ruby
-gem "jekyll-remote-theme"
-gem "jekyll-paginate"
-```
-
-2. Install the newly added gems:
-
-```bash
-$ bundle
-```
-
-3. In `_config.yml` add these lines:
-
-```yaml
-remote_theme: chesterhow/tale
-
-permalink:    /:year-:month-:day/:title
-paginate:     5
-
-plugins:
-  - jekyll-paginate
-  - jekyll-remote-theme
-```
-
-Remove any other `theme:` or `remote_theme:` lines.
-
-4. Rename `index.md` to `index.html`. Without this, the `jekyll-paginate` gem will not work.
-
-5. In `about.md`, change the `layout:` field to `post`:
-
-```Markdown
-layout: post
-```
-
-### Fork method
-1. Fork this repository
-
-2. Delete the unnecessary files/folders: `CODE_OF_CONDUCT.md`, `LICENSE`, `README.md`, `tale.gemspec`
-
-3. Delete the `baseurl` line in `_config.yml`:
-
-```yaml
-baseurl:  "/tale"   # delete this line
-```
-
-## Usage
-Once you've installed the theme, you're ready to work on your Jekyll site. To start off, I would recommend updating `_config.yml` with your site's details.
-
-To build and serve your site, run:
-
-```bash
-$ bundle exec jekyll serve
-```
-
-And you're all set! Head over to http://127.0.0.1:4000/ to see your site in action.
-
-## Contributing
-Found a bug or have a suggestion? Feel free to create an issue or make a pull request!
-
-## License
-See [LICENSE](https://github.com/chesterhow/tale/blob/master/LICENSE)
+### What's up with the name?
+I was watching [My Neighbour Totoro](https://en.wikipedia.org/wiki/Susuwatari) while developing :-)
