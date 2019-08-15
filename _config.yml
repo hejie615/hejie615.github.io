@@ -1,29 +1,38 @@
-# Jekyll configuration
+# Site settings
+title:          Tale
+description:    "Minimal Jekyll theme for storytellers"
+baseurl:        "/tale"
+url:            "https://chesterhow.github.io"
 
-name: Xixia
-description: Welcome to Xixia！
+# Google Analytics
+google_analytics: UA—XXXXXXXX-X
 
-# url is currently only used only for the RSS feed in feed.xml
-url: https://github.com/zxixia/jekyll-xixia
+# Author
+author:
+  name:         Chester How
+  url:          https://chester.how
+  email:        chesterhow@gmail.com
 
-# baseurl will often be '', but for a project page on gh-pages, it needs to
-# be the project name.
-# *** IMPORTANT: If your local "jekyll serve" throws errors change this to '' or
-#     run it like so: jekyll serve --baseurl=''
-baseurl: '/jekyll-xixia'
-## default date_format
-date_format: 
-  title: "%B-%-d-%Y"
-  archive: "%b"
-  categories: "%b-%Y"
-  tag: "%b-%Y"
-# Language
-lan: "en" 
+# Build settings
+markdown:       kramdown
+include:
+  - _pages
 
-paginate: 10
+# Assets
+sass:
+  sass_dir:     _sass
+  style:        compressed
 
-highlighter: rouge
-markdown: kramdown
-gems: ['jekyll-paginate']
+# Gems
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+  # - jemoji #Uncomment this to allow emoji in your post
 
-exclude: ['README.md', 'LICENSE', "*.bak"]
+# Permalinks
+permalink:      /:year-:month-:day/:title
+paginate:       5
+
+# Excludes
+exclude: [ Gemfile, Gemfile.lock, tale.gemspec ]

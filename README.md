@@ -1,54 +1,119 @@
-Jekyll Xixia
-============
+# Tale
 
-* Get it from [github](https://github.com/zxixia/jekyll-xixia).
-* See the [live demo](http://zxixia.github.io/jekyll-xixia/).
-* See it [in action on my own blog](http://xixia.info/).
+[![Gem Version](https://badge.fury.io/rb/tale.svg)](https://badge.fury.io/rb/tale)
 
-A simple and clean Jekyll theme using [bootstrap](http://getbootstrap.com)
-(not to be confused with jekyll-bootstrap) that's easy to modify and very
-modular in component and element reuse.
+Tale is a minimal Jekyll theme curated for storytellers. Checkout the demo [here](https://chesterhow.github.io/tale/).
 
-The theme works well on mobile phones, using a collapsable nav bar and hiding the
-sidebar. The links pane in the sidebar is available on mobile through the nav menu,
-and you can do the same thing for any other sections added to the sidebar.
+![Tale screenshot](http://i.imgur.com/pXZrtmo.png)
 
-Don't forget to occassionally merge against my upstream repository so you can get
-the latest changes. Pull requests are encouraged and accepted!
+## Features
+- Easy installation
+- Compatible with GitHub Pages
+- Responsive design (looks just as good on mobile)
+- Syntax highlighting, with the help of Pygments
+- Markdown and HTML text formatting
+- Pagination of posts
 
-Preview
-=======
-![Xixia](/assets/images/preview.png)
+## Installation
+There are 3 ways to install this theme
 
-License
-=======
+1. Install it as a Ruby Gem (for self-hosted sites)
+2. Install it with the `jekyll-remote-theme` plugin (for GitHub Pages hosted sites)
+3. Fork the project directly
 
-The content of this theme is distributed and licensed under a
-![License Badge](assets/images/cc_by_88x31.png)
-[Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/legalcode)
+### Ruby Gem method
+1. Add this line to your `Gemfile`:
 
-    This license lets others distribute, remix, tweak, and build upon your work,
-    even commercially, as long as they credit you for the original creation. This
-    is the most accommodating of licenses offered. Recommended for maximum
-    dissemination and use of licensed materials.
+```ruby
+gem "tale"
+```
 
-In other words: you can do anything you want with this theme on any site, just please
-provide a link to [the original theme on github](https://github.com/zxixia/jekyll-xixia)
-so I get credit for the original design. Beyond that, have at it!
+2. Install the theme's gems and dependencies:
 
-Thanks
-======
+```bash
+$ bundle
+```
 
-1，[Jekyll][jekyll-url]
+3. In `_config.yml` add these lines:
 
-2，[Bootstrap][bootstrap-url]
+```yaml
+theme:      tale
 
-3，[Github][github-url]
+permalink:  /:year-:month-:day/:title
+paginate:   5
+```
 
-4，[Jekyll Clean Theme][Jekyll-Clean-Theme-url]
+Remove any other `theme:` lines.
 
-[jekyll-url]: http://jekyllrb.com/
-[bootstrap-url]: http://getbootstrap.com/
-[github-url]: https://github.com/
-[Jekyll-Clean-Theme-url]: https://github.com/scotte/jekyll-clean
-[xixia-url]: http://xixia.info/
+4. Rename `index.md` to `index.html`. Without this, the `jekyll-paginate` gem will not work.
+
+5. In `about.md`, change the `layout:` field to `post`:
+
+```Markdown
+layout: post
+```
+
+### GitHub Pages method
+1. Add these 2 lines in to your `Gemfile`:
+
+```ruby
+gem "jekyll-remote-theme"
+gem "jekyll-paginate"
+```
+
+2. Install the newly added gems:
+
+```bash
+$ bundle
+```
+
+3. In `_config.yml` add these lines:
+
+```yaml
+remote_theme: chesterhow/tale
+
+permalink:    /:year-:month-:day/:title
+paginate:     5
+
+plugins:
+  - jekyll-paginate
+  - jekyll-remote-theme
+```
+
+Remove any other `theme:` or `remote_theme:` lines.
+
+4. Rename `index.md` to `index.html`. Without this, the `jekyll-paginate` gem will not work.
+
+5. In `about.md`, change the `layout:` field to `post`:
+
+```Markdown
+layout: post
+```
+
+### Fork method
+1. Fork this repository
+
+2. Delete the unnecessary files/folders: `CODE_OF_CONDUCT.md`, `LICENSE`, `README.md`, `tale.gemspec`
+
+3. Delete the `baseurl` line in `_config.yml`:
+
+```yaml
+baseurl:  "/tale"   # delete this line
+```
+
+## Usage
+Once you've installed the theme, you're ready to work on your Jekyll site. To start off, I would recommend updating `_config.yml` with your site's details.
+
+To build and serve your site, run:
+
+```bash
+$ bundle exec jekyll serve
+```
+
+And you're all set! Head over to http://127.0.0.1:4000/ to see your site in action.
+
+## Contributing
+Found a bug or have a suggestion? Feel free to create an issue or make a pull request!
+
+## License
+See [LICENSE](https://github.com/chesterhow/tale/blob/master/LICENSE)
