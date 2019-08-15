@@ -4,7 +4,9 @@ layout: post
 ---
 ## Ubuntu 18.04 安装
 
-*下载Ubuntu 18.04的镜像文件
+* 下载Ubuntu 18.04的镜像文件
+* 制作Ubuntu的安装启动盘，即安装Ubuntu的启动盘
+
 
 ### Wisi impedit albucius cum no
 
