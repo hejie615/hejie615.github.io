@@ -3,11 +3,9 @@ title: 基础技术文档
 layout: post
 ---
 ## Ubuntu 18.04 安装
-
 * 下载Ubuntu 18.04的镜像文件
-* 制作Ubuntu的安装启动盘，即安装Ubuntu的启动盘
-
-
+* 使用UltraISO软件制作Ubuntu的安装启动盘，即安装Ubuntu的启动盘
+* 重启电脑选择U盘启动开始Ubuntu安装
 ### Wisi impedit albucius cum no
 
 Wisi impedit albucius cum no. Pri nibh posse in. Tollit copiosae mei at, summo perfecto gubergren cum cu. Pri verterem dissentiet te, error option legendos te ius. Nihil sapientem expetenda in qui, usu no dicit option.
