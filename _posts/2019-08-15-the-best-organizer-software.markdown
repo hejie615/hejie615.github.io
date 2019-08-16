@@ -4,7 +4,7 @@ title: Second Day
 date: 2019-08-15 15:00:00 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: software.jpg # Add image post (optional)
-tags: [GitHub, 日报] # add tag
+tags: [日报] # add tag
 ---
 
 GitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名GitHub。
