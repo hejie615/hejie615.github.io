@@ -7,6 +7,9 @@ img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [Holidays, Hawaii]
 ---
+
+Ubuntu（又称乌班图）是一个以桌面应用为主的开源GNU/Linux操作系统，Ubuntu 是基于Debian GNU/Linux，支持x86、amd64（即x64）、ARM和ppc架构，由全球化的专业开发团队（Canonical Ltd）打造的。
+
 ## 第一天学习日报
 * Ubuntu 18.04系统的安装----100%
 * Github注册和学习----100%
