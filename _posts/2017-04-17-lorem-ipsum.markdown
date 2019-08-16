@@ -3,8 +3,9 @@ title: 基础技术文档
 layout: post
 ---
 ### Ubuntu 18.04 安装
-* 下载Ubuntu 18.04的镜像文件
+* 首先下载Ubuntu 18.04的镜像文件
 * 使用UltraISO软件制作Ubuntu的安装启动盘，即安装Ubuntu的启动盘
+    * 用UltraISO打开系统镜像文件，启动硬盘映像
 * 重启电脑选择U盘启动开始Ubuntu安装
 
 ### Github+Jekyll搭建初级个人网站
