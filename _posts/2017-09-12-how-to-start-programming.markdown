@@ -2,7 +2,7 @@
 layout: post
 title: Ubuntu 18.04系统安装
 date: 2019-08-16 05:00:00 +0300
-description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+description: 哈哈哈哈哈 # Add post description (optional)
 img: how-to-start.jpg # Add image post (optional)
 tags: [Ubuntu, Github] # add tag
 ---
