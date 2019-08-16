@@ -1,57 +1,36 @@
-# Soot Spirits Jekyll Theme
+# Flexible-Jekyll is a simple and clean theme for Jekyll
 
-Soot Spirits is a responsive mobile ready lightweight two column Jekyll theme made with Bulma CSS. It is a great template for simple personal blogs with focus on typography.
+![](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/promo-img.jpg?raw=true)
 
-![mobile](tmp/mobile.png)
+## Demo
 
-The text is made beautiful with combination of [League Gothic](https://www.fontsquirrel.com/fonts/league-gothic), [Roboto](https://fonts.google.com/specimen/Roboto) and [Open Sans](https://fonts.google.com/specimen/Open+Sans). Now who doesn't love them.
+Check the theme in action [Demo](https://artemsheludko.github.io/flexible-jekyll/)
 
-![text](tmp/langslide.gif)
+The main page would look like this:
 
-### Demo
-[sootspirits.github.io](https://sootspirits.github.io)
+![Main page preview](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/home-page.jpg?raw=true)
 
-### Some Good Features
+The post page would look like this:
 
-- Fully mobile ready
-- Beautiful typography
-- Two column layout suitable for a wide range of blogging habits
-- Fully customisable theme including the 'hello' text, quotes, nav items and sidebar widgets
+![Post page preview](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/post-example.jpg?raw=true)
 
-### Screenshots
-##### Deskop browser (full width)
-![fullwidth](tmp/fullwidth.png)
+## Features
 
-##### Tablet browser (iPad)
-![tab](tmp/ipad.png)
+- [Google Fonts](https://fonts.google.com/)
+- [Font Awesome](http://fontawesome.io/)
+- [Disqus](https://disqus.com/)
+- [Analytics](https://analytics.google.com/analytics/web/)
+- Support Emoji
 
-##### Mobile browser (320px and greater)
-![mobile](tmp/mobile.png)
+## Installation:
 
-##### Hamburger menu toggle
-![hamburger](tmp/hamburger.gif)
+Fork the ``master`` branch and follow the [Jekyll Installation Documentation](https://jekyllrb.com/docs/installation/).
 
-##### Basic navigation and footer
-![navi](tmp/navi.gif)
+## License
 
-### Theme Usage
+GNU General Public License v3.0
 
-- [Get started](https://jekyllrb.com/docs/installation/) with having the necessary tools set up
-- Download the zip of this project or simple clone it
-- Delete the ```tmp/``` directory and any sample ```_posts```
-- Customize the variables in ```_config.yml``` file such that it reflects your information. Similarly, change the disqus username (or remove it altogether).
-- Replace footer links in the ```_layouts/default.html``` file with yours.
-- Replace the ```site:example.com``` in ```assets/js/custom.js``` with your site's address.
+## Donate
 
-### Credits
-- [Codepen hi-im-si](http://codepen.io/hi-im-si/pen/DHoup) for the header 'hello' typewriter text
-- [Bulma CSS](bulma.io/)
-- [Jekyll](https://jekyllrb.com)
-- [Github](https://github.com)
-
-### Licence
-MIT
-
-
-### What's up with the name?
-I was watching [My Neighbour Totoro](https://en.wikipedia.org/wiki/Susuwatari) while developing :-)
+<p>If you like the themes that I create you can become my sponsor on <a href="https://www.patreon.com/artemsheludko" target="_blank">Patreon</a>.
+<p align="center"><b>Thank you for your support ❤️</b></p>
