@@ -31,8 +31,8 @@ tags: [日报, SSH免密提交, GIT] # add tag
 	The key fingerprint is:
 	SHA256:FwCzxVNe3kylvEA5SW0hDkrBhXmVKWKhdAnmXz2dGlc 728292125@qq.com
 	The key's randomart image is:
-
 	```
+
 	* 复制公钥（或者直接找到ssh文件夹内id_rsa.pub打开复制，注意ssh文件夹是隐藏的）
 	```
 	cd ~/.ssh	//打开ssh文件夹
