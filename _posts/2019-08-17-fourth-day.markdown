@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Third Day
+title: Fourth Day
 date: 2019-08-17 15:00:00 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: 4.jpg # Add image post (optional)
@@ -11,7 +11,7 @@ tags: [日报] # add tag
 
 ## 第四天学习日报
 
-* markdown基本语法的学习以及使用于更改个人博客网站----80%
+* markdown基础语法学习----80%
 * git初学----40%
 
 ## 第四天学习总结

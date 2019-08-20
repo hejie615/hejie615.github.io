@@ -1,0 +1,32 @@
+---
+layout: post
+title: Fifth Day
+date: 2019-08-19 15:00:00 +0300
+description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+img: 5.jpg # Add image post (optional)
+tags: [日报, 多人协作, GIT] # add tag
+---
+
+>同传统的集中式版本控制系统（CVCS）不同，开发者之间的协作方式因着 Git 的分布式特性而变得更为灵活多样。在集中式系统上，每个开发者就像是连接在集线器上的节点，彼此的工作方式大体相像。而在 Git 网络中，每个开发者同时扮演着节点和集线器的角色，这就是说，每一个开发者都可以将自己的代码贡献到另外一个开发者的仓库中，或者建立自己的公共仓库，让其他开发者基于自己的工作开始，为自己的仓库贡献代码。于是，Git 的分布式协作便可以衍生出种种不同的工作流程。
+
+## 第五天学习日报
+
+* markdown基础语法学习----100%
+* git初学----60%
+
+## 第五天学习总结
+
+* 掌握markdown常用语法
+* 熟悉git常用的基础命令，继续学习ing
+* git多人协作工作（集中式工作流）
+	* 建立远程仓库，添加协作者
+	* clone远程库，本地建立分支并连接远程分支（建立自己的分支进行测试修改再合并）
+	* 多人协作提交时先从中央仓库pull更新最新版本到本地，再push到中央仓库（因为有冲突需要先手动解决和冲突再提交）
+	* 多人协作一定要养成先pull或fetch再后push
+* git pull和git fetch的区别
+	* pull从远程获取最新到本地会自动合并
+	* fetch从远程获取最新到本地不会自动合并
+* git分支合并
+	* git merge 分支名
+	* 指定一个分支合并到当前分支，合并后不会删除被合并的分支
+	* git合并分支如果没有冲突会直接合并，如果有冲突需要手动解决冲突（自己选择删除哪部分或者保留）
