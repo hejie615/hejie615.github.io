@@ -1,0 +1,43 @@
+---
+layout: post
+title: Fifth Day
+date: 2019-08-20 15:00:00 +0300
+description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+img: 6.jpg # Add image post (optional)
+tags: [日报, SSH免密提交, GIT] # add tag
+---
+
+>SSH 为 Secure Shell 的缩写，由 IETF 的网络小组（Network Working Group）所制定；SSH 为建立在应用层基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。SSH在正确使用时可弥补网络中的漏洞。SSH客户端适用于多种平台。几乎所有UNIX平台—包括HP-UX、Linux、AIX、Solaris、Digital UNIX、Irix，以及其他平台，都可运行SSH。
+
+## 第六天学习日报
+
+* git初学----70%
+
+## 第六天学习总结
+
+* SSH免密提交
+	* 首先生成密钥(打开命令行终端输入)
+	```
+	ssh-keygen -t rsa -C <your_email@xxx.com>
+	Generating public/private rsa key pair.
+	Enter file in which to save the key (/home/j/.ssh/id_rsa):enter  //默认地址即可（密钥保存地址）
+	Enter passphrase (empty for no passphrase): enter  //不填写enter键即可，填写密码后每次使用SSH推送都要输入密码
+	Enter same passphrase again:enter  //再次输入密码，为填写enter键即可
+	```
+	成功后显示如下信息：
+	```
+	Your identification has been saved in /home/j/.ssh/id_rsa.	//密钥保存地址
+	Your public key has been saved in /home/j/.ssh/id_rsa.pub.	//公钥保存地址
+	The key fingerprint is:
+	SHA256:FwCzxVNe3kylvEA5SW0hDkrBhXmVKWKhdAnmXz2dGlc 728292125@qq.com
+	The key's randomart image is:
+	```
+	* 复制公钥（或者直接找到ssh文件夹内id_rsa.pub打开复制，注意ssh文件夹是隐藏的）
+	```
+	cd ~/.ssh	//打开ssh文件夹
+	cat id_rsa.pub	//输出公钥
+	```
+	* 打开github，点自己头像 >> settings >> SSH and GPG keys >> New SSH key
+	* title 随便写，key里粘贴公钥的内容
+	* 添加公钥后，在项目的代码页面点击 SSH 切换到 SSH 协议的 clone 地址
+	* git克隆到本地仓库就ok
