@@ -19,18 +19,34 @@ tags: [日报, git远程操作] # add tag
 * 终于学完git常用命令
 * git常用远程操作
 	1. 查看远程版本库信息（所有版本库和地址信息）注：remote就是版本库名
+	```
 	git remote -v
+	```
 	2. 查看指定远程版本库信息（详细信息）
+	```	
 	git remote show <remote>
+	```
 	3. 添加远程版本库
+	```	
 	git remote add <remote> <url>
+	```	
 	4. 从版本库更新到本地，不会自动合并
+	```	
 	git fetch <remote> [分支]
+	```	
 	5. 从远程版本库更新到本地，会自动合并(不填写远程分支，默认跟踪同名的远程分支，若没有则自动生成)
+	```	
 	git pull <remote> <branch>:<远程分支>
+	```	
 	6. 推送到远程版本库，会自动合并(不填写远程分支，默认跟踪同名的远程分支，若没有则自动生成)
+	```	
 	git push <remote> <branch>:<远程分支>
+	```	
 	7. 删除远程分支或标签
+	```	
 	git push <remote> :<branch/tag-name>
+	```	
 	8. 上传标签
+	```	
 	git push <remote> <tag-name>
+	```
