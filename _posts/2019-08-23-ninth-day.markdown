@@ -1,0 +1,19 @@
+---
+layout: post
+title: Ninth day
+date: 2019-08-23 20:00:00 +0300
+description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+img: 9.jpg # Add image post (optional)
+tags: [日报] # add tag
+---
+
+>Linux是一套免费使用和自由传播的类Unix操作系统，是一个基于POSIX和Unix的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。
+
+## 第八天学习日报
+
+* Vim文本编辑器学习----100%
+* linux常用命令学习----30%
+
+## 第八天学习总结
+
+* 熟悉了权限命令，继续学习linux常用命令ing
