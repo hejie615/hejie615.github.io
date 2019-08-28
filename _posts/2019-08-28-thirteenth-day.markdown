@@ -26,7 +26,6 @@ tags: [日报, Node.js] # add tag
 #使用Ubuntu 
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash  - 
 sudo apt-get install -y nodejs
-  
 #安装构建工具
 sudo apt-get install -y build-essential
 ```
