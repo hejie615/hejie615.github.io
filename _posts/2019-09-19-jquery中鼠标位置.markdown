@@ -1,14 +1,28 @@
 ---
 layout: post
-title: jQuery中pageX,clientX,offsetX的区别
+title: jQuery中clientX,pageX,offsetX,screenX的区别
 date: 2019-09-12 09:00:00 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: xdh.jpg # Add image post (optional)
-tags: [感悟] # add tag
+img: wz.jpg # Add image post (optional)
+tags: [pageX,clientX,offsetX,screenX] # add tag
 ---
 
 >实验实验实验
 
-# clentX
-* 鼠标相对于浏览器的位置（相对于浏览器可视区域左上角的位置，不算卷去部分）
+# 一、clentX
+
+* 鼠标相对于浏览器的位置（相对于浏览器可视区域左上角的位置，不算卷去部分）    
 ![Alt text](/assets/img/clentX.jpg)
+
+# 二、pageX
+
+* 鼠标相对于文档的位置（相对于页面左上角定位，算卷去部分）    
+![Alt text](/assets/img/PageX.jpg)
+
+# 三、offsetX（IE独有）
+
+* 鼠标相对于事件源元素的坐标（相对于触发事件的源元素上的位置）    
+
+# 四、sscreenX
+
+* 鼠标相对于当前屏幕的坐标    
