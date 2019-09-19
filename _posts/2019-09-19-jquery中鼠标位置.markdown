@@ -7,8 +7,6 @@ img: wz.jpg # Add image post (optional)
 tags: [pageX,clientX,offsetX,screenX] # add tag
 ---
 
->实验实验实验
-
 ## 一、clentX
 
 * 鼠标相对于浏览器的位置（相对于浏览器可视区域左上角的位置，不算卷去部分）    
