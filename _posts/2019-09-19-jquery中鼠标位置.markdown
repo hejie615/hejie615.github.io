@@ -7,8 +7,8 @@ img: xdh.jpg # Add image post (optional)
 tags: [感悟] # add tag
 ---
 
->假的假的假的假的假的假的
+>实验实验实验
 
 # clentX
 * 鼠标相对于浏览器的位置（相对于浏览器可视区域左上角的位置，不算卷去部分）
-![Alt text]("/assets/img/clentX.jpg")
+![Alt text](/assets/img/clentX.jpg)
