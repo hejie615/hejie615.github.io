@@ -11,4 +11,4 @@ tags: [感悟] # add tag
 
 # clentX
 * 鼠标相对于浏览器的位置（相对于浏览器可视区域左上角的位置，不算卷去部分）
-![Alt text]("../assets/img/clentX.gif")
+![Alt text]("clentX.gif")
