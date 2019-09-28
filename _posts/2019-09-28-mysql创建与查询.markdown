@@ -24,7 +24,7 @@ tags: [Mysql] # add tag
 	* drop database数据库名;
 6. 修改数据库
 	* alter database 数据库名 character set '编码' collate '校对规则';（只能修改编码和校对规则）
-**********
+- - -
 
 ## 表结构操作
 
