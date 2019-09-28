@@ -1,0 +1,46 @@
+---
+layout: post
+title: Mysql库和表操作
+date: 2019-09-28 20:00:00 +0300
+description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+img: 17.jpg # Add image post (optional)
+tags: [Mysql] # add tag
+---
+
+>FTP（File Transfer Protocol，文件传输协议） 是 TCP/IP 协议组中的协议之一。FTP协议包括两个组成部分，其一为FTP服务器，其二为FTP客户端。其中FTP服务器用来存储文件，用户可以使用FTP客户端通过FTP协议访问位于FTP服务器上的资源。在开发网站的时候，通常利用FTP协议把网页或程序传到Web服务器上。此外，由于FTP传输效率非常高，在网络上传输大的文件时，一般也采用该协议。
+
+## 数据库操作
+
+1. 创建数据库
+	* create database 数据库名;
+	* create datebase 数据库名 character set 'utf8（编码方式）' collate 'utf8_bin（校对方式）';
+2. 查看所有数据库
+	* show databases;
+3. 使用/切换数据库
+	* use 数据库名;
+4. 查看当前使用的数据库
+	* select database();
+5. 删除数据库
+	* drop database数据库名;
+6. 修改数据库
+	* alter database 数据库名 character set '编码' collate '校对规则';（只能修改编码和校对规则）
+***
+
+## 表结构操作
+
+1. 创建表
+'''
+	create table 表名(
+		字段1 类型(长度) 约束,
+		字段2 类型(长度) 约束
+	);
+'''
+>注意：
+>	* 创建表的时候，后面用小括号，后面分号。
+>	* 编写字段，字段与字段之间使用逗号，最后一个字段不能使用逗号。
+>	* 如果声明字符串数据的类型，长度是必须指定的。
+>	* 如果不指定数据的长度，有默认值，int类型的默认长度是11。
+2. 查看所有表的信息
+	* show tables;
+3. 查看指定表的信息
+	* desc 表名;
