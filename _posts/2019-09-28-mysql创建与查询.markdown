@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mysql库和表操作
+title: Mysql操作
 date: 2019-09-28 20:00:00 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: 41.jpg # Add image post (optional)
@@ -66,26 +66,26 @@ tags: [Mysql] # add tag
 
 ```
 1. 添加数据
-	* insert into 表 (字段1,字段2,字段3) values (值1,值2,值3);    --像表中的指定字段添加值
-	* insert into 表 values (值1,值2,值3...);   					--像表中的所有字段添加值（值的个数和字段个数一样）
+	insert into 表 (字段1,字段2,字段3) values (值1,值2,值3);		--像表中的指定字段添加值
+	insert into 表 values (值1,值2,值3...);		--像表中的所有字段添加值（值的个数和字段个数一样）
 2. 修改数据
-	* update 表名称 set 字段1=值1,字段2=值2 where 条件;    		--如果没有where则修改所有记录
+	update 表名称 set 字段1=值1,字段2=值2 where 条件;		--如果没有where则修改所有记录
 3. 删除指定数据
-	* delete from 表名 where 条件;    							--如果没有where则删除所有数据
+	delete from 表名 where 条件;		--如果没有where则删除所有数据
 4. 删除所有数据
-	* delete from 表;	--可以回滚
-	* truncate 表    --先删除整个表，再创建一个与原来一样的空表，不能回滚
+	delete from 表;		--可以回滚
+	truncate 表;		--先删除整个表，再创建一个与原来一样的空表，不能回滚
 5. 查询所有字段的数据
-	* select * from 表名;
+	select * from 表名;
 6. 查询指定字段的数据
-	* select 字段1,字段2 from 表;
+	select 字段1,字段2 from 表;
 7. 显示没有重复的数据（去掉重复的，不看重复的）
-	* distinct    --select distinct 字段1 from 表;
+	distinct		--select distinct 字段1 from 表;
 8. 字段别名
-	* as 名  /  空格 名
+	as 名  /  空格 名
 9. 对查询结果进行排序
-	* order by 字段 asc / desc;	--asc升序（默认），desc降序，按字段进行排序，只能放在sql语句的最末尾
-	* order by 字段1 asc|desc,字段2 asc|desc 	--当字段1相同时按照字段2排序
+	order by 字段 asc / desc;	--asc升序（默认），desc降序，按字段进行排序，只能放在sql语句的最末尾
+	order by 字段1 asc|desc,字段2 asc|desc    	--当字段1相同时按照字段2排序
 > * 可以使用where条件语句，进行查询条件的过滤
 > * 查询的时候可以进行计算
 ```
@@ -110,3 +110,38 @@ tags: [Mysql] # add tag
 1. group by sex		--根据字段进行分组
 2. select count(*) from stu group by sex;	--统计以sex分组，每组的数量
 ```
+
+#### 主键设置
+
+```
+1. 主键的特点
+	* 非空
+	* 唯一
+	* 被引用		--一条记录的标识
+2. 声明主键
+	create table person{
+		id int primary key
+	}
+3. 设置主键默认自动增长（只能是int和bigint类型）
+	create table person{
+		id int primary  auto_increment
+	}
+	* 设置主键后添加数据设置null即可，默认增长，也可以 设置值
+```
+
+#### 唯一和非空约束
+
+```
+1. 唯一的约束
+	* 关键字 unique
+	* 把某个字段声明成唯一的值
+2. 非空
+	* 关键字 not null
+	* 把某个字段声明成非空值，值不能为空
+```
+
+#### 外键约束
+
+```
+foreign key (要约束的字段) references dept (要映射的外部字段)
+* 映射外键，约束字段的值只能为外键的值或者null，并且删除外键时必须先删除被约束字段的内键
