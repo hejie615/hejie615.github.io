@@ -145,3 +145,4 @@ tags: [Mysql] # add tag
 ```
 foreign key (要约束的字段) references dept (要映射的外部字段)
 * 映射外键，约束字段的值只能为外键的值或者null，并且删除外键时必须先删除被约束字段的内键
+```
