@@ -68,4 +68,7 @@ aireplay-ng -a2 -b 48:0E:EC:7C:32:99 -w ~/1.txt ~/a/-01.cp
 -w  指定字典文件
 最后是抓取的包
 ```
-![Alt text](/assets/img/暴力破解.png)   
+![Alt text](/assets/img/暴力破解.png)
+
+最后记得airmon-ng stop关闭你的无线网卡哦
+![Alt text](/assets/img/关闭.png)
