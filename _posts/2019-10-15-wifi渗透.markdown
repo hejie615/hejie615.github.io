@@ -7,7 +7,7 @@ img: red.jpg # Add image post (optional)
 tags: [kali, WiFi渗透] # add tag
 ---
 
-#### 准备工作： kali系统、有无线网卡的电脑、手机一台（用来打开WiFi热点）、一本强大的密码字典
+#### 准备工作： kali系统、有无线网卡的电脑、一本强大的密码字典
 
 #### 实现原理：进入kali系统，使用系统自带的Aircrack程序监听周围的热点，选择一个不错的WiFi热点然后对连接它的一台设备进行攻击，使其掉线，掉线后这台设备会自动重新连接，在连接的过程中设备会发送握手的数据包（当然也可以坐等设备连接当前WiFi热点，只要有设备在进行连接就会发送握手包），我们就可以利用伪装的挂载设备去窃取这个握手包，最后就可以用密码字典文件去暴力破解获得密码。
 
@@ -16,12 +16,12 @@ tags: [kali, WiFi渗透] # add tag
 首先使用ifconfig/iwconfig命令查看无线网卡是否加载成功，如图出现wlan0无线设备即加载成功。（eth0是本机的以太网卡配置参数，wlan0是你的无线网卡名称，lo是回环接口）    
 ![Alt text](/assets/img/ifconfig.png)
 
-使用airodump-ng start命令开启无线网卡，此时无线网卡的名称将会变成wlan0mon
+使用airmon-ng start命令将网卡设定为监听模式，此时无线网卡的名称将会变成wlan0mon
 ![Alt text](/assets/img/start.png)
 
 ### 2.监听WiFi热点
 
-使用airodump-ng wlan0mon命令开始监听周围的WiFi热点，显示周围热点（ctrl+c 停止监听）
+使用airodump-ng wlan0mon命令开始嗅探周围的WiFi热点，显示周围热点（ctrl+c 停止监听）
 ![Alt text](/assets/img/监听wifi信号.png)
 > + BSSID: 无线AP（路由器）的MAC地址。
 > + PWR: 这个值的大小反应信号的强弱，越大越好。很重要！！！
