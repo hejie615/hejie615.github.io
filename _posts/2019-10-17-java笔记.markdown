@@ -209,12 +209,12 @@ tags: [Java随笔] # add tag
 
 #### 继承
 
+```
 1. 概念
 	* 当多个类之间有相同的特征和行为时，可以将相同的内容提取出来组成一个公共类，而在多个类的内部编写自己独有特征和行为
 2. 使用方式
 	* extends关键字
-```
-public class Student extends Person{} 	//表示Student类继承自Person类
+	public class Student extends Person{} 	//表示Student类继承自Person类
 	
 注意：
 	1. 子类可以继承父类的成员变量和成员方法，其中私有成员变量可以继承但不可以直接使用(因为封装了)，子类不可以继承父类的构造方法和私有方法（构造方法因为继承下来也没有用）。
@@ -224,6 +224,7 @@ public class Student extends Person{} 	//表示Student类继承自Person类
 
 #### 方法的重写(Override)
 
+```
 1. 概念
 	* 在子类中重新写一个与父类中一样的方法来覆盖从父类中继承的版本
 2. 原则
@@ -231,6 +232,7 @@ public class Student extends Person{} 	//表示Student类继承自Person类
 	* 要求方法名相同、参数列表相同、返回值类型相同，从jdk1.5开始允许返回子类类型（子类方法重写返回值可以返回子类的类型）
 	* 要求方法的访问权限不能变小，可以相同或者变大。
 	* 要求不能抛出更大的异常（异常机制）。
+```
 
 #### 常用的访问控制符
 
@@ -251,26 +253,26 @@ private			私有的		ok		no				no		no
 
 #### final关键字
 
+```
 1. 概念
 	* final本意为"最终的，不可更改的"，该关键字可以修饰类、成员方法、成员变量等。
 2. 使用方法
-
-```
-①final修饰类：表示该类不能被继承。
-	//防止滥用继承带来的危害
-②final修饰成员方法：表示该方法不能被重写但可以被继承。
-	//防止不经意间造成的方法重写
-③final修饰成员变量：表示该成员变量必须初始化而且不能更改。（类似js的const）
-	//为了防止不经意间造成数值的更改
+	①final修饰类：表示该类不能被继承。
+		//防止滥用继承带来的危害
+	②final修饰成员方法：表示该方法不能被重写但可以被继承。
+		//防止不经意间造成的方法重写
+	③final修饰成员变量：表示该成员变量必须初始化而且不能更改。（类似js的const）
+		//为了防止不经意间造成数值的更改
 ```
 
 #### 多态
 
+```
 1. 概念
 	* 多态主要指同一种事务表现出来的多种形态。
 	* 父类的引用指向一个子类的对象，形成多态
 2. 语法格式
-```
+
 	父类类型 引用变量名 = new 子类类型();
 如：
 	Person pw = new Worker();
@@ -302,12 +304,319 @@ private			私有的		ok		no				no		no
 	可以屏蔽不同子类的差异性实现通用的编程，但可以调用不同的方法带来不同的结果。
 ```
 
-3. 是大法官和
-
 #### 抽象类
 
+```
 1. 抽象方法的概念
 	* 抽象方法就是指不能具体实现的方法，也就是没有方法体并使用abstract关键字修饰。
-	
+	语法格式：
+		访问控制符 abstract 返回值类型 方法名称(形参列表);
+	如：
+		public abstract void cry();
+2. 抽象类的概念
+	* 抽象类就是指不能具体实例化的类，也就是不能创建对象并使用abstract关键字修饰
+3. 注意事项
+	* 抽象类中可以有成员变量、构造方法以及成员方法；
+	* 抽象类中可以有抽象方法也可以没有抽象方法；
+	* 拥有抽象方法的类必须是抽象类，因此严格来说，具有抽象方法并且使用abstract关键字修饰的类才算是真正意义上的抽象类。
+	* 抽象类主要是为了
+4. 实际意义
+	* 定义抽象类主要是为了里面的抽象方法不被别人调用，因为抽象类不能创建对象所以不能调用。
+	* 抽象类的意义不在于自身创建对象而在于被继承，当一个类继承抽象类后必须重写抽象类中的抽象方法，否则该类也编程抽象类。
+	* 也就是说抽象类对子类具有强制性和规范性，因此叫做模板设计模式。
+```
+
+#### 接口
+
+```
+1. 概念
+	* 接口就是一种比抽象类还抽象的类，体现为所有成员方法都是抽象方法。（为了弥补类不能多继承而存在）
+	* 定义类的关键字是class，而定义接口的关键字是interface。
+	* 继承类的关键字是extends，而实现接口的关键字是implements。
+2. 类和接口之间的关系
+	* 类和类之间的关系		使用extends关键字表达继承的关系		支持单继承
+	* 类和接口之间的关系		使用implements关键字表达实现的关系		支持多实现
+	* 接口和接口之间的关系	使用extends关键字表达继承的关系		支持多继承
+3. 抽象类和接口之间的区别
+	* 定义抽象类的关键字是abstract class，而定义接口的关键字是interface。
+	* 继承抽象类的关键字是extends，而实现接口的关键字是implements。
+	* 继承抽象类支持单继承，而实现接口可以多实现。
+	* 抽象类中可以有构造方法，而接口中不可以有构造方法。
+	* 抽象类中可以有成员变量，而接口中只可以有常量。
+	* 抽象类中可以有成员方法，而接口中只可以有抽象方法。
+	* 抽象类中增加方法可以不影响子类，而接口中增加方法通常都影响子类。（因为接口增加方法子类也需要增加）
+	* 从jdk1.8开始允许接口中出现非抽象方法，但需要使用default关键字修饰。
+```
+
+#### 匿名内部类
+
+```
+1. 语法格式
+	* 接口/父类类型 引用变量名 = new 接口/父类类型(){ 方法的重写 };		//相当于一个匿名的子类
+2. 经验分享
+	* 当接口类型的引用作为方法的形参时，实参的传递方式有两种：
+		* 自定义类实现接口，然后创建该类的对象作为实参传递；
+		* 使用匿名内部类的语法格式来得到接口类型的引用作为实参传递； （只用得到一次的用匿名内部类）
+```
+
+#### Object类
+
+```
+1. boolean equals(Object obj)
+	判断调用对象是否与参数对象相等	//与 == 运算符结果相同。
+2. int hashCode()
+	用于获取调用对象的哈希码值（内存地址的编号）
+	若调用equals方法的结果相等，则各自调用hashCode方法的结果相同。
+3. String toString()
+	用于获取对象的字符串形式，该方法默认返回字符串：包名.类名@哈希码值的十六进制形式
+	为了返回更有意义的数据内容则需要重写该方法
+	当字符串内容与引用进行连接时，自动调用toString()方法
+	当使用pring()或pringln()方法打印引用时，会自动调用toString()方法
+```
+
+#### 包装类和数学处理类
+
+```
+1. 包装类的概念
+	* 由于Java语言是一门纯面向对象编程语言，而8种基本数据类型声明的变量并不是对象，为了满足Java语言的特性就需要对这些变量进行对象化处理，而实现该功能的相关类就叫做包装类。
+2. 包装类的分类
+	* int => java.lang.Integer类
+	* char => java.lang.Character类
+	* 其它类型对应的包装类就是将首字母变成大写
+```
+
+##### Interger类
+
+```
+1. 基本概念
+	* java.lang.Integer类是int类型的包装类，里面包含了一个int类型的成员变量。该类由final关键字修饰表示不能被继承。
+2. 常用方法
+	* Interger(int value)		//根据参数指定的整数构造对象
+	* Integer(String s)			//根据参数指定的字符串构造对象
+	* 该类重写了equals()、hashCode()、toString()方法
+	* int intValue() 			//用于获取调用对象中的整数数据并返回	（拆箱----从对象中拿出数据）
+	* static Integer valueOf(int i)		//根据参数指定的整数返回对应的Integer对象	（装箱----把数据转换成对象）
+	* static int parseInt(String s)		//用于将String类型转换为int类型并返回
+3. 自动装箱和自动拆箱
+	* jdk1.5开始的新特性，可以自动装箱拆箱，底层原理还是调用的intValue和valueOf
+	* Integer it = 10;		//自动装箱
+	* res = it;				//自动拆箱
+```
+
+##### BigDecimal类
+
+```
+1. 概念
+	* 由于floaat类型和double类型的运算可能会有误差，为了实现精确运算则需要借助java.math.BigDecimal类型加以描述。
+2. 常用方法
+	* BigDecimal(String val)				//根据参数指定的字符串构造对象。
+	* BigDecimal add(BigDecimal augend)		//用于计算调用对象和参数对象的和并返回
+	* BigDecimal subtract(BigDecimal subtrahend)		//用于计算调用对象和参数对象的差并返回
+	* BigDecimal multiply(BigDecimal multiplicand)		//用于计算调用对象和参数对象的积并返回
+	* BigDecimal divide(BigDecimal divisor)				//用于计算调用对象和参数对象的商并返回 
+3. 若商无法精确时的处理方法
+	bd5.divide(bd6,BigDecimal.ROUND_HALF_UP);			//四舍五入标尺
+```
+
+#### String类
+
+```
+1. 概念
+	java.lang.String类用于描述字符串，Java应用程序中所有字符串字面值都可以作为String类型的对象加以描述
+	该类描述的字符串内容是个常量，一旦创建完毕后则不能更改，因此可以被共享。
+如：
+	String str1 = "abc"; 
+	str1 = "123";
+	//此时改变的是str1的指向而不是指向的内容
+2. 常量池
+	 由于String类型描述的字符串内容是个常量不可改变，因此Java虚拟机提供了一个常量池，当Java程序中出现字符串内容时就放入常量池中，若后续出现重复的字符串内容则直接使用池中已有的对象而不需再次创建，从而提高了性能
+如：
+	String str1 = "abc";
+	String str2 = "abc";
+	//此时str1和str2的指向地址是一样的
+3. 构造String
+	（1）String(char[] value, int offset, int count)
+		使用value数组中下标从offset位置开始的count个字符来构造对象
+	（2）String(char[] value)
+		使用value数组中的所有内容构造对象
+	（3）String(String str)
+		根据参数指定的字符串内容来构造对象，心创建对象为参数对象的副本
+注意：
+	String str1 = new String("abc");	//会创建两个对象 "abc"会放到常量池里，new出来的会放到堆区中（会将字面量"abc"拷贝放到堆区中）
+	String str1 = "abc";				//字面量写法
+4. 常用方法
+	（1）int length()
+		返回字符串的长度
+	（2）char charAt(int index)
+		返回字符串指定位置的字符
+	（3）boolean contains(CharSequence s)
+		用于判断当前字符串是否包含参数指定的内容
+	（4）String toLowerCase()
+		返回字符串的小写形式
+	（5）String toUpperCase()
+		返回字符串的大写形式
+	（6）String trim()
+		返回去掉前导和后继空白的字符串
+	（7）boolean startsWith(String prefix)
+		判断字符串是否以参数字符串开头
+	（8）boolean endsWith(String suffix)
+		判断字符串是否以参数字符串结尾
+	（9）equalslgnoreCase()
+		忽略大小写判断与参数值是否相同
+	（10）int indexOF(String str)
+		在字符串中检索str，返回第一次出现的位置，如果找不到则返回-1
+	（11）int indexOf(String str, int fromIndex)
+		从指定位置开始检索
+	（12）substring
+		String substring(
+			int beginIndex, intendIndex
+			)
+		// 返回字符串中从下标beginIndex(包括)开始到endIndex(不包括)结束的子字符串
+	（13）Strubg substring(int beginIndex)
+		返回字符串中从下标beginIndex(包括)开始到字符串结尾的子字符串
+```
+
+#### StringBuilder类和StringBuffer类
+
+```
+1. 概念
+	* 由于String类型描述的字符串内容是个常量不可更改，当程序中出现大量类似的字符串时需要单独存放从而浪费内存空间，若希望使用一块内存空间进行存储并且可以修改字符串内容，则应该使用StringBuilder类和StringBuffer类。
+	* 其中StringBuffer类从jdk1.0开始存在，该类支持线程安全，因此访问的效率比较低
+	* 其中StringBuilder类从jdk1.5开始存在，该类不支持线程安全，访问的效率比较高（线程安全指排队列按顺序，所以效率低，不安全就是不排队所以效率高）
+2. 常用方法
+	* int capacity() 			//返回当前容量
+	* int length() 				//返回长度
+	* StringBuilder append(String str)			//追加字符串
+	* StringBuilder insert(int offsest, String str)				//插入字符串
+	* StringBuilder delete(int start, int end)					//删除字符串
+	* StringBuilder replace(int start, int end, String str)		//替换字符串
+	* int indexOf(String str)									//查找字符串
+	* StringBuilder reverse() 										//字符串反转
+	* 返回值存在的意义是可以连续使用：	str.append("abc").delete(5,10)
+```
+
+#### 日期相关的类
+
+##### Date类
+
+```
+1. 概念
+	* java.util.Date类用于描述特定的瞬间，可以精确到毫秒。
+2. 常用的方法
+	* Date() 	//获得当前的时间精确到毫秒
+	* Date(long date)	//指定1970年1月1日00:00:00的毫秒数
+	* long getTime() 	//返回自1970年到现在的毫秒数
+	* setTime(long time)	//设置自1970年过去的毫秒数
+```
+
+##### SimpleDateFormat类
+
+```
+1. 概念
+	* java.text.SimpleDateFormat类主要用于实现日期和文本之间的相关转换
+2. 常用方法
+	* SimpleDateFormat("yyyy-MM-dd HH:mm:ss")	//创建对象指定转换格式，y年，M月，d日，H小时（24小时制），mm分钟，ss秒。（yyyy表示4位，MM表示2位，- ：会原样输出）
+	* String format(Date d1)	//Date类型转换为String类型
+	* String parse(String str1)	//String类型转换为Date类型
+```
+
+##### Calender类
+
+```
+1. 概念
+	java.util.Calendar类用于取代Date类来描述年月日时分秒的特定瞬间
+2. 常用方法
+	* Calendar Calendar.getInstance() 	//调用静态方法返回Calendar类型的引用（因为Calender是一个抽象类构造不了对象只能用这种方法，返回了一个Calender类型子类的对象形成了多态）
+	* set(2008, 8, 8, 20, 8, 8)	//用set方法设置Calender引用的年月日时分秒（月份要减去1，因为月份是从0开始）
+	* Date getTime() 	//将Calender类型转换为Date类型
+```
+
+#### 集合（容器）框架
+
+```
+1. 集合的由来
+	* 当需要在程序中记录单个数据内容时，则声明一个变量即可；
+	* 当需要在程序中记录多个类型相同的数据内容时，则声明一个一维数组即可；
+	* 当需要在程序中记录多个类型不同的数据内容时，则构造一个对象即可；
+	* 当需要在程序中记录多个类型相同的对象时，则声明一个对象数组即可；	//Student[] a = new Student[10] 	定义一个Student类型的数组
+	* 当需要在程序中记录多个类型不同的对象时，则声明一个集合即可；
+2. 集合框架结构
+	* 在Java语言中集合框架的顶层是：jaca.util.Collection集合 和 java.util.Map集合
+	* 其中Collection集合中操作元素的基本单位是：单个元素。
+	* 集中Map集合中操作元素的基本单位是：单对元素。
+```
+
+##### Collection集合
+
+```
+1. 概念
+	java.util.Collection集合是集合框架的根接口，其它接口是该接口的子接口。
+2. 常用方法
+	(1) boolean add()
+		向集合中添加对象
+	(2) boolean contains(Object o)
+		判断是否包含指定对象
+	(3) boolean remove(Object o)
+		从集合中删除对象
+	(4) void clear()
+		清空集合
+	(5) int size()
+		返回包含对象的个数
+	(6) boolean isEmpty()
+		判断是否为空
+```
+
+##### List集合
+
+```
+1. 概念
+	java.util.List集合是Collection集合的子集合，该集合中元素有先后次序且允许重复
+	该集合的主要实现类有：ArrayList类、LinkedList类、Stack类、Vector类等
+	其中ArrayList类的底层是采用动态数组进行数据管理，访问方便，增删不方便。
+	其中LinkedList类的底层是采用链表进行数据管理，增删方便，访问不方便。
+	其中Stack类主要用于描述具有后进先出特征的数据结构，叫做栈，该类的底层是采用数组进行数据的管理。
+	其中Vector类的底层采用数组进行数据的管理，与ArrayList类相比属于线程安全的类，因此效率比较低，在以后的开发中推荐使用ArrayList类取代之。
+2. 常用方法
+	(1) void add(int index, E element)
+		向集合中指定位置添加元素
+	(2) boolean addAll(int index, Collection<?extends E>c)
+		向集合中添加所有元素
+	(3) E get(int index)
+		从集合中获取指定位置元素
+	(4) E set(int index, E element)
+		修改指定位置的元素（返回修改的元素）
+	(5) E remove(int index)
+		删除指定位置的元素（返回删除的元素）
+	(6) list subList(int index, int index)
+		获取集合中一部分内容，获取的内容和原集合占用共同的存储空间，获取集合的改变会影响原集合 
+```
+
+##### 泛型机制
+
+```
+1. 概念
+	通常情况下集合中可以存放不同类型的对象，本质上是将这些对象全部看做Object类型放入，因此从集合中取出元素时也是Object类型，为了表达元素最真实的数据类型就需要强制类型转换，而强制类型转换可能发生类型转换异常。
+	为了避免上述错误的发生，从jdl1.5开始提出泛型机制，也就是在集合名称的右侧使用<数据类型>的方式明确要求该集合可以存放的元素类型，若放入其他类型则编译报错
+如：
+	List lt1 = new LinkedList();					//可以放入任意类型对象，取出麻烦
+	List<String> lt1 = new LinkedList<String>();	//只能放入String类型，取出方便
+2.原理
+	泛型的本质就是参数化类型，也就是让数据类型作为参数传递，集合定义中的E相当于形式参数负责占位，而使用集合时<>中的数据类型相当于实际参数负责给形式参数初始化，当初始化完毕后所有E被替换为实际参数表示的类型进行使用。
+	由于E支持的数据类型非常广泛，因此得名为"泛型"。
+如：
+	其中i叫做形式参数，负责占位				其中E叫做形式参数，负责占位
+	int i = 5;								E = String;
+	int i = 10;								E =Student;
+	public void show(int i) {				public interface List<E> {
+		... 								...
+	}										}
+
+	其中5叫做实际参数，用于给形式参数初始化		其中String叫做实际参数
+	show(5);								List<String> lt1 = ...;
+	show(10);								List<Student> lt2 = ...;
+```
 
 >持续更新……
+
+
+
