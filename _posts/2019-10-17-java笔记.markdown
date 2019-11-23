@@ -4,7 +4,7 @@ title: Java随笔
 date: 2019-10-17 09:00:00 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: java.jpg # Add image post (optional)
-tags: [Java随笔] # add tag
+tags: [随笔] # add tag
 ---
 
 ### 1.相关概念

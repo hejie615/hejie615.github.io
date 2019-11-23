@@ -4,11 +4,11 @@ title: 微信小程序随笔
 date: 2019-11-1 09:00:00 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: 小程序.jpg # Add image post (optional)
-tags: [微信小程序随笔] # add tag
+tags: [随笔] # add tag
 ---
 
 #### 随笔
-啊啊啊啊
+
 ```
 不校验合法域名
 
