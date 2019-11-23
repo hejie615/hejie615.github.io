@@ -1,0 +1,70 @@
+---
+layout: post
+title: Oracle随笔
+date: 2019-10-25 09:00:00 +0300
+description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+img: orcale.jpg # Add image post (optional)
+tags: [Oracle随笔] # add tag
+---
+
+#### 随笔
+
+```
+1. 拼接字符串 ||
+	select last_name||first_name "姓 名" from s_emp;
+2. 转义字符 ' (无法转义_，好像只能转义单引)
+	''表示一个单引号
+3. orcale中任何数据和null运算结果还是空
+	nvl(参数1, 参数2)
+		若参数1不为空，则返回参数1
+		若参数1为空，则返回参数2
+	用来处理null值进行运算
+4. 去重
+	distinct 列名
+5. 按范围查找
+	① between ... and ...
+		查询在...和...之间的内容 包含头尾
+	② in(...)
+		查询在...里面的任何内容
+	③ not in(...)
+		查询不在...里面的数据内容
+6. 模糊查询
+	列名 like ...
+		_ 表示任意一个字符
+		% 表示任意多个字符
+7. 定义转义字符
+	单引号无法转义_，所以使用escape关键字定义转义字符
+	like '\_%' escape '\';
+8. 排序时把null值放在后面
+	order by salary desc nulls last;
+9. 按位置编号进行排序
+	就是select查询的列的序号 
+	select first_name, salary
+			0			1
+10. 多字段排序时，需要写多个desc
+11. 字符串相关的常用函数
+	length() 	字符串长度
+	upper() 	转换为大写
+	lower() 	转换为小写
+	initcap() 	首字母转换为大写
+	substr('hello', 2, 3) 从下标2开始取，取3位
+	concat('', '') 	拼接字符串
+	replace('我爱你', '爱', '揍')	字符串替换
+	instr('', '') 	查找子串第一次出现的下标位置
+	trim		去除空白字符
+12. 数值相关的常用函数
+	round(3.1515, 3) 保留3位小数，四舍五入
+	trunc(3.1415, 3)	保留3位小数，直接舍去
+13. 日期相关的函数
+	to_date('2019-07-23', 'yyyy-mm-dd') 	将字符串类型转换为日期类型
+	to_char(日期类型, 'yyyy-mm-dd') 	将日期类型转换为字符串类型
+	sysdate		当前系统时间
+	add_months(日期类型, 1)	当前日期加一个月
+	trunc(日期类型, 'dd') 	截取dd之前的
+14. group by 每个什么就按什么分组
+	    分组后筛选不能用where 要用having
+
+15. select查询语句的执行流程
+	from 表名 => where子句 => group by分组 => having子句 => select取出数据 => order by子句
+```
+>持续更新……

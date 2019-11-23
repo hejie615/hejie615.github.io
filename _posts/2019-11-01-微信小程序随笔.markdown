@@ -1,0 +1,164 @@
+---
+layout: post
+title: 微信小程序随笔
+date: 2019-11-1 09:00:00 +0300
+description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+img: 小程序.jpg # Add image post (optional)
+tags: [微信小程序随笔] # add tag
+---
+
+#### 随笔
+啊啊啊啊
+```
+不校验合法域名
+
+
+应用程序级别文件，相当于全局配置
+
+层级不能太多
+
+大小不能超过2M 可以分包加载不能超过8M，单个不能2M（以前）
+
+
+json必须要有内容 或者直接写{}
+
+多台电脑开发想用同样的配置（字体什么的）把project.config.json拷贝过去就可以
+
+
+text \n会换行
+
+
+image默认宽300px高225px
+
+
+rpx会随设备变化 响应式
+px固定的
+
+
+pt是逻辑分辨率（和屏幕尺寸有关），px是物理分辨率（和屏幕尺寸无关）
+小程序给的默认pt
+
+一个pt里包含多少个px，呈包含关系
+iphone6下2个px构成一个pt
+
+照片是物理分辨率，网页是逻辑分辨率
+照片的px/2=网页的px
+
+rpx随设备自适应
+一般用ip6做设计图因为1px=1rpx成比例好换算
+
+
+
+swiper-item默认充满swiper。宽高自动设置为100%
+
+
+
+this.setData(变量名)	 //更新到data里，传入data里的数据必须是对象，如果不是则可以{key:变量名}传过去
+
+
+"true"和"false"只是个字符串 "false"不代表假？？ 需要{{false}}
+
+{{}}可以进行运算
+```
+
+#### 路由
+wx.navigateTo({
+	url: ''
+})
+//跳转后带返回按钮
+//跳转后原页面被隐藏
+
+wx.redirectTo({
+	url: ''
+})
+//跳转后不带返回按钮
+//跳转后原页面被卸载，所以不能返回
+
+
+#### 阻止冒泡
+bind:tap
+//用bind会产生事件冒泡
+catch:tap
+//用catch捕捉事件是会阻止事件冒泡的
+
+
+alt+shift+f 格式化代码
+
+#### 导入数据
+
+//定义出口
+module.exports={
+	key: text,
+}
+
+//接收
+var texts = require('相对路径')
+
+
+#### 模板（复用性）
+
+<template name="模板名" />
+
+<import src="路径" />
+//导入模板文件
+<template is="模板名" data="{{传入绑定的数据}}" />	//传入数据还可以打开传 ...item直接接收变量就可以不用再item.变量了
+
+@import "路径";
+//导入wxss文件
+
+//新版本有自定义组件
+
+
+data-名字
+//自定义属性
+
+
+event.currentTarget.dataset.自定义属性名;
+//通过事件对象获取触发事件的元素，再获取元素自定义属性的集合，再获取指定自定义属性
+//target指的是当前点击的组件
+//currentTarget指的是事件捕获的对象
+
+#### 缓存设置
+
+```
+1. 同步设置缓存
+	wx.setStorageSync('key',{
+		name: 'what'
+		})
+2. 同步获取缓存
+	wx.getStorageSync('key')
+3. 同步移除缓存
+	wx.removeStorageSync('key')
+4. 同步清除所有缓存
+	wx.clearStorageSync()
+
+
+手机清除缓存通过添加按钮事件清除缓存
+
+```
+#### 交互反馈
+wx.showToast({
+	title:
+})
+//弹窗
+
+wx.showModal({
+	
+})
+//确认按钮弹窗
+
+#### this
+
+* 两个函数嵌套内部函数需要使用外部函数的this才能访问到最外面的变量：var that = this	//this的指向问题？
+
+
+
+globalData:{
+	
+}
+//App内定义全局变量
+
+getApp();
+//获取全局变量
+
+>持续更新……

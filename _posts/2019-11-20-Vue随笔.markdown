@@ -1,0 +1,45 @@
+---
+layout: post
+title: Vue随笔
+date: 2019-11-20 09:00:00 +0300
+description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+img: 16.jpg # Add image post (optional)
+tags: [Vue随笔] # add tag
+---
+
+#### 随笔
+
+```
+vue的data调用相当于getter和setter方法调用
+vm.$el 相当于获取el的元素 document.getElementById
+vm.$data 获取data对象
+vm.$data.title 获取对象属性
+```
+
+##### computed、methods、watch
+
+```
+1. 计算属性
+	数据依赖于另一个属性使用computed
+	一个数据受多个数据影响
+	会缓存 重复调用缓存		直接{{}} computed被动调用 不用()
+2. methods
+	methods不会缓存		methods需要()自己主动调用
+3. 侦听属性
+	watch
+	当值发生改变执行函数
+```
+
+##### 生命周期函数
+
+```
+就是每个生命周期会触发每个不同的函数执行
+beforeCreate
+实例初始化之后
+created
+挂载还没开始
+beforeMount
+
+```
+
+>持续更新……

@@ -605,17 +605,897 @@ private			私有的		ok		no				no		no
 	由于E支持的数据类型非常广泛，因此得名为"泛型"。
 如：
 	其中i叫做形式参数，负责占位				其中E叫做形式参数，负责占位
-	int i = 5;								E = String;
-	int i = 10;								E =Student;
+	int i = 5;						E = String;
+	int i = 10;						E = Student;
 	public void show(int i) {				public interface List<E> {
-		... 								...
-	}										}
+		... 							...
+	}							}
 
-	其中5叫做实际参数，用于给形式参数初始化		其中String叫做实际参数
-	show(5);								List<String> lt1 = ...;
-	show(10);								List<Student> lt2 = ...;
+	其中5叫做实际参数，用于给形式参数初始化			其中String叫做实际参数
+	show(5);						List<String> lt1 = ...;
+	show(10);						List<Student> lt2 = ...;
 ```
 
+##### Queue集合
+
+```
+1. 概念
+	java.util.Queue集合是Collection集合的子集合，与List集合是平级关系。
+	该集合的主要实现类是：LinkedList类，因为该类在增删方面有一定的优势。
+	该集合用于描述具有先进先出特征的数据结构，叫做队列
+2. 常用方法
+	(1) boolean offer(E e)
+		将一个对象添加至队尾，若添加成功则返回true
+	(2) E poll()
+		从队首删除并返回一个元素
+	(3) E peek()
+		返回队首的元素（但】】）
+```
+
+##### Set集合
+
+```
+1. 概念
+	java.util.Set集合是Collection集合的子集合，与List集合以及Queue集合平级关系。
+	该集合与List集合的主要区别在于：元素没有先后次序并且不允许重复的元素。
+	该集合的主要实现类有：HashSet类 和 TreeSet类。
+	其中HashSet类的底层采用哈希表进行数据管理的。
+	其中TreeSet类的底层采用二叉树进行数据管理的
+2.  常用方法
+	(1) booleanhas Next()
+		判断集合中是否有可以迭代、\访问的元素
+	(2) E next()
+		用于取出一个元素并指向下一个元素
+	(3) void remove()
+		用于删除访问到的最后一个元素
+注意：
+	当使用迭代器迭代集合中的所有元素时，若使用集合中的remove方法来删除元素，则会出现ConcurrentModificationException并发修改异常，以后的开发中应该使用迭代器的remove方法来删除元素。
+
+增强版的for循环（for each结构）
+(1) 语法格式
+	for(元素类型 变量名 : 数组名/集合名){
+		循环体;
+	}
+(2)执行流程
+	不断地从数组或集合中取出一个元素并赋值给变量并执行循环体，知道处理完毕所有元素为止。
+```
+
+##### Map集合
+
+```
+1. 基本概念
+	java.util.Map<K,V>集合中操作元素的基本单位是单对元素，其中类型参数如下：
+		K - 此映射所维护的键（key）的类型
+		V - 映射值（value）的类型
+	该集合中不允许出现重复的键，每个键最多只能映射到一个值。
+	该集合的主要实现类有：HashMap类 和 TreeMap类。
+	其中HashMap类的底层是采用哈希表进行数据管理的。
+	其中TreeMao类的底层是采用二叉树进行数据管理的。
+2. 常用方法
+	(1) V put(K key, V value);
+		将key-value存入Map，若集合中已经包含该key，则替换对应的value，返回值为该key原来所对应的value，若没有则返回null
+	(2) V get(Object key);
+		返回与参数key所对应的value对象，如果不存在则返回null
+	(3) boolean containsKey(Object key);
+		判断集合中是否包含指定的Key
+	(4) boolean containsValue(Object value);
+		判断集合中是否包含指定的Value
+	(5) remove(key)
+		移除key相应的映射返回value，若没有则返回null
+```
+
+#### 异常机制
+
+```
+1. 基本概念
+	异常就是"不正常"的含义，在Java语言中用于表示运行阶段发生的错误。
+	java.lang.Throwable类是Java语言中所有错误（Error）和异常（Exception）的超类。
+	其中Error类主要用于描述比较严重无法编码解决的问题，如：JVM挂了。
+	其中Exception类主要用于描述比较轻微可以编码解决的问题，如：0作为除数。
+2. 基本分类
+	java.lang.Exception类是所有异常类的超类，主要分为以下两大类：
+		RuntimeException - 运行时异常，也叫作非检测性异常
+		IOException和其他异常 - 其他异常，也叫作检测性异常
+								//检测性异常就是在编译阶段能够被编译器检测出来的异常
+	其中RuntimeException类的主要子类：
+		ArithmeticException - 算数异常
+		ArrayIndexOutOfBoundsException - 数组下标越界异常
+		NullPointerException - 空指针异常
+		ClassCastException - 类型转换异常
+		NumberFormatException - 数字格式异常
+
+注意：
+	当程序执行过程中发生异常但没有手动处理时，由Java虚拟机采用默认方式处理，而默认处理方式就是：打印异常名称、异常原因、异常发生的位置等并终止程序。
+
+3. 异常的避免
+	在以后的开发中尽量使用if条件判断来避免异常的发生。
+4. 异常的捕获
+	(1) 语法格式
+		try{
+			编写可能发生异常的语句;
+		}
+		catch(异常类型 变量名){
+			编写针对该类异常的处理语句；
+		}	//catch可以写多条也可以捕获Exception（所有异常的根）
+		...
+		finally {
+			编写无论是否发生异常都应该执行的语句;
+		}
+	(2)注意事项
+		a. 当需要编写多个catch分支时，切记小类型的异常应该放再大类型的异常上面
+		b. finally主要用于编写善后处理的语句，如：关闭已经打开的文件等。finally一定会被执行
+5. 异常的抛出
+	(1) 基本概念
+		在某些特殊情况下产生的异常无法处理或者不便于处理时，就可以将该异常转移给该方法的调用者，这种方式就叫做异常的抛出。
+	(2) 语法格式
+		访问权限 返回值类型 方法名称(形参列表) throws 异常类型1, 异常类型2 ... {}
+	如：
+		public void show() throws IOException {}
+	(3) 重写方法的抛出原则
+		* 不可以抛出同级不一样的异常
+		* 不可以抛出更大的异常
+6. 自定义异常
+	(1) 基本概念
+		虽然Java官方提供了大量的异常类，但一定不会包含所有开发中可能出现的异常，在Java程序中若需要表达特定问题的特定异常时，就需要程序员自定义异常来描述。
+	(2) 实现流程
+		a. 自定义xxxxException继承自Exception类或者其子类；
+		b. 提供两个版本的构造方法：无参构造方法 和 字符串作为参数的构造方法；
+
+注意：
+	(1) 在以后的开发中尽量使用if条件判断避免异常的发生
+	(2) 若是在避免不了，则进行异常的捕获
+	(3) 若是在捕获不了，则进行异常的抛出
+	(4) 若希望使用针对性的异常，则需要自定义异常      	    	 	
+```
+
+#### File类
+
+```
+1. 基本概念
+	java.io.File类主要用于描述文件和目录的路径信息，可以获取名称、大小等属性信息
+2. 常用的方法
+	(1) boolean delete()
+		用于删除文件，当删除目录时要求是空目录
+	(2) boolean createNewFile()
+		用于创建新的空文件
+	(3) boolean mkdir()
+		用于创建目录
+	(4) boolean mkdirs()
+		用于创建多级目录
+	(5) File[] listFiles()
+		用于获取一个目录中的所有内容
+	(6) boolean isFile()
+		用于判断该对象是否为标准文件
+	(7) boolean isDirectory()
+		用于判断该对象是否为目录文件
+```
+
+#### IO流
+
+```
+1. 基本概念
+	I/O就是Input/Output的简写，也就是输入输出的含义。
+	I/O流就是像流水一样不间断地进行输入输出的状态。
+2. 基本分类
+	按照数据读写的基本单位不同分为 字节流 和 字符流
+	其中字节流主要指以字节为单位进行写的流，可以处任意类型的文件
+	其中字符流主要指以字符(2个字节)为单位进行读写的流，只能处理文本文件。
+
+	按照数据流动的方向不同分为：输入流 和输出流（站在程序的角度）。
+	其中输入流主要指从文件中读取数据内容输入到程序中，也就是读文件；
+	其中输出流主要指将程序中的数据内容输出到文件中，也就是写文件；
+
+```
+
+##### FileOutputStream类
+
+```
+1. 基本概念
+	java.io.FileOutputStream类主要用于将图像数据之类的原始字节流写入输出流中。
+2. 常用的方法
+	(1) void write(int b)
+		将指定字节写入此文件输出流
+	(2) void write(byte[] b, int off, int len)
+		将指定字节数组中从偏移量off开始的len个字节写入此文件输出流。
+	(3) void write(byte[] b)
+		将b.length个字节从指定字节数组写入此文件输出流中
+	(4) void close()
+		用于关闭文件输出流并释放有关的资源
+```
+
+##### FileInputStream类
+
+```
+1. 基本概念
+	java.io.FileInputStream类主要用于从输入流中读取图像数据之类的原始字节流。
+
+```
+
+##### BufferedWriter类
+
+```
+1. 基本概念
+	java.io.BufferedWriter类主要用于向输出流中写入单个字符、字符数组以及字符串
+2. 常用的方法
+```
+
+##### BufferedReader类
+
+```
+1. 基本概念
+	java.io.BuffedReader类主要用于从输入流中读取单个字符、字符数组以及一行字符串内容。
+```
+
+##### PrintStream类
+
+```
+1. 基本概念
+	java.io.PrintStream类主要用于方便地打印各种数据内容并且自动刷新
+```
+
+##### ObjectOutputStream类
+
+```
+1. 基本概念
+	java.io.ObjectOutputStream类主要用于将java语言中的对象整体写入输出流中
+	只能将支持 java.io.Serializable 接口的对象写入流中。
+	类通过实现 java.io.Serializable 接口以启用其序列化功能。
+	所谓序列化就是指将一个对象相关的所有信息有效组织成字节序列的转化过程。
+```
+
+##### ObjectInputStream类
+
+```
+1. 基本概念
+	java.io.ObjectInputStream类主要用于从输入流中一次性将一个对象的内容读取出来，实现了从字节序列到对象的转化过程，叫做反序列化
+2. 常用方法
+经验：
+	当需要写入多个对象到文件中时，建议先将多个对象放入一个集合对象中，然后将集合对象看做一个整体只需要调用一次writeObject方法就可以写入所有内容，此时只需要调用一次readObject方法就可以将所有内容读取出来，这样就避免了通过返回值来判断是否读取到文件的末尾
+```
+
+##### transient关键字
+
+* transient是java语言的关键字，用来表示一个域不是该对象串行化的一部分。当一个对象被串行化的时候，transient型变量的值不包括在串行化的表示中，然而非transient型的变量是被包括进去的
+
+#### 线程
+
+```
+1. 概念
+	程序 ： 数据结构 + 算法，主要指存放在硬盘上的可执行文件
+	进程 ： 主要指运行在内存中的程序
+
+	目前主流的操作系统都支持多进程，为了使得操作系统能够同时执行多个任务，但进程是重量级的，新建进程对系统的资源消耗比较大，因此进程的数量比较局限。
+	线程是进程内部的程序流，也就是操作系统中支持多进程，而每个进程内部又可以支持多线程，线程是轻量级的，新建线程会共享所在进程的系统资源，因此以后的开发中都采用多线程技术
+	多线程技术采用时间片轮转法实现并发执行，所谓并发就是指宏伟并行微观串行。
+2. 线程的创建
+	(1) 创建和启动的方式
+	java.lang.Thread类用于描述线程，Java虚拟机允许应用程序并发地运行多个执行线程，而线程的创建和启动方式如下：
+		* 自定义类继承Thread类并重写run方法，创建该类的实例调用start方法。
+		* 自定义类实现Runnable接口并重写run方法，创建该类的实例作为实参来构造Thread类型的对象，然后使用Thread类型的对象调用start方法
+	(2) 相关方法的解析
+			Thread() - 使用无参方式构造对象
+			Thread(String name) - 根据参数指定的接口引用来构造对象
+			Thread(Runnable target) - 根据参数指定的接口引用来构造对象。
+			Thread(Runnable target, String name) - 根据参数指定的引用和名称构造对象。
+
+			void run() - 若使用Runnable类型的引用构造出来的对象调用该方法，则最终调用引用所指向对象的run方法，否则调用该方法啥也不做。
+			void start() - 用于启动线程，Java虚拟机会自动调用该线程的run方法。
+	(3) 原理分析
+		a. 执行main方法的线程叫做主线程，执行run方法的线程叫做子线程。
+		b. main方法是程序的入口，最开始只有主线程来一次执行main方法中的代码，当start方法调用成功后，线程的个数瞬间由1个变成了2个，其中子线程去执行run方法，主线程继续执行main方法的代码，两个线程各自独立运行互不影响。
+		c. 当run方法执行完毕后子线程结束，当main方法执行完毕后主线程结束，但两个线程谁先执行没有明确的规定，取决于操作系统的调度算法。
+
+	注意：
+		线程创建和启动的方式一相对来说代码简单，但Java语言中只支持单继承，若该类继承Thread类后则无法继承其他类；而方式二相对来说代码复杂，但不影响该类继承其他类以及实现其它接口，因此以后开发中推荐方式二。
+```
+
+##### 线程的同步机制
+
+```
+1. 基本概念
+	当多个线程同时访问同一种共享资源时，可能会造成数据的覆盖等不一致性问题，此时就需要进行线程之间的通信和协调，该机制就叫线程的同步机制。
+
+2. 实现方式
+	在Java语言中使用synchronized关键字类实现同步/对象锁机制，来保证线程执行该段代码时的原子性（要么不执行，要么就执行完整），具体方式如下：
+	(1) 使用同步语句块的方式来锁定部分代码
+		synchronized(任意类型的引用){
+			编写需要锁定的代码
+		}
+	(2) 使用同步方法的方式来锁定所有代码
+3. 原理分析
+	当多个线程调用start方法后同时去抢占共享资源，由于同步锁的存在导致只有一个线程能够抢到共享资源并进行枷锁处理，其它没有抢到共享资源的线程进入阻塞状态，当该线程执行完毕所有锁定的代码后自动释放同步锁，此时阻塞状态的所有线程继续抢占共享资源，抢不到的线程再次回到阻塞状态。
+```
+
+#### 基于tcp协议的编程模型
+
+```
+1. 编程模型
+服务器：
+	(1) 创建ServerSocket类型的对象并提供端口号；
+	(2) 等待哭护短的连接请求，调用accept方法；
+	(3) 使用输入输出流进行通信；
+	(4) 关闭Socket；
+客户端：
+	(1) 创建Socket类型的对象并提供服务器的IP地址和端口号；
+	(2) 使用输入输出流进行通信；
+	(3) 关闭Socket；
+```
+
+#### 常用的设计原则
+
+```
+1. 软件开发的流程
+	需求分析文档 > 概要设计文档 > 详细设计文档 > 编码和测试 > 安装和调试 > 维护和升级
+2. 常用的设计原则
+	(1) 开闭原则：对扩展开放，对修改关闭，提高了代码的扩展性和维护性
+如：
+	public class Person {
+		private String name;
+		private int age;
+		...
+	}
+	public class SubPerson extends Person {
+		private boolean gender;
+		...
+	}
+
+	(2) 里氏代换原则：任何父类可以出现的笛梵，子类一定可以出现，在以后的开发中多使用继承和多态的理念。
+如：
+	public static void draw(Shape s) {
+		s.show();
+	}
+	ShapeTest.draw(new Rect(1,2,3,4));
+	ShapeTest.draw(new Circle(5,6,7));
+
+	(3) 依赖倒转原则：尽量多依赖于抽象类和接口，而不是具体实现类。在以后的开发中多使用抽象类和接口，对子类具有强制性和规范性
+如：
+	public abstract class Account {
+		public abstract double getLixi();
+	}
+	public class FixedAccount extends Account {
+		@Override
+		public double getLixi(){}
+	}
+
+	(4) 接口隔离原则：尽量依赖于小接口而不是大接口，避免接口的污染。可以降低耦合度，耦合主要指一个模块与其他模块的关联度。
+如：
+	public interface RunAnimal {
+		public abstract void ran();	// 描述奔跑的行为
+	}
+	public interface FlyAnimal {
+		public abstract void fly();	// 描述飞行的行为
+	}
+	public class Dog implements RunAnimal {
+		public void run(){} 	// 直接继承某一个详细的接口而不是继承大接口
+	}
+
+	(5) 迪米特法则
+		* 一个实体应当尽量少与其他实体之间发生相互作用
+		* 低耦合，高内聚
+		* 高内聚就是指将一个实体应当将该实体应该拥有的功能尽量聚集在该实体内部
+
+	(6) 合成复用原则：尽量多使用合成的方式，而不是继承的方式
+如：
+	public class A {
+		public void show() {}
+	}
+
+	public class B {
+		private A a;	//推荐用这个，不推荐用继承
+		public void test() {
+			//想调用A的shou方法
+			a.show;
+		}
+	}
+```
+
+#### 常用的设计模式
+
+```
+1. 工厂模式
+	需要一个父类接口，实现接口的不同类都重写接口的共同方法，再通过一个工厂类来实例化类并返回，返回后用父类接口引用接收实现多态可以调用子类的方法
+	* 普通工厂模式
+		(1) 通过传入需要创建对象的名字返回一个对象，没有则返回null，需要一个工厂类来创建对象返回
+		(2) 缺点：如果传入的名字不匹配会引发空指针异常
+	* 多个工厂模式
+		(1) 通过调用方法返回一个对象，工厂类需要为每一个类创建一个方法
+	* 静态工厂模式
+		(1) 把多个工厂模式的方法都设置为静态方法使可以通过类名调用，不用再创建对象引用调用，更方便
+	* 抽象工厂模式
+		(1) 把多个需要创建的类，都创建一个独立的类返回给一个生产公共接口(这个类实现生产公共接口)，再通过生产公共接口引用的方法实例化类（返回值为方法公共接口类型，因为有多个不同类所以返回值为他们的父类接口类型），返回给方法公共接口引用（多加一层接口多态），就可以调用不同类的不同方法了
+```
+
+
+
+类名首字母大写，方法名第二个字母起首字母大写
+
+获取别的类里面的成员变量或者方法
+	先定义一个私有的别的类的类型引用
+	在创建一个构造方法来使别的类创建对象放入进来获取别的类的对象然后就可以获取到变量和方法
+	如果是私有变量，可以创建一个公开的get方法return出来
+
+
+ObjectOutputStream和ObjectInputStream顺序要对应 否则会出现死锁，导致双方都在等待数据，（input需要先接收一定的header数据，就收到这些数据之前会处于阻塞状态）
+
+socket只用共同的一个	
+
+
+
+
+#### JDBC
+
+##### JDBC访问数据库的步骤
+
+```
+1. 加载驱动
+	Class.forName("包名.驱动名")
+2. 获取连接	Connection
+	DriverManager.getConnection(url,username,password)
+3. 定义sql 并获取sql的执行环境 Statement(PrepareadStatement)
+	conn.createStatement() 这里以后会使用prepareadStatement
+4. 执行sql 处理sql 返回值
+	select 返回ResultSet 遍历	st.executeQuery
+	dml		返回int	代表影响的数据行数	st.executeUpdate
+5. 释放资源
+	Connection	Statement	ResultSet
+```
+
+##### 使用PreparedStatement 替换 Statement
+
+```
+1. 可以防止拼接的sql注入 原理就是你输入的数据不拼接 直接作为真实数据
+2. 由于采用预编译 会提前生成sql的执行计划 提高执行效率
+3. 拼接sql 每次sql是不同的 这会给数据库服务器的sql缓冲造成冲击 无法实现批处理
+4. 由于不拼接sql 程序员出错的概率会降低 提高编码质量和速度
+
+使用后 用.setString(序号，变量名)来赋值，序号从1开始
+```
+
+#### 请求的 转发
+
+```
+1. 一个web组件 将未处理完毕的请求，通过tomcat转交给另一个web组件处理
+2. 步骤
+	(1) 获取请求转发器
+		RequestDispatcher rd = request.getRequestDispatcher("转发的地址");
+	(2) 通过转发器 发起转发
+		rd.forward(request, response);
+	简写步骤
+		request.getRequestDispatcher("转发的地址").forward(request, response);
+3. 转发流程
+	(1) 当浏览器访问服务器中tomcat时
+	(2) tomcat将请求信息，与响应工具进行封装，传递给我们的Servlet的service方法进行处理
+	(3) 我们在service方法中，得到请求转发器，通过请求转发器 告知 tomcat ，请求转发的地址
+	(4) tomcat接收到请求转发需求，会重新封装请求信息，将请求对象 与 响应对象 传递给 转发地址的Servlet的service方法进行处理
+4. 特点
+	(1) 转发过程中，多个Servlet之间共享一份请求信息，共享一个响应对象
+	(2) 转发只能发生在同一个服务器中（转发无法实现跨域）
+	(3) 无论转发发生多少次，对于浏览器来说！只发起过一次请求，并且只接到了一次响应
+	(4) 相对于重定向来说，效率更高
+```
+
+#### 请求的 重定向
+
+```
+1. 概念
+	响应时，告知浏览器新的请求地址，浏览器接收到 自动请求新的地址
+2. 步骤
+	response.sendRedirect("重定向地址");
+3. 重定向流程
+	(1) 当浏览器访问服务时，服务器对浏览器响应一个302的状态码，以及一个location的地址
+	(2) HTTP协议约定，当浏览器接收到302状态码时，会自动寻找location地址，并发起新的请求（相当于 控制用户浏览器 自动完成页面的跳转操作）
+4. 特点
+	(1) 重定向会产生新的请求 和 新的响应
+	(2) 使用重定向，可以在多个服务器之间发生（可以实现跨域操作）
+	(3) 浏览器地址栏的内容 会发生改变
+	(4) 相对于请求转发而言，效率较低
+```
+
+##### 在一次用户的操作中，可以无限制的进行转发和重定向，但是记住：一定要存在出口
+
+#### HTTP协议的组成部分
+
+```
+1. 请求
+	请求由四部分组成：
+		- 请求头
+			请求头部的信息，由一个个的键值对组成，描述的是有关客户端的信息
+		- 请求体
+			GET请求没有请求体。当请求方式为POST时，存在请求体，请求体是用于存储数据的数据容器
+		- 请求空行
+			请求头部与请求体之间的一行空白
+		- 请求行
+			由一个个的键值对组成，描述的是：请求方式，远端服务器地址，以及所使用的协议版本等信息
+2. 响应
+	响应由三部分组成：
+		- 响应头
+			响应头部的信息，由一个个的键值对组成，描述的是有关服务器的信息
+		- 响应体
+			服务器给客户端回复的主题内容
+		- 响应行
+			描述了响应的协议版本，响应状态码，以及响应成功或失败的相关解释
+```
+
+#### Cookie技术
+
+```
+技术实现步骤以及原理：
+1. 当服务器向客户端响应时，可以向响应头部加入Cookie，每一个Cookie表示一个键值对。
+2. 浏览器在接收到响应后，如果存在Cookie，则会将Cookie存储在文本文件中(.txt)
+	//存储时，会存储的信息有：服务器的域，路径，Cookie键，Cookie的值，存储时长...
+3. 当浏览器向客户端请求时，会遍历Cookie的文本文件，将匹配新请求地址的Cookie携带上，放在请求头部，发送给服务器
+	//Cookie匹配的规则：当Cookie存储的域相同时，路径匹配时 才会将Cookie发送给服务器。
+```
+
+##### 如何创建Cookie
+
+```
+Cookie在Java中的体现 就是一个表示键值对的 Java类，类名为：Cookie
+格式：
+	Cookie cookie = new Cookie(String name, String value);
+```
+
+##### 如何将Cookie添加到响应头部
+
+```
+通过响应对象，将Cookie添加到响应头部
+格式：
+	response.addCookie(Cookie cookie);
+一次响应，可以添加n个Cookie
+如果浏览器中已经存储过与某个Cookie的name相同的Cookie，再次存储时会覆盖value
+```
+
+##### 如何从请求头部 得到之前存储的所有Cookie
+
+```
+因为一个域 和 路径下，可能存在多个Cookie，所以获取的不是单个Cookie，而是一个数组：
+Cookie[] cookies = request.getCookies();
+// 如果从未存储过，则返回的数组值是 null
+```
+
+##### 得到Cookie后，如何取出其中的键和值
+
+```
+获取Cookie的键：
+	String name = cookie.getName();
+获取Cookie的值：
+	String value = cookie.getValue()；
+```
+
+##### 如何调整Cookie存储时长
+
+```
+cookie.setMaxAge(int 秒);
+传入的值：
+	- 负数： 默认-1，表示浏览会话结束时 删除
+	- 正数： 存活的描述，例如 60*60*24*365*10 表示10年
+	- 0： 经常用于覆盖一个cookie时使用，作用为0秒后删除（立即删除）
+```
+
+##### Cookie存储时，路径问题的解决
+
+```
+Cookie的保存路径是当前提交页的路径
+路径匹配的规则：
+	Cookie的替换：	只能由相同域，相同路径的 替换
+	Cookie的获取：
+	只能由相同域，相同路径或子路径 获取
+例如：
+	A地址：		localhost/x/a.do
+	B地址：		localhost/x/b.do
+	C地址：		localhost/c.do
+
+	A存储数据时：a/b可以获取，a/b可以替换	c不能获取 也不能替换
+	C存储数据时：a/b/c可以获取，c可以替换
+
+JavaWeb 给我们提供了一个Cookie的方法，用于设置Cookie的路径
+通常我们会将Cookie的路径设置为/（根路径）
+格式：	Cookie.setPath("/");
+```
+
+##### Cookie的优缺点
+
+```
+缺点：
+	1. Cookie存储的数据类型有限制，只能是字符串
+	2. 数据存储的大小，有限制，最大为4kb
+	3. 数据存储在用户的计算机上，不安全
+	4. 受限于用户的浏览器设置，当浏览器禁止使用Cookie时，cookie就无法再存储了
+优点：
+	数据存储在客户端，分散了服务器的压力
+```
+
+#### Session技术（会话，和cookie差不多）
+
+```
+基于Cookie实现的技术，是Java中的一个键值对的容器，就像我们常用的Map集合
+技术原理：
+	1. 浏览器访问服务器时，服务器可以选择创建Session对象
+	2. session对象在创建时，会生成一个id，我们称其为sessionid，session是Session的密匙，是唯一的！
+	3. session创建完毕后，会自动将session以cookie的形式 存储到用户的浏览器中
+	4. 当浏览器再次访问服务器时，会自动携带sessionid发送给服务器
+	5. 服务器得到sessionid后，会去自动匹配找到对应的session对象，供用户使用
+```
+
+##### 如何获取session对象
+
+```
+在Java中，session是一个Java对象，对象的类型为：HttpSession
+获取Session对象的格式：
+	格式1 无参方法：
+		HttpSession session = request.getSession();
+		内部调用了 一参方法，且传入true
+
+	格式2 一参方法：
+		HttpSession session = request.getSession(boolean isNew);
+		用于获取session 参数：
+		true：	根据当前浏览器传入sessionid，寻找session对象并返回。如果不存在，则创建新的session并返回
+		false：	根据当前浏览器传入的sessionid，寻找session对象并返回。如果不存在，则返回null
+```
+
+##### session的常用方法
+
+```
+1.存储数据
+	session.setAttribute(String key, Object value);
+2. 获取数据
+	Object value = session.getAttribute(String key);
+3. 删除数据
+	session.removeAttribute(String key);
+4. 销毁session（应用场景： 百分之99的情况是：退出登录）
+	session.invalidate();
+```
+
+##### session的存活时长
+
+```
+session的默认时长为：30分钟！
+指的是：用户的上一次访问大于30分钟后，session自动删除
+
+设置Session时长：
+	方式1. 修改单个session的时长：
+		session.setMaxInactiveInterval(int 秒);
+	方式2. 修改tocmat下，所有session的默认时长：
+		独立环境：	寻找到tomcat/conf/web.xml文件
+		开发环境：	寻找到Servers项目中的web.xml
+
+		修改web.xml中 session-config节点
+			<session-config>
+				<session-timeout>数值分钟</session-timeout>
+			</session-config>
+```
+
+##### session的优缺点
+
+```
+优点：
+	1. 数据存储在服务器中，安全
+	2. session存储时的值类型为：Object，可以存储任意类型数据
+	3. 可存储的数据大小，理论上是无上限的
+缺点：
+	数据在服务器的内存中存储，内存通常是有限的，会对服务器造成大量的压力，很容易耗尽服务器资源
+```
+
+##### Cookie技术 和 Session技术 不是互斥的
+
+```
+Cookie和session是结合使用的
+	通常：
+		对于安全不敏感的数据，建议使用Cookie存储
+		对于安全敏感的数据，建议使用session存储
+
+		对于安全敏感，且较大的数据，存储在数据库
+```
+
+#### JSP简介
+
+* Java Server Pages 是Java的动态网页技术
+
+#### JSP引擎
+
+```
+引擎原理：
+	JSP引擎用于将JSP文件，转换为Servlet
+	就是将写的JSP文件（html等）通过编写的引擎转换为servlet格式输出html的形式
+
+	1. 在服务器启动时，JSP引擎读取.jsp文件
+	2. 将文件转换为Servlet的代码，并给Serblet添加映射地址为 jsp的文件名称
+	3. 当用户浏览器访问jsp文件名称时，其实请求的不是jsp文件，而是生成的servlet
+	4. Servlet负责给浏览器进行响应
+
+例如：
+	demo4.jsp文件：
+		<body>
+			<h3>我们的第一个JSP文件</h3>
+			<%
+				for(int i=0;i<100;i++){
+					%>
+					<div>从前有座山</div>
+					<%
+				}
+			%>
+		</body>
+
+	demo4_jsp.java
+		PrintWriter out = response.getWriter();
+		out.println("<body>");
+		out.println("<h3>我们的第一个JSP文件</h3>");
+				for(int i=0;i<100;i++){
+		out.println("<div>从前有座山</div>");
+				}
+		out.println("<body>");
+```
+
+#### JSP语法结构
+
+```
+JSP文件保存的路径：	webContent目录下
+JSP文件 可以包含HTML代码，Java代码，以及JSP特有的标记
+```
+
+##### Java代码 声明区
+
+```
+指的是Java的成员代码位置，在JSP声明区中编写的Java代码，会生成到servlet的成员位置
+
+语法：
+	<%!
+		这里用于编写Java代码，且会生成到声明区
+	%>
+```
+
+##### Java代码 执行区
+
+```
+指的是Servlet的service方法中。用户每次请求 都会执行
+
+语法：
+	<%
+		Java代码
+	%>
+```
+
+##### 表达式
+
+```
+用于快速的将Java代码中的变量输出到网页中
+
+语法：
+	<%=变量名%>
+
+转换的Java：
+	out.print(变量名);
+```
+
+##### JSP中如何编写注释
+
+```
+因为JSP文件包含了三种语法结构（java/html/jsp）
+所以，三种语法结构的注释 都可以起到注释的效果：
+
+html注释：
+	<!-- html的注释 -->
+	在JSP中，HTML的注释会被JSP引擎认为是HTML代码，会转换为out.write("<!-- -->");
+Java注释：
+	单行：	//
+	多行：	/* */
+	文档：	/** */
+	在JSP中，Java的注释 会被JSP引擎认为是Java代码，会原封不动的放到_jsp.java文件中
+JSP注释：
+	<%-- JSP注释 --%>
+	在JSP引擎将jsp文件转换为.java文件时，会忽略JSP注释的部分
+```
+
+#### JSP 三大指令
+
+```
+指令的格式：
+	<%@ 指令名称 属性名=值 属性名2=值 ... 属性n=值 %>
+```
+
+##### page指令
+
+```
+用于设置页面
+
+完整格式：
+<%@ page
+	language="java"
+	extends="继承的类"
+	buffer="数值|none"	// 缓冲大小，none表示不缓冲，默认是8kb
+	session="true|false"	// true：自动创建session	 false：表示不自动创建
+	autoFlush="true|false"	// true：缓冲器自动清除，默认true
+	isThreadSafe="true|false"	// <%%>中的代码 是否是同步的，true表示同步，默认false
+	contentType="text/html;charset=utf-8"	//内容类型以及编码格式
+	errorPage="网页地址"		// 当JSP代码出错误，页面由指定地址进行显示
+	isErrorPage="true|false" 	// true：当前页面是处理错误的页面
+	import="导包列表"	//属性值是一个或多个导入的包，包与包之间使用逗号间隔即可
+%>
+```
+
+##### 指定项目全局错误页面
+
+```
+编写项目的web.xml
+
+在根节点中，加入子节点：
+	<error-page>
+		<error-code>404</error-code>
+		<location>处理404的页面地址</location>
+	</error-page>
+```
+
+#### include 指令
+
+```
+用于将一个JSP 或 HTML文件 引入到另一个JSP中
+
+一开始直接把另一个JSP文件嵌入到JSP文件中然后统一编译为java文件（只有自己的文件不会多生成）
+
+格式：
+	<%@ include file="引入的路径" %>
+```
+
+#### include 动作
+
+```
+用于将一个JSP 或HTML文件 引入到另一个JSP中
+
+先把JSP文件编译成java文件在里面嵌入另一个JSP文件，等客户端请求时再把里面嵌入的JSP文件编译为java文件（多生成引入的JSP文件和java文件）
+
+格式：
+	<jsp:include page="引入的路径" flush="true">
+```
+
+#### include指令 与 include动作的区别
+
+```
+include指令：	在JSP程序的转换时期，将被引入的JSP文件嵌入到include指令的位置，然后统一编译执行（最终生成了一个.java文件）
+include动作：	在JSP程序的转换时期，被引入的文件不会嵌入到include动作的位置，而是等客户端请求时，再临时将被引入的文件 加载到响应中（最终生成的是多个.java文件）
+```
+
+#### JSP的内置对象（隐含对象）
+
+```
+内置对象指的是： JSP引擎在转换JSP文件时，帮我们在代码执行前 创建的一些 供我们使用的对象，
+				内置对象具备大量的JSP中的常用功能，使用JSP内置对象可以大大的简化我们的开发流程
+```
+
+#### JSP的九大内置对象
+
+```
+request:
+	类型：	HttpServletRequest
+	作用：	请求对象，包含了请求相关的信息和参数
+response:
+	类型：	HttpServletResponse
+	作用：	响应对象，包含了一些用于响应的功能
+out:
+	类型：	JSPWriter
+	作用：	是打印流，用于向响应体中输出数据
+session:
+	类型：	HttpSession
+	作用：	会话对象，用于状态管理以及 会话跟踪
+application:
+	类型：	ServletContext
+	作用：	Servlet的上下文，一个应用内存中同时只有一个上下文对象。用于多个Servlet/JSP之间通信
+```
+```
+confin:
+	类型：	ServletConfig
+	作用：	Servlet的配置对象，用于配置一些初始的键值对信息
+pageContext:
+	类型：	PageContext
+	作用：	页面的上下文，每个JSP都拥有一个上下文对象，用于多段代码之间进行通信
+exception:
+	类型：	Throwable
+	作用：	当页面的page指令中 isErrorPage属性值为true时，才会存在此对象，用于收集错误信息！
+			通常此对象值为null，只有其他页面指定errorPage=当前页面时，且其他页面发生BUG后，跳转到此页面时，对象才不为null
+page:
+	类型：	Object
+	作用：	指当前JSP页面自身，在JSP引擎生成的代码中，page对象的赋值代码为：
+			Object page = this;
+```
 >持续更新……
 
 
