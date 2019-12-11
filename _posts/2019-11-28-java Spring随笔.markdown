@@ -162,10 +162,7 @@ JdbcDaoSupport   jdbc  DAO 的支持类
 5. 开启组件扫描   在DAO 实现类上打对应的标注 
     同时给 JdbcDaoSupport 这个类 注入一个  dataSource 对象 
 6. 获取DAO的实现类 测试 
-```
-
-##### 重新建立一个项目  然后使用Spring DAO 访问数据库的步骤  完成 
- 根据id 查询银行账号 。 
+``` 
 
 ##### 使用Spring DAO 访问数据库的步骤  完成 根据id 查询银行账户 。 
 
@@ -203,7 +200,7 @@ JdbcDaoSupport   jdbc  DAO 的支持类
      对应的对象 
 ```
 
-#####.如何完成增删改 
+##### 如何完成增删改 
 
 ```
 使用JdbcTemplate 对应的  update 方法 以增加银行账户为例 
@@ -232,7 +229,7 @@ JdbcDaoSupport   jdbc  DAO 的支持类
 当不需要事务管理时  可以从配置文件中将其移除
 ```
 
-####Spring 声明式事务的实现步骤 
+#### Spring 声明式事务的实现步骤 
 
 ```
 1. 开启声明式事务
@@ -366,7 +363,7 @@ tomcat8 中  get 请求没有乱码问题
 tomcat8 中  post 请求 乱码的处理  
 a.原来的方式依然可用  但是必须完全遵守之前的方式 
 	request.setCharacterEncoding("utf-8");
-    request.getParameter("acc_no")
+	request.getParameter("acc_no")
 b.使用编码过滤器   Spring 框架提供的
 ```
 

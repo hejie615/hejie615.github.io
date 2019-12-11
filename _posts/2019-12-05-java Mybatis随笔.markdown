@@ -91,7 +91,7 @@ b.使用resultMap 来解决
 #### Mybatis  和  Spring 的第二种手段
 
 ``` 
-   ----  利用模板(SqlSessionTemplate) 自己写DAO的实现类 
+----  利用模板(SqlSessionTemplate) 自己写DAO的实现类 
 1. 新建一个项目  导入jar包(ioc aop  mybatis  mybatis-spring 
      dao  数据库驱动 连接池)拷贝 Spring 容器的配置文件到src下
 2. 根据银行账户表  建立一个实体类 
