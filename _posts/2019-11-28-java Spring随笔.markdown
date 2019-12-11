@@ -155,7 +155,7 @@ JdbcDaoSupport   jdbc  DAO 的支持类
 	'liweijie','123',1234567);
 	insert into  xdl_bank_account_29 values(xdl_bank_account_29_id_seq.nextval,
 	'canglaoshi','123',1);
-	commit;          
+	commit;
 2. 建立一个项目 导入jar包(ioc aop dao 数据库驱动  连接池)  拷贝配置文件到src下
 3. 编写DAO 接口 
 4. 编写DAO 的实现类  继承 JdbcDaoSupport 利用模板完成查询 
