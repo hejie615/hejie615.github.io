@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Java随笔
+title: JavaEE随笔
 date: 2019-10-17 09:00:00 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: java.jpg # Add image post (optional)
@@ -1496,7 +1496,447 @@ page:
 	作用：	指当前JSP页面自身，在JSP引擎生成的代码中，page对象的赋值代码为：
 			Object page = this;
 ```
->持续更新……
 
+#### JSP的四大域对象
+
+```
+九大隐含对象中，包含了四个较为特殊的隐含对象，这四个对象我们称其为域对象，
+它们都具备存储数据 / 删除数据 / 获取数据 的方法：
+	存储数据：
+		setAttribute(String key, object value);
+	获取数据：
+		Object value = getAttribute(String key);
+	删除数据：
+		removeAttribute(String key);
+
+这四个域对象，'域' 指的是作用域！分别是：
+	
+	pageContext :	页面的上下文		 作用域： 一个JSP页面
+	request		:	请求对象			 作用域： 一次请求（请求可以被转发，一次请求可能包含多个JSP页面）
+	session		:	会话对象			 作用域： 一次会话（一次会话可能包含多次请求）
+	application	:	servlet上下文对象 作用域： 一次服务（服务器的启动到关闭。一次服务可能包含多次会话）
+```
+
+#### JSP useBean动作
+
+```
+作用：	向四大域对象中，存储bean对象
+格式：
+	<jsp:useBean
+		id="存储时的key"
+		scope="page/request/session/application"
+		class="要存储的对象类型">
+	</jsp:useBean>
+```
+
+#### JSP useBean+ setProperty动作
+
+```
+作用：	向四大域对象中，存储bean对象。且设置属性值
+格式：
+	<jsp:useBean
+		id="存储时的key"
+		scope="page/request/session/application"
+		class="要存储的对象类型">
+		<jsp:setProperty property="属性名" value="属性值"/>
+		//setproperty动作可以出现多次
+	</jsp:useBean>
+
+案例：
+	<jsp:useBean id="p" scope="page" class="cn.xdl.bean.Person"></jsp:useBean>
+	<jsp:setProperty name="p" property="name" value="刘建建"/>
+	<jsp:setProperty name="p" property="age" value="18"/>
+```
+
+#### JSP useBean+ setProperty动作 快速获取表单提交的内容
+
+```
+格式：
+	<jsp:useBean
+		id="存储时的key"
+		scope="page/request/session/application"
+		class="要存储的对象类型">
+	</jsp:useBean>
+	<jsp:setProperty name="存储时的key" property="属性名"/>
+
+注意：
+	若果setProperty动作中，property的值是对象的属性名，又是我们用户请求的参数的名称话，会自动将参数获取到并赋值给对象（就是属性名和请求的参数名相同时会自动获取参数的值进行赋值）
+```
+
+#### JSP getProperty动作
+
+```
+作用：
+	从四大域对象中 取出某个对象的属性，并显示到网页中
+语法格式：
+	<jsp:getProperty name="对象的key" property="属性名">
+```
+
+#### 通过重写URL，得到session（因为session依赖cookie，cookie可能会被禁用）
+
+```
+1. 重写普通的网址，通常是超链接/表单中使用的网址
+	url = response.encoderUrl(url);
+
+2. 重写重定向的网址，这种网址用于重定向
+	url = response.encodeRedirectUrl(url);
+```
+
+#### EL表达式
+
+```
+作用：
+	用于快速的从域对象中取出数据，并将结果输出到网页，
+	也可以用于一些运算，运算的结果也会输出到网页
+格式：
+	${表达式}
+```
+
+##### 例如：用于运算：
+
+```
+运算的结果：${ 1+2+3+4+5 }
+```
+
+##### 用于取出域对象中的数据
+
+```
+访问存储数据的格式：
+	${存储的key}
+
+访问存储对象属性值：
+	静态取值：${存储的key.属性名}
+	静态取值：${存储的key["属性名""]}
+
+	动态取值：${存储的key[属性名的key]} 	//动态就是取出的值是指向的另一个属性
+
+访问集合/数组中的对象
+	静态取值：${存储的key[下标].属性名}
+	静态取值：${存储的key[下标]["属性名""]}
+
+	动态取值：${存储的key[下标][属性名的key]}
+
+有时我们需要使用变量的值，可以将其先存储到域对象中，再在el表达式中使用存储的key来操作
+例如：循环遍历
+	<%
+		User[] data = {new User("root1", "123"), new User("root2", "223"), new User("root3", "323"), new User("root4", "423")};
+		pageContext.setAttribute("users", data);
+		pageContext.setAttribute("a", "username");
+	%>
+	<%
+		for(int i=0;i<data.length;i++) {
+			pageContext.setAttribute("index", i);
+		}
+	%>
+		静态取值：	${ user[index].username }
+	<% } %>
+```
+
+#### EL表达式 取出数据的流程
+
+```
+取出的顺序： 范围从小到大
+
+步骤：
+	1. 先从pageContext中寻找数据是否存在
+	2. 当pageContext中不存在此数据时，去request中寻找数据是否存在
+	3. 当request中不存在此数据时，去session中寻找数据是否存在
+	4. 当session中不存在此数据时，去application中寻找数据是否存在
+	5. 当application中不存在此数据时,向网页输出 长度为0的字符串（是""，不是null）
+
+在上述的流程中，一旦某一个步骤寻找到了数据，就会将数据输出到网页中，且后续流程不再执行
+```
+
+#### taglib指令
+
+```
+用于在JSP中引入标签库
+语法格式：
+	<%@ taglib prefix="" uri=""%>
+
+属性：	prefix: 是引入的标签库的名称，用于区分多个标签库。  在使用此标签库中的标签时，需在标签前添加标签库名称：
+		例如：	我们引入一个标签库，prefix=a，则其中的标签在使用时： <a:标签名></a:标签>
+		uri:	用于匹配标签库。在引入的tld文件中存在一个uri属性值，我们uri属性与tld文件中的属性相同时，则引入这个文件描述的库
+```
+		
+#### JSTL标签库
+
+```
+是一套JSP的标准标签库。对JSP的标签进行了扩展
+```
+
+##### IF标签
+
+```
+作用：	用于判断元素是否显示
+
+格式：
+	<库的名称:if test>></库的名称:if>
+
+	test属性值：
+		可以是boolean值，或运算结果为boolean的el表达式
+```
+
+#### choose + when + otherwise标签
+
+```
+类似Java中：		switch case default
+
+这三个标签，只有when是有test属性的，属性值是boolean值，允许使用el表达式传入
+
+作用：
+	用于多分支 显示
+
+案例：
+	<%
+		pageContext.setAttribute("flag", 100);
+	%>
+	<hhh:choose>
+		<hhh:when test="${ flag == 1 }">
+		1
+		</hhh:when>
+	</hhh:choose>
+	<hhh:choose>
+		<hhh:when test="${ flag == 2 }">
+		2
+		</hhh:when>
+	</hhh:choose>
+	<hhh:choose>
+		<hhh:when test="${ flag == 3 }">
+		3
+		</hhh:when>
+	</hhh:choose>
+	<hhh:choose>
+		<hhh:otherwise>
+		另外
+		</hhh:otherwise>
+	</hhh:choose>
+```
+
+#### forEach
+
+```
+用于遍历集合 或 数组元素
+
+格式：
+	<标签库名称:forEach items="" var="">
+
+	</标签库名称:forEach>
+
+属性：
+	items	:	要遍历的数组 或 集合 必须通过el表达式传递
+	var 	:	在循环遍历时，从数组或集合中取出的每一个元素会被存储到pageContext中，key就是var的值
+```
+
+#### 如何自定义标签库
+
+```
+自定义标签库的类：
+	两种实现方式：
+		1. 继承SimpleTagSupport
+		2. 继承TagSupport
+```
+
+### Fileter & Listener
+
+#### web三大组件
+
+```
+Servlet是web的三大组件之一
+
+1. Servlet
+2. Fileter  过滤器
+3. Listener 监听器
+```
+
+#### Filter 过滤器
+
+```
+过滤的是请求
+
+面向切面编程思想（一片一片的 可以取出中间的东西或放进去）
+
+使用步骤：
+	1. 编写一个类，实现Filter接口
+	2. 通过web.xml 或 注解的方式，配置过滤器的过滤地址
+```
+
+##### doFilter中的请求与响应对象 为什么不是http的？
+
+```
+过滤器在早期设计时，不只是针对HTTP请求。针对所有协议的请求都可以进行过滤。
+因为我们现在都是使用HTTP协议，所以感觉很怪异
+
+想要操作Http相关的请求对象 与 响应对象 怎么办？
+
+需将请求对象强制转换为 HttpServletRequest 将响应对象 强制转换为 HttpServletResponse 即可
+```
+
+#### 过滤器链
+
+```
+当多个过滤器的 过滤地址重复时，就形成了过滤器链，
+用户的一次请求，需要经过多次过滤放行
+
+过滤器的执行顺序是：
+	web.xml中配置的顺序：
+		按照xml中配置的先后顺序 来执行的，web.xml中配置代码靠前的，优先执行
+
+	注解配置的顺序：
+		按照类名的自然排序，排序执行；
+		注意：	配置的过滤器，一定执行在web.xml过滤器之后
+		例如：
+			类名Filter1 执行在类名Filter2之前
+			类名Aaa 执行在 类名Aab之前
+```
+
+#### Listener
+
+```
+事件驱动，监听的是tomcat产生的事件：
+
+两类事件：
+	1. 生命周期相关事件
+	2. 域对象中数据的变化事件
+```
+
+#### ServletContextListener
+
+```
+用于监听ServletContext的创建 和 销毁
+	因为ServletContext的创建，就表示项目的启动。ServletContext的销毁 就 表示项目的关闭
+	所以次监听器，是用于监听项目的启动 和 关闭的
+
+	我们常在项目启动时，进行资源初始化的操作。准备一些后续项目中会用到的资源
+	在项目关闭时，进行资源的释放操作，解除资源的占用句柄
+
+案例：
+	@WebListener
+	public class Listener1 implements SerlvetContextListener {
+		
+		// 用于监听+应用关闭
+		public void contextDatroyed(servletContextEvent arg0) {
+		}
+		
+		//用于监听应用启动
+		public void contextInitialized(servletContextEvent arg0) {
+		}
+	} 
+``` 
+
+#### ServletContextAttributeListener
+
+```
+监听Servlet上下文中数据的 增加，删除 以及修改
+
+@WebListener
+public class ServletContextAttributeListener1 implements ServletContextAttributeListener {
+	//当数据增加时
+	public void attributeAdded(ServletContextAttributeEvent e) {
+		//从事件对象中，得到增加的数据（键和值）
+		String key = e.getName();
+		Object value = e.getValue();
+		System.out.println("添加的数据key："+key+",数据值："+value);
+	}
+
+	//当删除数据时
+	public void attributeAdded(ServletContextAttributeEvent e) {
+		//从事件对象中，得到删除的数据（键和值）
+		String key = e.getName();
+		Object value = e.getValue();
+		System.out.println("删除的数据key："+key+",数据值："+value);
+	}
+
+	//当替换数据时
+	public void attributeAdded(ServletContextAttributeEvent e) {
+		//从事件对象中，得到被替换的旧值
+		String key = e.getName();
+		Object oldValue = e.getValue();
+
+		//从事件对象中，可以得到ServletContex对象
+		Object newValue = e.getServletContext().getAttribute(key);
+		System.out.println("替换的数据key："+key+",旧的值值："+oldValue+",新的值"+newValue);
+	}
+}
+```
+
+#### HttpSessionListener
+
+```
+用于监听session的创建与销毁
+
+因为我们服务器中每一个session 表示一次用户的会话
+
+一个客户端就会创建一个单独的session。 可以将session的数量，理解为在线用户的数量。
+所以我们经常在session创建与销毁的监听中，计算当前在线的人数
+
+案例：
+	@WebListener
+	public class HttpSessionListener1 implements HttpSessionListener {
+		//session的创建
+		public void sessionCreated(HttpSessionEvent e) {
+			CountUtil.add();
+		}
+		// session的销毁
+		public void sessionDestroyed(HttpSessionEvent e) {
+			CountUtil.remove()
+		}
+	}
+
+	public class CountUtil {
+		private static int count = 0;
+		private static ArrayList<Integer> countNum = new ArrayList<Integer>();
+		private static Random r = new Random();
+		public static void add() {
+			// 随机数
+			int num = r.nextInt(25)+25;
+			// 计数
+			count+=num;
+			//将本次计数的值 存储到集合中
+			countNum.add(num);
+		}
+		public static void remove() {
+			// 获取并删除最后 一次 计数的 数量值
+			int num = countNum.remove(countNum.size()-1);
+			count-=num;
+		}
+		public static int get() {
+			return count;
+		}
+	}
+```
+
+#### HttpSessionAttributeListener
+
+```
+用于监听session中的数据的增加，删除，修改
+
+// 监听用户会话状态的变化
+@WebListener
+public class HttpSessionAttributeListener1 implements HttpSessionAttributeListener {
+	// 当session中数据增加
+	public void attributeAdded(HttpSessionBindingEvent e) {
+		String key = e.getName();
+		Object value = e.getValue();
+		System.out.println("session中增加了数据：key="+key+"，value="+value);
+	}
+
+	// 当session中数据删除
+	public void attributeRemoved(HttpSessionBindingEvent e) {
+		String key = e.getName();
+		Object value = e.getValue();
+		System.out.println("session中删除了数据：key="+key+"，value="+value);
+	}
+
+	// 当session中数据被替换
+	public void attributeReplaced(HttpSessionBindingEvent e) {
+		String key = e.getName();
+		Object oldValue = e.getValue();
+		Object newValue = e.getSession().getAttribute(key);
+		System.out.println("session中替换了数据：key="+key+"，旧的值="+oldValue+"，新的值="+newValue);
+	}
+}
+```
+>持续更新……
 
 
