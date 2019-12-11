@@ -3,7 +3,7 @@ layout: post
 title: JavaMybatis随笔
 date: 2019-12-05 09:00:00 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: JavaMybaits.jpg # Add image post (optional)
+img: JavaMybatis.jpg # Add image post (optional)
 tags: [随笔] # add tag
 ---
 
